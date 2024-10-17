@@ -64,15 +64,7 @@ function descendingComparator(a: KeyedObject, b: KeyedObject, orderBy: string) {
   return 0;
 }
 
-const [products, SetProduct] = useState<Products[]>([])
 
-useEffect(() => {
-  (async ()=> {
-    const prod : any = await util.getMensProduct()
-    SetProduct(prod)
-  })()
-  setLoading(false);
-},[])
 
 const getComparator: GetComparator = (order, orderBy) =>
   order === 'desc' ? (a, b) => descendingComparator(a, b, orderBy) : (a, b) => -descendingComparator(a, b, orderBy);
@@ -240,7 +232,15 @@ const ProductList = () => {
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(5);
   const [search, setSearch] = React.useState<string>('');
   const [rows, setRows] = React.useState<Products[]>([]);
-  const { products } = useSelector((state) => state.product);
+  const [products, SetProduct] = useState<Products[]>([])
+
+useEffect(() => {
+  (async ()=> {
+    const prod : any = await util.getMensProduct()
+    SetProduct(prod)
+  })()
+  setLoading(false);
+},[])
 
   const [anchorEl, setAnchorEl] = React.useState<Element | (() => Element) | null | undefined>(null);
 
