@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, ReactElement } from 'react';
+import util from '../../../api/products1'
 
 // material-ui
 import { styled, Theme } from '@mui/material/styles';
@@ -46,6 +47,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 // types
 import { Products as ProductsTypo, ProductsFilter } from 'types/e-commerce';
+import UtilitiesShadow from 'views/utils/util-shadow';
 
 // product list container
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{ open?: boolean }>(({ theme, open }) => ({
@@ -108,11 +110,18 @@ const ProductsList = () => {
   const cart = useSelector((state) => state.cart);
 
   // product data
-  const { products } = useSelector((state) => state.product);
+  // const { products } = useSelector((state) => state.product);
+  const [products, SetProduct] = useState<ProductsTypo[]>([])
 
   useEffect(() => {
-    dispatch(getProducts()).then(() => setLoading(false));
+    (async ()=> {
+      const prod : any = await util.ReadProduct()
+      SetProduct(prod)
+    })()
+    setLoading(false);
+  },[])
 
+  useEffect(() =>{
     // clear cart if complete order
     if (cart.checkout.step > 2) {
       dispatch(resetCart());
@@ -150,59 +159,59 @@ const ProductsList = () => {
 
   const handelFilter = (type: string, params: string, rating?: number) => {
     setProductLoading(true);
+    let updatedFilter = { ...filter };
+  
     switch (type) {
       case 'gender':
-        if (filter.gender.some((item) => item === params)) {
-          setFilter({ ...filter, gender: filter.gender.filter((item) => item !== params) });
-        } else {
-          setFilter({ ...filter, gender: [...filter.gender, params] });
-        }
+        updatedFilter.gender = updatedFilter.gender.some((item) => item === params)
+          ? updatedFilter.gender.filter((item) => item !== params)
+          : [...updatedFilter.gender, params];
         break;
       case 'categories':
-        if (filter.categories.some((item) => item === params)) {
-          setFilter({ ...filter, categories: filter.categories.filter((item) => item !== params) });
-        } else if (filter.categories.some((item) => item === 'all') || params === 'all') {
-          setFilter({ ...filter, categories: [params] });
-        } else {
-          setFilter({ ...filter, categories: [...filter.categories, params] });
-        }
-
+        updatedFilter.categories = updatedFilter.categories.some((item) => item === params)
+          ? updatedFilter.categories.filter((item) => item !== params)
+          : updatedFilter.categories.some((item) => item === 'all') || params === 'all'
+          ? [params]
+          : [...updatedFilter.categories, params];
         break;
       case 'colors':
-        if (filter.colors.some((item) => item === params)) {
-          setFilter({ ...filter, colors: filter.colors.filter((item) => item !== params) });
-        } else {
-          setFilter({ ...filter, colors: [...filter.colors, params] });
-        }
+        updatedFilter.colors = updatedFilter.colors.some((item) => item === params)
+          ? updatedFilter.colors.filter((item) => item !== params)
+          : [...updatedFilter.colors, params];
         break;
       case 'price':
-        setFilter({ ...filter, price: params });
+        updatedFilter.price = params;
         break;
       case 'search':
-        setFilter({ ...filter, search: params });
+        updatedFilter.search = params;
         break;
       case 'sort':
-        setFilter({ ...filter, sort: params });
+        updatedFilter.sort = params;
         break;
       case 'rating':
-        setFilter({ ...filter, rating: rating! });
+        updatedFilter.rating = rating!;
         break;
       case 'reset':
-        setFilter(initialState);
+        updatedFilter = initialState;
         break;
       default:
       // no options
     }
-  };
-
-  const filterData = async (filter: ProductsFilter) => {
-    await dispatch(filterProducts(filter));
-    setProductLoading(false);
+  
+    setFilter(updatedFilter);
   };
 
   useEffect(() => {
-    filterData(filter);
+    const fetchFilteredProducts = async () => {
+      setProductLoading(true)
+      const filteredProducts: any = await util.filterProducts(filter);
+      SetProduct(filteredProducts);
+      setProductLoading(false);
+    };
+  
+    fetchFilteredProducts();
   }, [filter]);
+  
 
   // sort filter
   const handleMenuItemClick = (event: React.MouseEvent<HTMLElement>, index: string) => {

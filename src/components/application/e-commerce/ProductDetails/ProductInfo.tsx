@@ -59,7 +59,7 @@ function getColor(color: string) {
 const sizeOptions = [8, 10, 12, 14, 16, 18, 20];
 
 const validationSchema = yup.object({
-  color: yup.string().required('Color selection is required'),
+  // color: yup.string().required('Color selection is required'),
   size: yup.number().required('Size selection is required.')
 });
 
@@ -234,14 +234,14 @@ const ProductInfo = ({ product }: { product: Products }) => {
                 <Table>
                   <TableBody sx={{ '& .MuiTableCell-root': { borderBottom: 'none' } }}>
                     <TableRow>
-                      <TableCell>
+                      {/* <TableCell>
                         <Typography variant="body2">
                           Colors
                           <Typography color="error" component="span">
                             *
                           </Typography>
                         </Typography>
-                      </TableCell>
+                      </TableCell> */}
                       <TableCell>
                         <RadioGroup
                           row

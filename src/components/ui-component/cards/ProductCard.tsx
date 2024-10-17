@@ -21,7 +21,7 @@ import { openSnackbar } from 'store/slices/snackbar';
 
 // assets
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
-const prodImage = '/assets/images/e-commerce';
+// const prodImage = '/assets/images/e-commerce';
 
 // types
 import { ProductCardProps } from 'types/product';
@@ -29,7 +29,7 @@ import { ProductCardProps } from 'types/product';
 // ==============================|| PRODUCT CARD ||============================== //
 
 const ProductCard = ({ id, color, name, image, description, offerPrice, salePrice, rating }: ProductCardProps) => {
-  const prodProfile = image && `${prodImage}/${image}`;
+  const prodProfile = image;
   const [productRating] = useState<number | undefined>(rating);
   const cart = useSelector((state) => state.cart);
 
@@ -98,7 +98,7 @@ const ProductCard = ({ id, color, name, image, description, offerPrice, salePric
               <Grid item xs={12} sx={{ pt: '8px !important' }}>
                 <Stack direction="row" alignItems="center" spacing={1}>
                   <Rating precision={0.5} name="size-small" value={productRating} size="small" readOnly />
-                  <Typography variant="caption">({offerPrice}+)</Typography>
+                  <Typography variant="caption">({salePrice}+)</Typography>
                 </Stack>
               </Grid>
               <Grid item xs={12}>

@@ -62,21 +62,10 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
         password: Yup.string().max(255).required('Password is required')
       })}
       onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
-        try {
-          await login(values.email, values.password);
-          if (scriptedRef.current) {
+          // await login(values.email, values.password);
             setStatus({ success: true });
             router.push(DASHBOARD_PATH);
-            setSubmitting(false);
-          }
-        } catch (err: any) {
-          console.error(err);
-          if (scriptedRef.current) {
-            setStatus({ success: false });
-            setErrors({ submit: err.message });
-            setSubmitting(false);
-          }
-        }
+            setSubmitting(false);    
       }}
     >
       {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (

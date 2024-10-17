@@ -2,6 +2,8 @@
 
 import { useEffect, useState, SyntheticEvent } from 'react';
 import { useParams } from 'next/navigation';
+import util from '../../../api/products1'
+
 
 // material-ui
 import Box from '@mui/material/Box';
@@ -31,6 +33,8 @@ import { resetCart } from 'store/slices/cart';
 
 // types
 import { TabsProps } from 'types';
+import { Products as ProductsTypo } from 'types/e-commerce';
+
 
 function TabPanel({ children, value, index, ...other }: TabsProps) {
   return (
@@ -62,7 +66,16 @@ const ProductDetails = ({ id }: Props) => {
   const { menuMaster } = useGetMenuMaster();
 
   const cart = useSelector((state) => state.cart);
-  const { product } = useSelector((state) => state.product);
+  // const { product } = useSelector((state) => state.product);
+  const [product, SetProduct] = useState<ProductsTypo[]>([])
+
+  useEffect(() => {
+    (async ()=> {
+      const prod : any = await util.ReadProduct()
+      SetProduct(prod)
+    })()
+    setLoading(false);
+  },[])
 
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -92,18 +105,20 @@ const ProductDetails = ({ id }: Props) => {
   }, []);
 
   if (loading) return <Loader />;
+  
+  const ProductDetails = product.find((p) => p.id === Number(id));
 
   return (
     <Grid container alignItems="center" justifyContent="center" spacing={gridSpacing}>
       <Grid item xs={12} lg={10}>
         <MainCard>
-          {product && product?.id === Number(id) && (
+          {ProductDetails && (
             <Grid container spacing={gridSpacing}>
               <Grid item xs={12} md={6}>
-                <ProductImages product={product} />
+                <ProductImages product={ProductDetails} />
               </Grid>
               <Grid item xs={12} md={6}>
-                <ProductInfo product={product} />
+                <ProductInfo product={ProductDetails} />
               </Grid>
               <Grid item xs={12}>
                 <Tabs
@@ -118,7 +133,7 @@ const ProductDetails = ({ id }: Props) => {
                   <Tab
                     label={
                       <Stack direction="row" alignItems="center">
-                        Reviews <Chip label={String(product.offerPrice?.toFixed(0))} size="small" chipcolor="secondary" sx={{ ml: 1.5 }} />
+                        Reviews <Chip label={String(ProductDetails.offerPrice?.toFixed(0))} size="small" chipcolor="secondary" sx={{ ml: 1.5 }} />
                       </Stack>
                     }
                     {...a11yProps(1)}
@@ -128,7 +143,7 @@ const ProductDetails = ({ id }: Props) => {
                   <ProductDescription />
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                  <ProductReview product={product} />
+                  <ProductReview product={ProductDetails} />
                 </TabPanel>
               </Grid>
             </Grid>

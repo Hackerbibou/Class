@@ -40,21 +40,9 @@ const MenuList = () => {
   let widgetMenu = Menu();
 
   useLayoutEffect(() => {
-    const isFound = menuItem.items.some((element) => {
-      if (element.id === 'group-widget') {
-        return true;
-      }
-      return false;
-    });
-    if (menuLoading) {
-      menuItem.items.splice(1, 0, widgetMenu);
+  
       setMenuItems({ items: [...menuItem.items] });
-    } else if (!menuLoading && widgetMenu?.id !== undefined && !isFound) {
-      menuItem.items.splice(1, 1, widgetMenu);
-      setMenuItems({ items: [...menuItem.items] });
-    } else {
-      setMenuItems({ items: [...menuItem.items] });
-    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [menuLoading]);
 

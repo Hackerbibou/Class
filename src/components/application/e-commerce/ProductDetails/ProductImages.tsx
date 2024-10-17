@@ -42,7 +42,7 @@ const ProductImages = ({ product }: { product: Products }) => {
   const products = [prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9];
 
   const downLG = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
-  const initialImage = product.image ? `${prodImage}/${product.image}` : prod1;
+  const initialImage = product.image ? product.image : prod1;
 
   const [selected, setSelected] = useState<string>(initialImage);
   const [modal, setModal] = useState<boolean>(false);
