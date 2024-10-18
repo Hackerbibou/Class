@@ -1,6 +1,12 @@
 {
-  "/categories/mensShirts/page": "app/categories/mensShirts/page.js",
+  "/categories/mensLongsleeves/page": "app/categories/mensLongsleeves/page.js",
   "/categories/mensHoodies/page": "app/categories/mensHoodies/page.js",
+  "/categories/mensShoes/page": "app/categories/mensShoes/page.js",
+  "/categories/mensSocks/page": "app/categories/mensSocks/page.js",
+  "/categories/mensHats/page": "app/categories/mensHats/page.js",
+  "/categories/mensJeans/page": "app/categories/mensJeans/page.js",
+  "/categories/mensSweatpants/page": "app/categories/mensSweatpants/page.js",
+  "/categories/mensShorts/page": "app/categories/mensShorts/page.js",
   "/categories/mensPants/page": "app/categories/mensPants/page.js",
-  "/categories/mensJeans/page": "app/categories/mensJeans/page.js"
+  "/categories/mensShirts/page": "app/categories/mensShirts/page.js"
 }

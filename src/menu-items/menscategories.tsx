@@ -60,7 +60,7 @@ const Men: NavItemType = {
           id: 'long-sleeve',
           title: <FormattedMessage id="Long-sleeve" />,
           type: 'item',
-          url: '/categories/mensLongsleeve'
+          url: '/categories/mensLongsleeves'
         }
       ]
     },

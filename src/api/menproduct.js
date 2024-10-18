@@ -73,7 +73,7 @@ export async function getMensShoes() {
 export async function getMensHats() {
 
     let { data: Menhats, error } = await supabase
-    .from('Menhats')
+    .from('Menshats')
     .select('*')
     return Menhats
 }
