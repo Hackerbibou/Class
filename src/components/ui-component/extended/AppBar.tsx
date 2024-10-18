@@ -74,7 +74,7 @@ const AppBar = ({ ...others }) => {
               <Logo />
             </Typography>
             <Stack direction="row" sx={{ display: { xs: 'none', sm: 'block' } }} spacing={{ xs: 1.5, md: 2.5 }}>
-              <Button color="inherit" component={Link} href="#">
+              {/* <Button color="inherit" component={Link} href="#">
                 Home
               </Button>
               <Button color="inherit" component={Link} href="login" target="_blank">
@@ -82,9 +82,9 @@ const AppBar = ({ ...others }) => {
               </Button>
               <Button color="inherit" component={Link} href="https://codedthemes.gitbook.io/berry" target="_blank">
                 Documentation
-              </Button>
-              <Button component={Link} href="https://links.codedthemes.com/hsqll" disableElevation variant="contained" color="secondary">
-                Purchase Now
+              </Button> */}
+              <Button component={Link} href="/categories/mensJeans" disableElevation variant="contained" color="secondary">
+                Shop Now
               </Button>
             </Stack>
             <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
@@ -95,7 +95,7 @@ const AppBar = ({ ...others }) => {
                 {drawerToggle && (
                   <Box sx={{ width: 'auto' }} role="presentation" onClick={drawerToggler(false)} onKeyDown={drawerToggler(false)}>
                     <List>
-                      <Link sx={{ textDecoration: 'none' }} href="#" target="_blank">
+                      {/* <Link sx={{ textDecoration: 'none' }} href="#" target="_blank">
                         <ListItemButton component="a">
                           <ListItemIcon>
                             <IconHome2 />
@@ -118,13 +118,13 @@ const AppBar = ({ ...others }) => {
                           </ListItemIcon>
                           <ListItemText primary="Documentation" />
                         </ListItemButton>
-                      </Link>
-                      <Link sx={{ textDecoration: 'none' }} href="https://links.codedthemes.com/hsqll" target="_blank">
+                      </Link> */}
+                      <Link sx={{ textDecoration: 'none' }} href="/categories/mensJeans" target="_blank">
                         <ListItemButton component="a">
                           <ListItemIcon>
                             <IconCreditCard />
                           </ListItemIcon>
-                          <ListItemText primary="Purchase Now" />
+                          <ListItemText primary="Shop Now" />
                         </ListItemButton>
                       </Link>
                     </List>

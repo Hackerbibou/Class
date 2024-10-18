@@ -48,20 +48,20 @@ const Men: NavItemType = {
           id: 'shirt',
           title: <FormattedMessage id="Shirt" />,
           type: 'item',
-          url: '/categories/menstops'
+          url: '/categories/mensShirt'
         },
         {
           id: 'hoodies',
           title: <FormattedMessage id="Hoodies" />,
           type: 'item',
-          url: '/categories/menstops',
+          url: '/categories/mensHoodies',
           breadcrumbs: false
         },
         {
           id: 'long-sleeve',
           title: <FormattedMessage id="Long-sleeve" />,
           type: 'item',
-          url: '/categories/menstops'
+          url: '/categories/mensLongsleeve'
         }
       ]
     },
@@ -75,25 +75,25 @@ const Men: NavItemType = {
           id: 'Pants',
           title: <FormattedMessage id="Pants" />,
           type: 'item',
-          url: '/categories/menstops'
+          url: '/categories/mensPants'
         },
         {
           id: 'Shorts',
           title: <FormattedMessage id="Shorts" />,
           type: 'item',
-          url: '/categories/mensPants'
+          url: '/categories/mensShorts'
         },
         {
           id: 'Sweatpants',
           title: <FormattedMessage id="Sweatpants" />,
           type: 'item',
-          url: '/categories/menstops'
+          url: '/categories/mensSweatpants'
         },
         {
           id: 'Jeans',
           title: <FormattedMessage id="Jeans" />,
           type: 'item',
-          url: '/categories/menstops'
+          url: '/categories/mensJeans'
         },
       ]},
     {
@@ -106,19 +106,19 @@ const Men: NavItemType = {
           id: 'Shoes',
           title: <FormattedMessage id="Shoes" />,
           type: 'item',
-          url: '/categories/menstops'
+          url: '/categories/mensShoes'
         },
         {
           id: 'Socks',
           title: <FormattedMessage id="Socks" />,
           type: 'item',
-          url: '/categories/menstops'
+          url: '/categories/mensSocks'
         },
         {
           id: 'Hats',
           title: <FormattedMessage id="Hats" />,
           type: 'item',
-          url: '/categories/menstops'
+          url: '/categories/mensHats'
         },
       ]},
   ]
