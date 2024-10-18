@@ -15,7 +15,7 @@ export async function getMensShirts() {
 export async function getMensHoodies() {
 
     let { data: Menhoodies, error } = await supabase
-        .from('Menhoodies')
+        .from('Menshoodies')
         .select('*')
         return Menhoodies
 }

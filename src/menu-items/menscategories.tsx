@@ -45,17 +45,16 @@ const Men: NavItemType = {
       icon: icons.IconBasket,
       children: [
         {
-          id: 'shirt',
-          title: <FormattedMessage id="Shirt" />,
+          id: 'shirts',
+          title: <FormattedMessage id="Shirts" />,
           type: 'item',
-          url: '/categories/mensShirt'
+          url: '/categories/mensShirts'
         },
         {
           id: 'hoodies',
           title: <FormattedMessage id="Hoodies" />,
           type: 'item',
           url: '/categories/mensHoodies',
-          breadcrumbs: false
         },
         {
           id: 'long-sleeve',
