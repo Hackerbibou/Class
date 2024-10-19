@@ -82,7 +82,7 @@ const HeaderSection = () => {
   return (
     <Container sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <Grid container justifyContent="space-between" alignItems="center" sx={{ mt: { xs: 10, sm: 6, md: 18.75 }, mb: { xs: 2.5, md: 10 } }}>
-        <Grid item xs={12} md={5}>
+        <Grid item >
           <Grid container spacing={6}>
             <Grid item xs={12}>
               <motion.div
@@ -91,11 +91,11 @@ const HeaderSection = () => {
                 transition={{ type: 'spring', stiffness: 150, damping: 30 }}
               >
                 <Stack spacing={1}>
-                  <Typography textAlign={{ xs: 'center', md: 'left' }} variant="h1" sx={headerSX}>
-                    Use Berry to Power Your Next
+                  <Typography textAlign={{ xs: 'center', md: 'center' }} variant="h1" sx={headerSX}>
+                    Keur Sokhna Diarra
                   </Typography>
-                  <Typography textAlign={{ xs: 'center', md: 'left' }} variant="h1" color="primary" sx={headerSX}>
-                    React Project
+                  <Typography textAlign={{ xs: 'center', md: 'center' }} variant="h1" color="primary" sx={headerSX}>
+                    Bambinery
                   </Typography>
                 </Stack>
               </motion.div>
@@ -107,12 +107,12 @@ const HeaderSection = () => {
                 transition={{ type: 'spring', stiffness: 150, damping: 30, delay: 0.2 }}
               >
                 <Typography
-                  textAlign={{ xs: 'center', md: 'left' }}
+                  textAlign={{ xs: 'center', md: 'center' }}
                   color="text.primary"
                   variant="body1"
                   sx={{ fontSize: { xs: '1rem', md: '1.125rem' } }}
                 >
-                  Berry is React based Dashboard template which helps you to build faster and beautiful web applications.
+                  Vente d'habillement bébé de 0 à 16 ans
                 </Typography>
               </motion.div>
             </Grid>
@@ -122,49 +122,108 @@ const HeaderSection = () => {
                 animate={{ opacity: 1, translateY: 0 }}
                 transition={{ type: 'spring', stiffness: 150, damping: 30, delay: 0.4 }}
               >
-                <Grid container spacing={2} sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}>
+                <Grid container spacing={2} sx={{ justifyContent: { xs: 'center', md: 'center' }, width:{xs:'100%', md:'80%'},margin:'0 auto' }}>
                   <Grid item>
                     <AnimateButton>
                       <Button
                         component={Link}
-                        href={DASHBOARD_PATH}
+                        href='/categories/mensShirts'
+                        target="_blank"
+                        size="large"
+                        variant="contained"
+                        color="primary"
+                        startIcon={<PlayArrowIcon />}
+                      >
+                        Haut M
+                      </Button>
+                    </AnimateButton>
+                  </Grid>
+                  <Grid item>
+                    <AnimateButton>
+                      <Button
+                        component={Link}
+                        href='/categories/womensShirts'
                         target="_blank"
                         size="large"
                         variant="contained"
                         color="secondary"
                         startIcon={<PlayArrowIcon />}
                       >
-                        Live Preview
+                        Haut F
                       </Button>
                     </AnimateButton>
                   </Grid>
                   <Grid item>
-                    <Button component={Link} href="https://links.codedthemes.com/hsqll" target="_blank" size="large">
-                      Purchase Now
-                    </Button>
+                    <AnimateButton>
+                      <Button
+                        component={Link}
+                        href='/categories/mensPants'
+                        target="_blank"
+                        size="large"
+                        variant="contained"
+                        color="primary"
+                        startIcon={<PlayArrowIcon />}
+                      >
+                        Bas M
+                      </Button>
+                    </AnimateButton>
                   </Grid>
+                  <Grid item>
+                    <AnimateButton>
+                      <Button
+                        component={Link}
+                        href='/categories/womensPants'
+                        target="_blank"
+                        size="large"
+                        variant="contained"
+                        color="secondary"
+                        startIcon={<PlayArrowIcon />}
+                      >
+                        Bas F
+                      </Button>
+                    </AnimateButton>
+                  </Grid>
+                  <Grid item>
+                    <AnimateButton>
+                      <Button
+                        component={Link}
+                        href='/categories/mensHats'
+                        target="_blank"
+                        size="large"
+                        variant="contained"
+                        color="primary"
+                        startIcon={<PlayArrowIcon />}
+                      >
+                        Accessoire M
+                      </Button>
+                    </AnimateButton>
+                  </Grid>
+                  <Grid item>
+                    <AnimateButton>
+                      <Button
+                        component={Link}
+                        href='/categories/womensHats'
+                        target="_blank"
+                        size="large"
+                        variant="contained"
+                        color="secondary"
+                        startIcon={<PlayArrowIcon />}
+                      >
+                        Accessoir F
+                      </Button>
+                    </AnimateButton>
+                  </Grid>
+                  
+                  
+                  
+                
                 </Grid>
               </motion.div>
             </Grid>
-            <Grid item xs={12}>
-              <motion.div
-                initial={{ opacity: 0, translateY: 550 }}
-                animate={{ opacity: 1, translateY: 0 }}
-                transition={{ type: 'spring', stiffness: 150, damping: 30, delay: 0.6 }}
-              >
-                <Stack direction="row" spacing={2} alignItems="center" justifyContent={{ xs: 'center', md: 'flex-start' }}>
-                  <CardMedia
-                    component="img"
-                    image={mode === ThemeMode.DARK ? TechDark : TechLight}
-                    alt="Berry Tech"
-                    sx={{ width: { xs: '75%', sm: '50%', md: '75%' } }}
-                  />
-                </Stack>
-              </motion.div>
-            </Grid>
+            
           </Grid>
         </Grid>
-        <Grid item xs={12} md={7} sx={{ display: { xs: 'none', md: 'flex' } }}>
+        {/* <Grid item xs={12} md={7} sx={{ display: { xs: 'none', md: 'flex' } }}>
           <Box sx={{ position: 'relative', mt: 8.75, zIndex: 9 }}>
             <HeaderImage src={dashboard} alt="Berry" />
             <Box
@@ -204,7 +263,7 @@ const HeaderSection = () => {
             </Box>
           </Box>
           {HeaderAnimationImagememo}
-        </Grid>
+        </Grid> */}
       </Grid>
     </Container>
   );

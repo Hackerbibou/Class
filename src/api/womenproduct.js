@@ -15,7 +15,7 @@ export async function getWomensShirts() {
 export async function getWomensHoodies() {
 
     let { data: Womenhoodies, error } = await supabase
-        .from('Womenhoodies')
+        .from('Womenshoodies')
         .select('*')
         return Womenhoodies
 }
@@ -73,7 +73,7 @@ export async function getWomensShoes() {
 export async function getWomensHats() {
 
     let { data: Womenhats, error } = await supabase
-    .from('Womenhats')
+    .from('Womenshats')
     .select('*')
     return Womenhats
 }

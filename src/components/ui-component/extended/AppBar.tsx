@@ -84,7 +84,7 @@ const AppBar = ({ ...others }) => {
                 Documentation
               </Button> */}
               <Button component={Link} href="/categories/mensJeans" disableElevation variant="contained" color="secondary">
-                Shop Now
+                Shop
               </Button>
             </Stack>
             <Box sx={{ display: { xs: 'block', sm: 'none' } }}>

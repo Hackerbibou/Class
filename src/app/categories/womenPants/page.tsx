@@ -1,8 +1,7 @@
 import React from 'react'
 import WomensPants from 'views/apps/e-commerce/categories/womensPants'
 
-
-export const page = () => {
+export default function page() {
   return (
     <WomensPants />
   )
