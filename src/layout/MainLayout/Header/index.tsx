@@ -24,6 +24,7 @@ import { IconMenu2 } from '@tabler/icons-react';
 import { MenuOrientation, ThemeMode } from 'types/config';
 import { Button, Typography } from '@mui/material';
 import { CheckOutlined, SpaceBar } from '@mui/icons-material';
+import Link from 'next/link';
 
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 
@@ -90,9 +91,9 @@ const Header = () => {
         <FullScreenSection />
       </Box> */}
       <Box sx={{width:'10px'}}/>
-<Box sx={{ display: { xs: 'block', lg: 'block' } }}>
-     <Button>Login</Button>
-      </Box>
+<Link href='/login'><Box sx={{ display:'block' }}>
+     <Button>Compte</Button>
+      </Box></Link>
       {/* profile */}
       {/* <ProfileSection /> */}
 

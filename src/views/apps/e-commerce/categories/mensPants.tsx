@@ -237,6 +237,7 @@ const ProductsList = () => {
             salePrice={product.salePrice}
             rating={product.rating}
             color={product.colors ? product.colors[0] : undefined}
+            table={'Menpants'}
           />
         </Grid>
       ));

@@ -28,7 +28,7 @@ import { ProductCardProps } from 'types/product';
 
 // ==============================|| PRODUCT CARD ||============================== //
 
-const ProductCard = ({ id, color, name, image, description, offerPrice, salePrice, rating }: ProductCardProps) => {
+const ProductCard = ({ id, color, name, image, description, offerPrice, salePrice, rating, table }: ProductCardProps) => {
   const prodProfile = image;
   const [productRating] = useState<number | undefined>(rating);
   const cart = useSelector((state) => state.cart);
@@ -50,6 +50,8 @@ const ProductCard = ({ id, color, name, image, description, offerPrice, salePric
 
   const [isLoading, setLoading] = useState(true);
   useEffect(() => {
+    console.log(table);
+    console.log(id);
     setLoading(false);
   }, []);
 
@@ -73,14 +75,14 @@ const ProductCard = ({ id, color, name, image, description, offerPrice, salePric
             image={prodProfile}
             title="Contemplative Reptile"
             component={Link}
-            href={`/apps/e-commerce/product-details/${id}`}
+            href={`/categories/productdetail/${table}/${id}`}
           />
           <CardContent sx={{ p: 2 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Typography
                   component={Link}
-                  href={`/apps/e-commerce/product-details/${id}`}
+                  href={`/categories/productdetail/${table}/${id}`}
                   variant="subtitle1"
                   noWrap
                   sx={{ overflow: 'hidden', textOverflow: 'ellipsis', display: 'block', textDecoration: 'none' }}

@@ -58,10 +58,12 @@ const ProductReviews = ({ product }: { product: Products }) => {
   const productState = useSelector((state) => state.product);
 
   useEffect(() => {
+   
     setReviews(productState.reviews);
   }, [productState]);
 
   useEffect(() => {
+     console.log(product)
     dispatch(getProductReviews());
   }, []);
 

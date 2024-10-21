@@ -30,6 +30,7 @@ import { DASHBOARD_PATH } from 'config';
 // assets
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import util from 'api/clientuser'
 
 // ===============================|| JWT LOGIN ||=============================== //
 
@@ -40,6 +41,7 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
   const scriptedRef = useScriptRef();
 
   const [checked, setChecked] = React.useState(true);
+  const [creds,setCreds] = React.useState(false);
 
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => {
@@ -62,10 +64,20 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
         password: Yup.string().max(255).required('Password is required')
       })}
       onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
-          // await login(values.email, values.password);
-            setStatus({ success: true });
+          // await login
+          (async()=>{
+            const user:any= await util.Login(values.email, values.password);
+            console.log(user)
+            if(user){
+              setStatus({ success: true });
             router.push(DASHBOARD_PATH);
-            setSubmitting(false);    
+            setSubmitting(false);  
+            }else{
+              setCreds(true)
+              setStatus({ success: false });
+            }
+          })()
+              
       }}
     >
       {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
@@ -142,9 +154,9 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
             </Grid>
           </Grid>
 
-          {errors.submit && (
+          {creds && (
             <Box sx={{ mt: 3 }}>
-              <FormHelperText error>{errors.submit}</FormHelperText>
+              <FormHelperText error>Invalid login credentials</FormHelperText>
             </Box>
           )}
           <Box sx={{ mt: 2 }}>

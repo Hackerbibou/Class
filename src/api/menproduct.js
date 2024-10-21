@@ -84,6 +84,13 @@ export async function getMensSocks() {
     .select('*')
     return Mensocks
 }
+export async function getMensTable(table) {
+    console.log(table)
+    let { data: Table, error } = await supabase
+    .from(table)
+    .select('*')
+    return Table
+}
     
 export default {
     getMensShirts,
@@ -97,5 +104,7 @@ export default {
 
     getMensShoes,
     getMensHats,
-    getMensSocks
+    getMensSocks,
+
+    getMensTable
 }

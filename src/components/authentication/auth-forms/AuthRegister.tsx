@@ -31,7 +31,7 @@ import useScriptRef from 'hooks/useScriptRef';
 import { dispatch } from 'store';
 import { strengthColor, strengthIndicator } from 'utils/password-strength';
 import { openSnackbar } from 'store/slices/snackbar';
-
+import util from 'api/clientuser'
 // types
 import { StringColorProps } from 'types';
 
@@ -95,8 +95,9 @@ const JWTRegister = ({ ...others }) => {
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
-            await register(values.email, values.password, values.firstName, values.lastName);
-            if (scriptedRef.current) {
+            const user:any= await util.Signup(values.email, values.password, values.firstName, values.lastName);
+            console.log(user)
+            if (user && scriptedRef.current) {
               setStatus({ success: true });
               setSubmitting(false);
               dispatch(
@@ -114,6 +115,20 @@ const JWTRegister = ({ ...others }) => {
               setTimeout(() => {
                 router.push('/login');
               }, 1500);
+            }else{
+              setStatus({ success: false });
+              setSubmitting(false);
+              dispatch(
+                openSnackbar({
+                  open: true,
+                  message: 'Your registration has not been completed.',
+                  variant: 'alert',
+                  alert: {
+                    color: 'error'
+                  },
+                  close: false
+                })
+              );
             }
           } catch (err: any) {
             console.error(err);
@@ -121,6 +136,17 @@ const JWTRegister = ({ ...others }) => {
               setStatus({ success: false });
               setErrors({ submit: err.message });
               setSubmitting(false);
+              dispatch(
+                openSnackbar({
+                  open: true,
+                  message: 'Your registration has not been completed.',
+                  variant: 'alert',
+                  alert: {
+                    color: 'error'
+                  },
+                  close: false
+                })
+              );
             }
           }
         }}

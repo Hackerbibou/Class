@@ -21,7 +21,7 @@ const config: ConfigProps = {
   outlinedFilled: true,
   mode: ThemeMode.LIGHT,
   presetColor: 'default',
-  i18n: 'en',
+  i18n: 'fr',
   themeDirection: ThemeDirection.LTR,
   container: false
 };

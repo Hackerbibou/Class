@@ -17,10 +17,10 @@ import { getRelatedProducts } from 'store/slices/product';
 
 // types
 import { Products } from 'types/e-commerce';
-
+import util from 'api/menproduct'
 // ==============================|| PRODUCT DETAILS - RELATED PRODUCTS ||============================== //
 
-const RelatedProducts = ({ id }: { id?: string }) => {
+const RelatedProducts = ({ table, id }: { table?:string ,id?: string }) => {
   const [related, setRelated] = useState<Products[]>([]);
   const [itemsToShow, setItemsToShow] = useState<number>(5);
   const downSM = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
@@ -30,8 +30,12 @@ const RelatedProducts = ({ id }: { id?: string }) => {
   const { relatedProducts } = useSelector((state) => state.product);
 
   useEffect(() => {
-    setRelated(relatedProducts);
-  }, [relatedProducts]);
+    (async()=>{
+      const related:any= await util.getMensTable(table)
+      setRelated(related);
+    })()
+    
+  }, []);
 
   useEffect(() => {
     dispatch(getRelatedProducts(id));

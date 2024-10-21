@@ -2,7 +2,7 @@
 
 import { useEffect, useState, SyntheticEvent } from 'react';
 import { useParams } from 'next/navigation';
-import util from '../../../api/products1'
+import util from '../../../api/menproduct'
 
 
 // material-ui
@@ -57,12 +57,10 @@ function a11yProps(index: number) {
   };
 }
 
-type Props = {
-  id: string;
-};
 
-const ProductDetails = ({ id }: Props) => {
+const ProductDetails = () => {
   const params = useParams();
+  console.log(params)
   const { menuMaster } = useGetMenuMaster();
 
   const cart = useSelector((state) => state.cart);
@@ -71,7 +69,8 @@ const ProductDetails = ({ id }: Props) => {
 
   useEffect(() => {
     (async ()=> {
-      const prod : any = await util.ReadProduct()
+      const prod : any = await util.getMensTable(params.table)
+      console.log(prod)
       SetProduct(prod)
     })()
     setLoading(false);
@@ -87,17 +86,17 @@ const ProductDetails = ({ id }: Props) => {
   };
 
   useEffect(() => {
-    dispatch(getProduct(id as string)).then(() => setLoading(false));
+    dispatch(getProduct(params.id as string)).then(() => setLoading(false));
 
     // clear cart if complete order
     if (cart.checkout.step > 2) {
       dispatch(resetCart());
     }
-  }, [cart.checkout.step, id]);
+  }, [cart.checkout.step, params.id]);
 
   useEffect(() => {
-    dispatch(getProduct(id as string));
-  }, [id]);
+    dispatch(getProduct(params.id as string));
+  }, [params.id]);
 
   useEffect(() => {
     if (menuMaster.openedItem !== 'product-details') handlerActiveItem('product-details');
@@ -105,12 +104,11 @@ const ProductDetails = ({ id }: Props) => {
   }, []);
 
   if (loading) return <Loader />;
-  
-  const ProductDetails = product.find((p) => p.id === Number(id));
+  const ProductDetails = product.find((p) => p.id === Number(Number(params.id)));
 
   return (
     <Grid container alignItems="center" justifyContent="center" spacing={gridSpacing}>
-      <Grid item xs={12} lg={10}>
+      <Grid item xs={12} lg={12}>
         <MainCard>
           {ProductDetails && (
             <Grid container spacing={gridSpacing}>
@@ -120,7 +118,7 @@ const ProductDetails = ({ id }: Props) => {
               <Grid item xs={12} md={6}>
                 <ProductInfo product={ProductDetails} />
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <Tabs
                   value={value}
                   indicatorColor="primary"
@@ -145,7 +143,7 @@ const ProductDetails = ({ id }: Props) => {
                 <TabPanel value={value} index={1}>
                   <ProductReview product={ProductDetails} />
                 </TabPanel>
-              </Grid>
+              </Grid> */}
             </Grid>
           )}
         </MainCard>
@@ -154,7 +152,7 @@ const ProductDetails = ({ id }: Props) => {
         <Typography variant="h2">Related Products</Typography>
       </Grid>
       <Grid item xs={11} lg={10}>
-        <RelatedProducts id={params?.id?.toString()} />
+        <RelatedProducts table={params?.table?.toString()} id={params?.id?.toString()} />
       </Grid>
       <FloatingCart />
     </Grid>
