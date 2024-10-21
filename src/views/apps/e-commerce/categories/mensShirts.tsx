@@ -205,7 +205,7 @@ const ProductsList = () => {
   useEffect(() => {
     const fetchFilteredProducts = async () => {
       setProductLoading(true)
-      const filteredProducts: any = await util.getMensShirts();
+      const filteredProducts: any = await utils.filterProducts(filter,'Menshirts');
       SetProduct(filteredProducts);
       setProductLoading(false);
     };

@@ -1,7 +1,1 @@
-{
-  "/page": "app/page.js",
-  "/(minimal)/login/page": "app/(minimal)/login/page.js",
-  "/(minimal)/register/page": "app/(minimal)/register/page.js",
-  "/categories/mensJeans/page": "app/categories/mensJeans/page.js",
-  "/categories/productdetail/[table]/[id]/page": "app/categories/productdetail/[table]/[id]/page.js"
-}
+{}

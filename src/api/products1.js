@@ -42,9 +42,10 @@ let { data: products, error } = await supabase
   return products
 }
 
-async function filterProducts(filter) {
-
-  let query = supabase.from('products').select("*");
+async function filterProducts(filter,table) {
+  console.log(filter)
+  console.log(table)
+  let query = supabase.from(table).select("*");
 
   if (filter.price) {
     const [min, max] = filter.price.split('-').map(Number)

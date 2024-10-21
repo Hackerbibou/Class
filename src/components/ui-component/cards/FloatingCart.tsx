@@ -30,7 +30,7 @@ const FloatingCart = () => {
   return (
     <Fab
       component={Link}
-      href="/apps/e-commerce/checkout"
+      href="/checkout"
       size="large"
       sx={{
         top: '50%',

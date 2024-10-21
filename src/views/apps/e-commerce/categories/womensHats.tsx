@@ -2,6 +2,7 @@
 
 import { useEffect, useState, ReactElement } from 'react';
 import util from '../../../../api/womenproduct';
+import utils from '../../../../api/products1';
 
 // material-ui
 import { styled, Theme } from '@mui/material/styles';
@@ -204,7 +205,7 @@ const ProductsList = () => {
   useEffect(() => {
     const fetchFilteredProducts = async () => {
       setProductLoading(true)
-      const filteredProducts: any = await util.getWomensHats();
+      const filteredProducts: any = await utils.filterProducts(filter,'Womenshats');
       SetProduct(filteredProducts);
       setProductLoading(false);
     };

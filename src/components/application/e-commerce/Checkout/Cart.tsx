@@ -77,7 +77,7 @@ const Increment = ({ itemId, quantity, updateQuantity }: IncrementProps) => {
         <RemoveIcon fontSize="inherit" />
       </Button>
       <Button key="two" sx={{ pl: 0.5, pr: 0.5 }}>
-        {value}
+        {value} 
       </Button>
       <Button key="one" aria-label="decrease" onClick={decrementHandler} sx={{ pl: 0.75, pr: 0.75, minWidth: '0px !important' }}>
         <AddIcon fontSize="inherit" />

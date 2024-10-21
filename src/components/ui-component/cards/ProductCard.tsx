@@ -97,12 +97,12 @@ const ProductCard = ({ id, color, name, image, description, offerPrice, salePric
                   </Typography>
                 </Grid>
               )}
-              <Grid item xs={12} sx={{ pt: '8px !important' }}>
+              {/* <Grid item xs={12} sx={{ pt: '8px !important' }}>
                 <Stack direction="row" alignItems="center" spacing={1}>
                   <Rating precision={0.5} name="size-small" value={productRating} size="small" readOnly />
                   <Typography variant="caption">({salePrice}+)</Typography>
                 </Stack>
-              </Grid>
+              </Grid> */}
               <Grid item xs={12}>
                 <Stack direction="row" justifyContent="space-between" alignItems="center">
                   <Grid container spacing={1}>

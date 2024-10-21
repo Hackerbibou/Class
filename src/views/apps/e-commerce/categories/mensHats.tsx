@@ -49,6 +49,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 // types
 import { Products as ProductsTypo, ProductsFilter } from 'types/e-commerce';
 import UtilitiesShadow from 'views/utils/util-shadow';
+import { useParams } from 'next/navigation';
 
 // product list container
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{ open?: boolean }>(({ theme, open }) => ({
@@ -201,11 +202,11 @@ const ProductsList = () => {
   
     setFilter(updatedFilter);
   };
-
+  
   useEffect(() => {
     const fetchFilteredProducts = async () => {
       setProductLoading(true)
-      const filteredProducts: any = await util.getMensHats();
+      const filteredProducts: any = await utils.filterProducts(filter,'Menshats');
       SetProduct(filteredProducts);
       setProductLoading(false);
     };
