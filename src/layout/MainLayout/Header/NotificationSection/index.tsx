@@ -32,7 +32,7 @@ import { IconBell } from '@tabler/icons-react';
 // types
 import { ThemeMode } from 'types/config';
 import { ShoppingBasketOutlined } from '@mui/icons-material';
-import Checkout from 'views/apps/e-commerce/checkout';
+import Carts from 'views/apps/e-commerce/cart';
 import Cart from 'components/application/e-commerce/Checkout/Cart';
 import OrderSummary from 'components/application/e-commerce/Checkout/OrderSummary';
 
@@ -148,7 +148,7 @@ const NotificationSection = () => {
                 {open && (
                   <MainCard border={false} elevation={16} content={false} boxShadow shadow={theme.shadows[16]}>
                    <Box sx={{width:'400px'}}>                    
-                    <Checkout/>
+                    <Carts/>
                    </Box>
                   </MainCard>
                 )}

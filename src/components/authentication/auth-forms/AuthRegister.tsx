@@ -95,9 +95,9 @@ const JWTRegister = ({ ...others }) => {
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
-            const user:any= await util.Signup(values.email, values.password, values.firstName, values.lastName);
-            console.log(user)
-            if (user && scriptedRef.current) {
+            const role:any= await util.Signup(values.email, values.password, values.firstName, values.lastName);
+            console.log(role)
+            if (role=='authenticated') {
               setStatus({ success: true });
               setSubmitting(false);
               dispatch(

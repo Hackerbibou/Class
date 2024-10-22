@@ -31,6 +31,8 @@ import { DASHBOARD_PATH } from 'config';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import util from 'api/clientuser'
+import { dispatch } from 'store';
+import { openSnackbar } from 'store/slices/snackbar';
 
 // ===============================|| JWT LOGIN ||=============================== //
 
@@ -66,15 +68,26 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
       onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           // await login
           (async()=>{
-            const user:any= await util.Login(values.email, values.password);
-            console.log(user)
-            if(user){
+            const role:any= await util.Login(values.email, values.password);
+            console.log(role)
+            if(role=='authenticated'){
               setStatus({ success: true });
-            router.push(DASHBOARD_PATH);
+            router.back()
             setSubmitting(false);  
             }else{
               setCreds(true)
               setStatus({ success: false });
+              dispatch(
+                openSnackbar({
+                  open: true,
+                  message: 'Invalid login credidential',
+                  variant: 'alert',
+                  alert: {
+                    color: 'error'
+                  },
+                  close: false
+                })
+              );
             }
           })()
               

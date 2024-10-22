@@ -89,19 +89,20 @@ const Increment = ({ itemId, quantity, updateQuantity }: IncrementProps) => {
 // ==============================|| CART - MAIN ||============================== //
 
 interface CartProps {
+  products:any;
   checkout: CartCheckoutStateProps;
   onNext: () => void;
   removeProduct: (id: string | number | undefined) => void;
   updateQuantity: (id: string | number | undefined, quantity: number) => void;
 }
 
-const Cart = ({ checkout, onNext, removeProduct, updateQuantity }: CartProps) => {
-  const totalQuantity = sum(checkout.products.map((item) => item.quantity));
-  const [rows, setRows] = useState(checkout.products);
+const Cart = ({ products, checkout, onNext, removeProduct, updateQuantity }: CartProps) => {
+  const totalQuantity = sum(products.map((item:any) => item.quantity));
+  const [rows, setRows] = useState(products);
 
   useEffect(() => {
-    setRows(checkout.products);
-  }, [checkout.products]);
+    setRows(products);
+  }, [products]);
 
   return (
     <Grid container spacing={gridSpacing}>

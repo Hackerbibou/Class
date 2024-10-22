@@ -18,11 +18,10 @@ import util from 'api/clientuser'
 import { useEffect } from 'react';
 
 // ==============================|| MENU ITEMS ||============================== //
-// let user: any=null;
-// (async()=>{
-//   user =await util.Getuser();
-// })() 
-let menuItems: { items: NavItemType[] } = {items: [Men, Women]}
+let menuItems: { items: NavItemType[] } ={items: [Men, Women]};
+
+
+
 
 
 // items: [dashboard, application, forms, elements, samplePage, pages, utilities, support, other]

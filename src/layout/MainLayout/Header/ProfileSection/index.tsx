@@ -21,24 +21,25 @@ import Popper from '@mui/material/Popper';
 import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
-
+import LocalMallIcon from '@mui/icons-material/LocalMall';
 // third-party
 import { FormattedMessage } from 'react-intl';
 import PerfectScrollbar from 'react-perfect-scrollbar';
-
+import util from 'api/clientuser'
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import Transitions from 'ui-component/extended/Transitions';
 import UpgradePlanCard from './UpgradePlanCard';
 import useAuth from 'hooks/useAuth';
-
+import { useRouter } from 'next/navigation';
 // types
 import { ThemeMode } from 'types/config';
 
 // assets
 import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons-react';
 import useConfig from 'hooks/useConfig';
-
+import { LocalMall, LocalMallOutlined } from '@mui/icons-material';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 const User1 = '/assets/images/users/user-round.svg';
 
 // ==============================|| PROFILE MENU ||============================== //
@@ -54,16 +55,14 @@ const ProfileSection = () => {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const { logout, user } = useAuth();
   const [open, setOpen] = useState(false);
+  const router = useRouter();
   /**
    * anchorRef is used on different components and specifying one type leads to other components throwing an error
    * */
   const anchorRef = useRef<any>(null);
   const handleLogout = async () => {
-    try {
-      await logout();
-    } catch (err) {
-      console.error(err);
-    }
+      await util.Logout();
+      router.refresh()
   };
 
   const handleClose = (event: React.MouseEvent<HTMLDivElement> | MouseEvent | TouchEvent) => {
@@ -73,14 +72,14 @@ const ProfileSection = () => {
 
     setOpen(false);
   };
-
+  
   const handleListItemClick = (event: React.MouseEvent<HTMLDivElement>, index: number, route: string = '') => {
     setSelectedIndex(index);
     handleClose(event);
 
-    // if (route && route !== '') {
-    //     navigate(route);
-    // }
+    if (route && route !== '') {
+        router.push(route);
+    }
   };
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -172,7 +171,7 @@ const ProfileSection = () => {
                         </Stack>
                         <Typography variant="subtitle2">Project Admin</Typography>
                       </Stack>
-                      <OutlinedInput
+                      {/* <OutlinedInput
                         sx={{ width: '100%', pr: 1, pl: 2, my: 2 }}
                         id="input-search-profile"
                         value={value}
@@ -187,14 +186,14 @@ const ProfileSection = () => {
                         inputProps={{
                           'aria-label': 'weight'
                         }}
-                      />
+                      /> */}
                       <Divider />
                     </Box>
                     <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}>
                       <Box sx={{ p: 2, pt: 0 }}>
-                        <UpgradePlanCard />
-                        <Divider />
-                        <Card sx={{ bgcolor: theme.palette.mode === ThemeMode.DARK ? 'dark.800' : 'primary.light', my: 2 }}>
+                        {/* <UpgradePlanCard />
+                        <Divider /> */}
+                        {/* <Card sx={{ bgcolor: theme.palette.mode === ThemeMode.DARK ? 'dark.800' : 'primary.light', my: 2 }}>
                           <CardContent>
                             <Grid container spacing={3} direction="column">
                               <Grid item>
@@ -231,7 +230,7 @@ const ProfileSection = () => {
                             </Grid>
                           </CardContent>
                         </Card>
-                        <Divider />
+                        <Divider /> */}
                         <List
                           component="nav"
                           sx={{
@@ -247,7 +246,44 @@ const ProfileSection = () => {
                             sx={{ borderRadius: `${borderRadius}px` }}
                             selected={selectedIndex === 0}
                             onClick={(event: React.MouseEvent<HTMLDivElement>) =>
-                              handleListItemClick(event, 0, '/user/account-profile/profile1')
+                              handleListItemClick(event, 0, '/pastorders')
+                            }
+                          >
+                            <ListItemIcon>
+                              <LocalMallIcon stroke={1.5} size="20px" />
+                            </ListItemIcon>
+                            <ListItemText
+                              primary={
+                                <Typography variant="body2">
+                                  <FormattedMessage id="Commandes" />
+                                </Typography>
+                              }
+                            />
+                          </ListItemButton>
+                          <ListItemButton
+                            sx={{ borderRadius: `${borderRadius}px` }}
+                            selected={selectedIndex === 0}
+                            onClick={(event: React.MouseEvent<HTMLDivElement>) =>
+                              handleListItemClick(event, 0, '/checkout')
+                            }
+                          >
+                            <ListItemIcon>
+                              <ShoppingCartOutlinedIcon stroke={1.5} size="20px" />
+                            </ListItemIcon>
+                            <ListItemText
+                              primary={
+                                <Typography variant="body2">
+                                  <FormattedMessage id="Checkout" />
+                                </Typography>
+                              }
+                            />
+                          </ListItemButton>
+                          
+                          <ListItemButton
+                            sx={{ borderRadius: `${borderRadius}px` }}
+                            selected={selectedIndex === 0}
+                            onClick={(event: React.MouseEvent<HTMLDivElement>) =>
+                              handleListItemClick(event, 0, '/profile')
                             }
                           >
                             <ListItemIcon>
@@ -261,31 +297,7 @@ const ProfileSection = () => {
                               }
                             />
                           </ListItemButton>
-                          <ListItemButton
-                            sx={{ borderRadius: `${borderRadius}px` }}
-                            selected={selectedIndex === 1}
-                            onClick={(event: React.MouseEvent<HTMLDivElement>) =>
-                              handleListItemClick(event, 1, '/user/social-profile/posts')
-                            }
-                          >
-                            <ListItemIcon>
-                              <IconUser stroke={1.5} size="20px" />
-                            </ListItemIcon>
-                            <ListItemText
-                              primary={
-                                <Grid container spacing={1} justifyContent="space-between">
-                                  <Grid item>
-                                    <Typography variant="body2">
-                                      <FormattedMessage id="social-profile" />
-                                    </Typography>
-                                  </Grid>
-                                  <Grid item>
-                                    <Chip label="02" size="small" color="warning" sx={{ '& .MuiChip-label': { mt: 0.25 } }} />
-                                  </Grid>
-                                </Grid>
-                              }
-                            />
-                          </ListItemButton>
+                          
                           <ListItemButton sx={{ borderRadius: `${borderRadius}px` }} selected={selectedIndex === 4} onClick={handleLogout}>
                             <ListItemIcon>
                               <IconLogout stroke={1.5} size="20px" />

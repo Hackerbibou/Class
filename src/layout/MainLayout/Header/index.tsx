@@ -1,9 +1,10 @@
 // material-ui
+'use client'
 import { useTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
-
+import React,{useState, useEffect} from 'react'
 // project imports
 import useConfig from 'hooks/useConfig';
 import LogoSection from '../LogoSection';
@@ -14,7 +15,7 @@ import FullScreenSection from './FullScreenSection';
 import LocalizationSection from './LocalizationSection';
 import MegaMenuSection from './MegaMenuSection';
 import NotificationSection from './NotificationSection';
-
+import util from 'api/clientuser'
 import { handlerDrawerOpen, useGetMenuMaster } from 'api/menu';
 
 // assets
@@ -37,7 +38,14 @@ const Header = () => {
   const drawerOpen = menuMaster.isDashboardDrawerOpened;
 
   const isHorizontal = menuOrientation === MenuOrientation.HORIZONTAL && !downMD;
-
+  const [user, setUser] = React.useState<any>(null)
+  useEffect(()=>{
+    (async ()=>{
+      const userr:any=await util.Getuser();
+      setUser(userr)
+    })()
+    
+  },[])
   return (
     <>
       {/* logo & toggler button */}
@@ -90,12 +98,13 @@ const Header = () => {
       {/* <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
         <FullScreenSection />
       </Box> */}
-      <Box sx={{width:'10px'}}/>
+      {user?.role!='authenticated'?(<><Box sx={{width:'10px'}}/>
 <Link href='/login'><Box sx={{ display:'block' }}>
      <Button>Compte</Button>
-      </Box></Link>
+      </Box></Link></>):(<><Box sx={{width:'10px'}}/><ProfileSection /></>)}
+      
       {/* profile */}
-      {/* <ProfileSection /> */}
+      {/*  */}
 
       {/* mobile header */}
       {/* <Box sx={{ display: { xs: 'block', sm: 'none' } }}>

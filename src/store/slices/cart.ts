@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 // project imports
 import axios from '../../utils/axios';
 import { dispatch } from '../index';
-
+import util from 'api/checkout'
 // types
 import { Address } from '../../types/cart';
 import { ProductCardProps } from 'types/product';
@@ -132,6 +132,12 @@ export default slice.reducer;
 export function addProduct(product: ProductCardProps, products: ProductCardProps[]) {
   return async () => {
     try {
+      
+   
+
+      await util.addCart(product);
+     
+     
       const response = await axios.post('/api/cart/add', { product, products });
       dispatch(slice.actions.addProductSuccess(response.data));
     } catch (error) {

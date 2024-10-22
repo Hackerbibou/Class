@@ -20,17 +20,18 @@ import { gridSpacing } from 'store/constant';
 import { dispatch, useSelector } from 'store';
 import { openSnackbar } from 'store/slices/snackbar';
 import { getAddresses, editAddress, addAddress } from 'store/slices/product';
-import { removeProduct, setBackStep, setBillingAddress, setNextStep, setShippingCharge, setStep, updateProduct } from 'store/slices/cart';
+import { addProduct, removeProduct, setBackStep, setBillingAddress, setNextStep, setShippingCharge, setStep, updateProduct } from 'store/slices/cart';
 
 // types
 import { TabsProps } from 'types';
 import { ThemeMode } from 'types/config';
 import { Address } from 'types/e-commerce';
-
+import util from 'api/checkout'
 // assets
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import CreditCardTwoToneIcon from '@mui/icons-material/CreditCardTwoTone';
+import { getFabUtilityClass } from '@mui/material';
 
 interface TabOptionProps {
   label: string;
@@ -71,20 +72,28 @@ function TabPanel({ children, value, index, ...other }: TabsProps) {
 const Checkout = () => {
   const cart = useSelector((state) => state.cart);
   const { mode, borderRadius } = useConfig();
-
-  const isCart = cart.checkout.products && cart.checkout.products.length > 0;
+  const [product, setProduct] = useState([])
+  useEffect(()=>{
+    (async()=>{
+      const prod:any=await util.readCart();
+      setProduct(prod)
+      dispatch(addProduct(prod,prod));
+    })()
+    
+  },[])
+  const isCart = product && product.length > 0;
 
   const [value, setValue] = useState(cart.checkout.step > 2 ? 2 : cart.checkout.step);
   const [billing, setBilling] = useState(cart.checkout.billing);
   const [address, setAddress] = useState<Address[]>([]);
-  const { addresses } = useSelector((state) => state.product);
-
+  const { addresses } = useSelector((state) => state.product); 
   useEffect(() => {
     setAddress(addresses);
   }, [addresses]);
 
   useEffect(() => {
     dispatch(getAddresses());
+    
   }, []);
 
   const addBillingAddress = (addressNew: Address) => {
@@ -105,7 +114,7 @@ const Checkout = () => {
   }, [cart.checkout.step]);
 
   const removeCartProduct = (id: string | number | undefined) => {
-    dispatch(removeProduct(id, cart.checkout.products));
+    dispatch(removeProduct(id, product));
     dispatch(
       openSnackbar({
         open: true,
@@ -120,7 +129,7 @@ const Checkout = () => {
   };
 
   const updateQuantity = (id: string | number | undefined, quantity: number) => {
-    dispatch(updateProduct(id, quantity, cart.checkout.products));
+    dispatch(updateProduct(id, quantity, product));
   };
 
   const onNext = () => {
@@ -238,7 +247,7 @@ const Checkout = () => {
         </Grid>
         <Grid item xs={12}>
           <TabPanel value={value} index={0}>
-            {isCart && <Cart checkout={cart.checkout} onNext={onNext} removeProduct={removeCartProduct} updateQuantity={updateQuantity} />}
+            {isCart && <Cart products={product} checkout={cart.checkout} onNext={onNext} removeProduct={removeCartProduct} updateQuantity={updateQuantity} />}
             {!isCart && <CartEmpty />}
           </TabPanel>
           <TabPanel value={value} index={1}>

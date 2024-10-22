@@ -18,7 +18,7 @@ import { handlerDrawerOpen, useGetMenuMaster } from 'api/menu';
 // types
 import { MenuOrientation } from 'types/config';
 import MinimalLayout from 'layout/MinimalLayout';
-import Checkout from 'views/apps/e-commerce/checkout';
+import Cart from 'views/apps/e-commerce/cart';
 interface Props {
   children: ReactNode;
 }
@@ -42,7 +42,7 @@ export default function HomePage() {
       
         <Container>
    
-         <Checkout/>
+         <Cart/>
         </Container>
   
     </MinimalLayout>

@@ -8,6 +8,9 @@ export async function Login(email, password) {
         email: email,
         password: password
     })
+    console.log(data)
+    if(data.user)return data.user.role
+    return null
   
 }
 export async function Signup(email, password, firstName, lastName) {
@@ -22,13 +25,41 @@ export async function Signup(email, password, firstName, lastName) {
             }
         }
     })
+    console.log(data.user.role)
+    if(data.user) return(data.user.role)
+    return null
   
 }
+export async function getUserInfo(id){
 
+let { data: user, error } = await supabase
+.from('user')
+.select('*')
+.eq('id',id)   
+console.log(user) 
+return user[0]    
+}
 
 export async function Getuser() {
-
+    console.log('here')
     const { data: { user } } = await supabase.auth.getUser()
+    console.log(user)
+    if(!user)return null
+    const info= await getUserInfo(user.id)
+    const name = user.user_metadata.first_name+' '+user.user_metadata.last_name
+    console.log(user.email)
+    if(info==undefined){
+        console.log('here')
+        const { data, error } = await supabase
+        .from('user')
+        .insert([
+        { id: user.id,email:user.email, name: name,pastorders:[],cart:[]},
+        ])
+        .select()
+        
+    }
+
+    return user
 
 }
 export async function Logout() {

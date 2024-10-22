@@ -19,13 +19,21 @@ import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import { ThemeMode } from 'types/config';
 import { DefaultRootStateProps } from 'types';
 import { CartProductStateProps } from 'types/cart';
+import { useEffect, useState } from 'react';
+import util from 'api/checkout'
 
 // ==============================|| CART ITEMS - FLOATING BUTTON ||============================== //
 
 const FloatingCart = () => {
   const theme = useTheme();
-  const cart = useSelector((state: DefaultRootStateProps) => state.cart);
-  const totalQuantity = sum(cart.checkout.products.map((item: CartProductStateProps) => item.quantity));
+  let cart = useSelector((state: DefaultRootStateProps) => state.cart);
+  const [totalQuantity, setTotal]=useState(0)
+  useEffect(()=>{
+    (async()=>{
+      const cart:any= await util.readCart();
+      setTotal(cart.length)
+    })()
+  })
 
   return (
     <Fab
