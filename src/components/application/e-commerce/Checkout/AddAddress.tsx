@@ -33,6 +33,7 @@ import { Address } from 'types/e-commerce';
 
 // assets
 import HighlightOffTwoToneIcon from '@mui/icons-material/HighlightOffTwoTone';
+import SelectedListItem from 'components/ui-elements/basic/UIList/SelectedListItem';
 
 const validationSchema = yup.object({
   destination: yup.string().required('Color selection is required'),
@@ -48,6 +49,7 @@ const validationSchema = yup.object({
 const Transition = forwardRef((props: ZoomProps, ref) => <Zoom ref={ref} {...props} />);
 
 interface AddAddressProps {
+  setEdit?:any;
   edits?:boolean;
   addId?:number;
   address: Address;
@@ -59,7 +61,7 @@ interface AddAddressProps {
 
 // ==============================|| CHECKOUT BILLING ADDRESS - ADD NEW ADDRESS ||============================== //
 
-const AddAddress = ({addId,edits, address, open, handleClose, addAddress, editAddress }: AddAddressProps) => {
+const AddAddress = ({setEdit, addId,edits, address, open, handleClose, addAddress, editAddress }: AddAddressProps) => {
   const edit = address && address.id;
 
   const formik = useFormik({
@@ -82,6 +84,7 @@ const AddAddress = ({addId,edits, address, open, handleClose, addAddress, editAd
         (async()=>{
           await util.editAddress(addId,values);
         })();
+        setEdit(false)
       } else {
        (async()=>{ 
         await util.addAddress(values);

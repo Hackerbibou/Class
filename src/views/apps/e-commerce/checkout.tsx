@@ -262,7 +262,7 @@ const Checkout = () => {
             />
           </TabPanel>
           <TabPanel value={value} index={2}>
-            <Payment checkout={cart.checkout} onBack={onBack} onNext={onNext} handleShippingCharge={handleShippingCharge} />
+            <Payment products={product} checkout={cart.checkout} onBack={onBack} onNext={onNext} handleShippingCharge={handleShippingCharge} />
           </TabPanel>
         </Grid>
       </Grid>

@@ -99,19 +99,22 @@ export async function addAddress(address) {
 }
 export async function editAddress(index,address) {
     console.log(index)
-//     const user = await util.Getuser()
-//     const addresses= await readAddress();
-//     const addres = addresses.map((elem,i)=>{
-//         if(i==index){
-//             elem=address
-//         }
-//     })
-//     console.log(addres)
-//     const { data, error } = await supabase
-//     .from('user')
-//     .update({ adresses: [...addres] })
-//     .eq('id', user.id)
-//     .select()
+    const user = await util.Getuser()
+    const addresses= await readAddress();
+    const addres = addresses.map((elem,i)=>{
+        if(i==index){
+            elem=address
+            return elem
+        }else{
+            return elem
+        }
+    })
+    console.log(addres)
+    const { data, error } = await supabase
+    .from('user')
+    .update({ adresses: [...addres] })
+    .eq('id', user.id)
+    .select()
 }
 export async function removeAddress(index) {
     console.log(index)

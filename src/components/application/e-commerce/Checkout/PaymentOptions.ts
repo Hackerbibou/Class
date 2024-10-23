@@ -2,7 +2,7 @@
 import { PaymentOptionsProps } from 'types/e-commerce';
 
 // assets
-const paypal = '/assets/images/e-commerce/paypal.png';
+const sendwave = '/assets/images/e-commerce/sendwave.png';
 const card = '/assets/images/e-commerce/card.png';
 const cod = '/assets/images/e-commerce/cod.png';
 
@@ -11,35 +11,24 @@ const cod = '/assets/images/e-commerce/cod.png';
 const PaymentOptions: PaymentOptionsProps[] = [
   {
     id: 1,
-    value: 'paypal',
-    title: 'Pay with PayPal',
-    caption: 'You will be redirected to PayPal website to complete your purchase securely.',
-    image: paypal,
+    value: 'sendwave',
+    title: 'Payer avec Sendwave',
+    caption: 'Vous pouvez payer sécurisément avec votre téléphone.',
+    image: sendwave,
     size: {
-      width: 16,
-      height: 16
-    }
-  },
-  {
-    id: 2,
-    value: 'card',
-    title: 'Credit / Debit Card',
-    caption: 'We support Mastercard, Visa, Discover and Stripe.',
-    image: card,
-    size: {
-      width: 72,
-      height: 24
+      width: 60,
+      height: 48
     }
   },
   {
     id: 3,
     value: 'cod',
-    title: 'Cash on Delivery',
-    caption: 'Pay with cash when your order is delivered.',
+    title: 'Cash à main',
+    caption: 'Vous pouvez payer cash au livreur.',
     image: cod,
     size: {
-      width: 46,
-      height: 28
+      width: 60,
+      height: 36
     }
   }
 ];

@@ -1,3 +1,10 @@
 {
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/categories/womenShoes/page": "app/categories/womenShoes/page.js",
+  "/pay/page": "app/pay/page.js",
+  "/categories/mensShoes/page": "app/categories/mensShoes/page.js",
+  "/checkout/page": "app/checkout/page.js",
+  "/categories/mensShirts/page": "app/categories/mensShirts/page.js",
+  "/(minimal)/login/page": "app/(minimal)/login/page.js"
 }

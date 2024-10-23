@@ -45,7 +45,8 @@ import { PaymentOptionsProps } from 'types/e-commerce';
 import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { setPaymentCard, setPaymentMethod } from 'store/slices/cart';
-
+import util from 'api/checkout'
+import { useRouter } from 'next/navigation';
 const prodImage = '/assets/images/e-commerce';
 
 // product color select
@@ -56,16 +57,17 @@ function getColor(color: string) {
 // ==============================|| CHECKOUT PAYMENT - MAIN ||============================== //
 
 interface PaymentProps {
+  products?:any;
   checkout: CartCheckoutStateProps;
   onBack: () => void;
   onNext: () => void;
   handleShippingCharge: (type: string) => void;
 }
 
-const Payment = ({ checkout, onBack, onNext, handleShippingCharge }: PaymentProps) => {
+const Payment = ({ products, checkout, onBack, onNext, handleShippingCharge }: PaymentProps) => {
   const [type, setType] = useState(checkout.payment.type);
   const [payment, setPayment] = useState(checkout.payment.method);
-  const [rows, setRows] = useState(checkout.products);
+  const [rows, setRows] = useState(products?products:[]);
   const [cards, setCards] = useState(checkout.payment.card);
 
   const [open, setOpen] = useState(false);
@@ -77,11 +79,11 @@ const Payment = ({ checkout, onBack, onNext, handleShippingCharge }: PaymentProp
     setOpen(false);
   };
 
-  const [complete, setComplete] = useState(checkout.step > 2);
+  const [complete, setComplete] = useState(false);
 
   useEffect(() => {
-    setRows(checkout.products);
-  }, [checkout.products]);
+    setRows(products);
+  }, [products]);
 
   const cardHandler = (card: string) => {
     if (payment === 'card') {
@@ -94,7 +96,7 @@ const Payment = ({ checkout, onBack, onNext, handleShippingCharge }: PaymentProp
     setPayment(value);
     dispatch(setPaymentMethod(value));
   };
-
+  const router=useRouter();
   const completeHandler = () => {
     if (payment === 'card' && (cards === '' || cards === null)) {
       dispatch(
@@ -109,16 +111,27 @@ const Payment = ({ checkout, onBack, onNext, handleShippingCharge }: PaymentProp
         })
       );
     } else {
+      //Submit order here
       onNext();
       setComplete(true);
+      setTimeout(()=>{
+        setComplete(false);
+        (async()=>{
+        await util.clearCart()
+          router.push('/pastorders');
+      })()
+      },2000);
+      
+      
+      
     }
   };
 
   return (
     <Grid container spacing={gridSpacing}>
-      <Grid item xs={12} md={6} lg={8} xl={9}>
+      <Grid item xs={12} md={6} lg={6} xl={6}>
         <Grid container spacing={gridSpacing}>
-          <Grid item xs={12}>
+          <Grid item xs={12} lg={12} xl={12}  >
             <Stack>
               <Typography variant="subtitle1">Delivery Options</Typography>
               <FormControl>
@@ -133,7 +146,7 @@ const Payment = ({ checkout, onBack, onNext, handleShippingCharge }: PaymentProp
                   name="delivery-options"
                 >
                   <Grid container spacing={gridSpacing} alignItems="center" sx={{ pt: 2 }}>
-                    <Grid item xs={12} sm={6} md={12} lg={6}>
+                    <Grid item xs={12} lg={12} xl={10} >
                       <SubCard content={false}>
                         <Box sx={{ p: 2 }}>
                           <FormControlLabel
@@ -141,8 +154,8 @@ const Payment = ({ checkout, onBack, onNext, handleShippingCharge }: PaymentProp
                             control={<Radio />}
                             label={
                               <Stack spacing={0.25}>
-                                <Typography variant="subtitle1">Standard Delivery (Free)</Typography>
-                                <Typography variant="caption">Delivered on Monday 8 Jun</Typography>
+                                <Typography variant="subtitle1">Standard Delivery (5000 cfa)</Typography>
+                                <Typography variant="caption">Recevez votre commande cette semaine</Typography>
                               </Stack>
                             }
                             sx={{ '& .MuiSvgIcon-root': { fontSize: 32 } }}
@@ -150,7 +163,7 @@ const Payment = ({ checkout, onBack, onNext, handleShippingCharge }: PaymentProp
                         </Box>
                       </SubCard>
                     </Grid>
-                    <Grid item xs={12} sm={6} md={12} lg={6}>
+                    {/* <Grid item xs={12} sm={6} md={12} lg={6}>
                       <SubCard content={false}>
                         <Box sx={{ p: 2 }}>
                           <FormControlLabel
@@ -166,7 +179,7 @@ const Payment = ({ checkout, onBack, onNext, handleShippingCharge }: PaymentProp
                           />
                         </Box>
                       </SubCard>
-                    </Grid>
+                    </Grid> */}
                   </Grid>
                 </RadioGroup>
               </FormControl>
@@ -175,7 +188,7 @@ const Payment = ({ checkout, onBack, onNext, handleShippingCharge }: PaymentProp
           <Grid item xs={12}>
             <Typography variant="subtitle1">Payment Options</Typography>
           </Grid>
-          <Grid item xs={12} lg={6}>
+          <Grid item xs={12} lg={12} xl={12}>
             <FormControl>
               <RadioGroup
                 aria-label="delivery-options"
@@ -193,7 +206,7 @@ const Payment = ({ checkout, onBack, onNext, handleShippingCharge }: PaymentProp
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item xs={12} lg={6} sx={{ opacity: payment === 'card' ? 1 : 0.4 }}>
+          {/* <Grid item xs={12} lg={6} sx={{ opacity: payment === 'card' ? 1 : 0.4 }}>
             <SubCard
               title="Add Your Card"
               secondary={
@@ -212,7 +225,7 @@ const Payment = ({ checkout, onBack, onNext, handleShippingCharge }: PaymentProp
               </Grid>
               <AddPaymentCard open={open} handleClose={handleClose} />
             </SubCard>
-          </Grid>
+          </Grid> */}
           <Grid item xs={12}>
             <Grid container spacing={3} alignItems="center" justifyContent="space-between">
               <Grid item>
@@ -230,7 +243,7 @@ const Payment = ({ checkout, onBack, onNext, handleShippingCharge }: PaymentProp
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={12} md={6} lg={4} xl={3}>
+      <Grid item xs={12} md={6} lg={6} xl={6}>
         <Grid container spacing={gridSpacing}>
           <Grid item xs={12}>
             <Stack>
@@ -240,7 +253,7 @@ const Payment = ({ checkout, onBack, onNext, handleShippingCharge }: PaymentProp
               <TableContainer>
                 <Table sx={{ minWidth: 280 }} aria-label="simple table">
                   <TableBody>
-                    {rows.map((row, index) => {
+                    {rows.map((row:any, index:number) => {
                       const colorsData = row.color ? getColor(row.color) : false;
                       return (
                         <TableRow key={index} sx={{ '&:last-of-type td, &:last-of-type th': { border: 0 } }}>
@@ -251,7 +264,7 @@ const Payment = ({ checkout, onBack, onNext, handleShippingCharge }: PaymentProp
                                   size="md"
                                   variant="rounded"
                                   alt="product images"
-                                  src={row.image ? `${prodImage}/${row.image}` : ''}
+                                  src={row.image ? `${row.image}` : ''}
                                 />
                               </Grid>
                               <Grid item>
