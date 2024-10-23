@@ -134,7 +134,7 @@ const Cart = ({ products, checkout, onNext, removeProduct, updateQuantity }: Car
                     <TableCell component="th" scope="row">
                       <Grid container alignItems="center" spacing={2}>
                         <Grid item>
-                          <Avatar size="md" alt="product images" variant="rounded" src={row.image ? `${prodImage}/${row.image}` : ''} />
+                          <Avatar size="md" alt="product images" variant="rounded" src={row.image ? `${row.image}` : ''} />
                         </Grid>
                         <Grid item>
                           <Stack spacing={0}>
@@ -192,7 +192,7 @@ const Cart = ({ products, checkout, onNext, removeProduct, updateQuantity }: Car
         </TableContainer>
       </Grid>
       <Grid item xs={12}>
-        <OrderSummary checkout={checkout} />
+        <OrderSummary checkout={checkout} products={products} />
       </Grid>
       <Grid item xs={12}>
         <Grid container direction={{ xs: 'column-reverse', lg: 'row' }} spacing={3} alignItems={{ xs: 'flex-start', lg: 'center' }}>
@@ -203,7 +203,7 @@ const Cart = ({ products, checkout, onNext, removeProduct, updateQuantity }: Car
           </Grid>
           <Grid item xs={12} md={5} lg={4}>
             <Stack spacing={gridSpacing}>
-              <CartDiscount />
+              {/* <CartDiscount /> */}
               <Button variant="contained" fullWidth onClick={onNext}>
                 Check Out
               </Button>

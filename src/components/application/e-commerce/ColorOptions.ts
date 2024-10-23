@@ -4,86 +4,85 @@ import { ColorsOptionsProps } from 'types/e-commerce';
 // ==============================|| PRODUCT - COLOR FILTER ||============================== //
 
 const ColorsOptions: ColorsOptionsProps[] = [
+  
   {
-    label: 'Light Primary',
-    value: 'primary200',
-    bg: 'primary.200'
+    label: 'white',
+    value: 'white',
+    bg: 'white'
   },
   {
-    label: 'Dark Primary',
-    value: 'primaryDark',
-    bg: 'primary.dark'
+    label: 'Light Grey',
+    value: 'lightgrey',
+    bg: 'lightgrey'
   },
   {
-    label: 'Light Secondary',
-    value: 'secondary200',
-    bg: 'secondary.200'
+    label: 'Grey',
+    value: 'grey',
+    bg: 'grey'
   },
   {
-    label: 'Secondary',
-    value: 'secondaryMain',
-    bg: 'secondary.main'
+    label: 'Black',
+    value: 'black',
+    bg: 'dark.main'
   },
+  
   {
-    label: 'Light Green',
-    value: 'successLight',
-    bg: 'success.light'
-  },
-  {
-    label: 'Green',
-    value: 'successMain',
-    bg: 'success.main'
-  },
-  {
-    label: 'Dark Green',
-    value: 'successDark',
-    bg: 'success.dark'
-  },
-  {
-    label: 'Light Red',
-    value: 'errorLight',
-    bg: 'error.light'
+    label: 'Purple',
+    value: 'purple',
+    bg: 'purple'
   },
   {
     label: 'Red',
-    value: 'errorMain',
-    bg: 'error.main'
+    value: 'red',
+    bg: 'red'
   },
   {
+    label: 'Yellow',
+    value: 'yellow',
+    bg: 'yellow'
+  },
+  {
+    label: 'Blue',
+    value: 'blue',
+    bg: 'blue'
+  },
+  {
+    label: 'Green',
+    value: 'green',
+    bg: 'green'
+  },
+  {
+    label: 'Pink',
+    value: 'pink',
+    bg: 'pink'
+  },
+  {
+    label: 'Orange',
+    value: 'orange',
+    bg: 'orange.dark'
+  },
+  
+  {
     label: 'Dark Red',
-    value: 'errorDark',
+    value: 'darkred',
     bg: 'error.dark'
   },
   {
     label: 'Yellow',
-    value: 'warningMain',
+    value: 'yellow',
     bg: 'warning.main'
   },
   {
     label: 'Dark Yellow',
-    value: 'warningDark',
+    value: 'darkyellow',
     bg: 'warning.dark'
   },
   {
     label: 'Orange',
-    value: 'orangeMain',
+    value: 'orange',
     bg: 'orange.main'
   },
-  {
-    label: 'Dark Orange',
-    value: 'orangeDark',
-    bg: 'orange.dark'
-  },
-  {
-    label: 'Grey',
-    value: 'darkLight',
-    bg: 'dark.light'
-  },
-  {
-    label: 'Black',
-    value: 'darkMain',
-    bg: 'dark.main'
-  }
+
 ];
 
 export default ColorsOptions;

@@ -14,10 +14,27 @@ import SubCard from 'ui-component/cards/SubCard';
 
 // types
 import { CartCheckoutStateProps } from 'types/cart';
-
+import { useEffect, useState } from 'react';
+import util from 'api/checkout'
 // ==============================|| CHECKOUT CART - ORDER SUMMARY ||============================== //
 
-const OrderSummary = ({ checkout }: { checkout: CartCheckoutStateProps }) => (
+const OrderSummary = ({checkout }: { checkout: any }) => {
+  const [total,setTotal]=useState(0)
+  const [subtotal,setSubtotal]=useState(0)
+  const [shipping,setShipping]=useState(5000)
+  const [discount,setDiscount]=useState(0.00)
+  useEffect(()=>{
+    (async()=>{
+      const products:any=await util.readCart();
+          let t=products.reduce((acc:any,el:any)=>acc+el.offerPrice,0)
+          setSubtotal(t)
+          setTotal(t+discount+shipping)
+    })()
+    
+
+  },[])
+  
+  return (
   <SubCard>
     <TableContainer>
       <Table sx={{ minWidth: 'auto' }} size="small" aria-label="simple table">
@@ -31,22 +48,22 @@ const OrderSummary = ({ checkout }: { checkout: CartCheckoutStateProps }) => (
           <TableRow>
             <TableCell>Sub Total</TableCell>
             <TableCell align="right">
-              {checkout.subtotal && <Typography variant="subtitle1">{currency(checkout.subtotal).format()}</Typography>}
+              {subtotal && <Typography variant="subtitle1">{currency(subtotal).format()}</Typography>}
             </TableCell>
           </TableRow>
-          <TableRow>
+          {/* <TableRow>
             <TableCell>Coupon Discount</TableCell>
             <TableCell align="right">
-              {checkout.discount && (
-                <Typography variant="subtitle1">{checkout.discount <= 0 ? '-' : currency(checkout.discount).format()}</Typography>
+              {discount && (
+                <Typography variant="subtitle1">{discount <= 0 ? '-' : currency(discount).format()}</Typography>
               )}
             </TableCell>
-          </TableRow>
+          </TableRow> */}
           <TableRow>
             <TableCell>Shipping Charges</TableCell>
             <TableCell align="right">
-              {checkout.shipping && (
-                <Typography variant="subtitle1">{checkout.shipping <= 0 ? '-' : currency(checkout.shipping).format()}</Typography>
+              {shipping && (
+                <Typography variant="subtitle1">{shipping <= 0 ? '-' : currency(shipping).format()}</Typography>
               )}
             </TableCell>
           </TableRow>
@@ -55,7 +72,7 @@ const OrderSummary = ({ checkout }: { checkout: CartCheckoutStateProps }) => (
               <Typography variant="subtitle1">Total</Typography>
             </TableCell>
             <TableCell align="right" sx={{ borderBottom: 'none' }}>
-              {checkout.total && <Typography variant="subtitle1">{currency(checkout.total).format()}</Typography>}
+              {total && <Typography variant="subtitle1">{currency(total).format()}</Typography>}
             </TableCell>
           </TableRow>
         </TableBody>
@@ -63,5 +80,6 @@ const OrderSummary = ({ checkout }: { checkout: CartCheckoutStateProps }) => (
     </TableContainer>
   </SubCard>
 );
+}
 
 export default OrderSummary;

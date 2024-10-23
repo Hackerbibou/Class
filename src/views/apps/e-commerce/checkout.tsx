@@ -74,13 +74,14 @@ const Checkout = () => {
   const { mode, borderRadius } = useConfig();
   const [product, setProduct] = useState([])
   useEffect(()=>{
+    console.log(cart);
     (async()=>{
       const prod:any=await util.readCart();
       setProduct(prod)
-      dispatch(addProduct(prod,prod));
+
     })()
     
-  },[])
+  },[cart])
   const isCart = product && product.length > 0;
 
   const [value, setValue] = useState(cart.checkout.step > 2 ? 2 : cart.checkout.step);
@@ -246,7 +247,7 @@ const Checkout = () => {
           </Tabs>
         </Grid>
         <Grid item xs={12}>
-          <TabPanel value={value} index={0}>
+          <TabPanel value={value?value:0} index={0}>
             {isCart && <Cart products={product} checkout={cart.checkout} onNext={onNext} removeProduct={removeCartProduct} updateQuantity={updateQuantity} />}
             {!isCart && <CartEmpty />}
           </TabPanel>

@@ -15,7 +15,7 @@ import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import Zoom, { ZoomProps } from '@mui/material/Zoom';
-
+import util from 'api/checkout'
 // third-party
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -48,6 +48,8 @@ const validationSchema = yup.object({
 const Transition = forwardRef((props: ZoomProps, ref) => <Zoom ref={ref} {...props} />);
 
 interface AddAddressProps {
+  edits?:boolean;
+  addId?:number;
   address: Address;
   open: boolean;
   handleClose: () => void;
@@ -57,7 +59,7 @@ interface AddAddressProps {
 
 // ==============================|| CHECKOUT BILLING ADDRESS - ADD NEW ADDRESS ||============================== //
 
-const AddAddress = ({ address, open, handleClose, addAddress, editAddress }: AddAddressProps) => {
+const AddAddress = ({addId,edits, address, open, handleClose, addAddress, editAddress }: AddAddressProps) => {
   const edit = address && address.id;
 
   const formik = useFormik({
@@ -76,10 +78,14 @@ const AddAddress = ({ address, open, handleClose, addAddress, editAddress }: Add
     },
     validationSchema,
     onSubmit: (values) => {
-      if (edit) {
-        editAddress({ ...values, id: address.id });
+      if (edits) {
+        (async()=>{
+          await util.editAddress(addId,values);
+        })();
       } else {
-        addAddress(values);
+       (async()=>{ 
+        await util.addAddress(values);
+      })()
       }
       handleClose();
       dispatch(

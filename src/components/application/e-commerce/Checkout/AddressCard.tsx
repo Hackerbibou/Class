@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-
+import util from 'api/checkout'
 // project imports
 import SubCard from 'ui-component/cards/SubCard';
 import Chip from 'ui-component/extended/Chip';
@@ -19,6 +19,9 @@ import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 // ==============================|| CHECKOUT BILLING ADDRESS - ADDRESS CARD ||============================== //
 
 interface AddressCardProps {
+  setAddid?:any;
+  setEdit?:any;
+  index?:number;
   address: Address | null;
   single?: boolean;
   change?: boolean;
@@ -27,7 +30,10 @@ interface AddressCardProps {
   billingAddressHandler?: (billingAddress: Address) => void;
 }
 
-const AddressCard = ({ address, single, change, handleClickOpen, billingAddressHandler, onBack }: AddressCardProps) => (
+const AddressCard = ({setAddid,setEdit,index, address, single, change, handleClickOpen, billingAddressHandler, onBack }: AddressCardProps) => {
+
+  
+return (
   <SubCard sx={{ height: single ? 'auto' : '100%' }}>
     {address && (
       <Grid container spacing={2}>
@@ -74,11 +80,11 @@ const AddressCard = ({ address, single, change, handleClickOpen, billingAddressH
               )}
               <Stack direction="row" alignItems="center" spacing={0}>
                 {handleClickOpen && (
-                  <IconButton size="small" onClick={() => handleClickOpen(address)} aria-label="Edit Address">
+                  <IconButton size="small" onClick={() => {handleClickOpen(address);setEdit(true);setAddid(index)}} aria-label="Edit Address">
                     <EditTwoToneIcon fontSize="small" />
                   </IconButton>
                 )}
-                <IconButton size="small" aria-label="Delete Address">
+                <IconButton size="small" aria-label="Delete Address" onClick={async()=> await util.removeAddress(index)}>
                   <DeleteTwoToneIcon fontSize="small" />
                 </IconButton>
               </Stack>
@@ -89,5 +95,6 @@ const AddressCard = ({ address, single, change, handleClickOpen, billingAddressH
     )}
   </SubCard>
 );
+}
 
 export default AddressCard;

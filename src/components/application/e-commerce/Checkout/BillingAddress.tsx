@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, ReactElement } from 'react';
-
+import { useState, ReactElement, useEffect } from 'react';
+import util from 'api/checkout'
 // material-ui
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -23,6 +23,7 @@ import { CartCheckoutStateProps } from 'types/cart';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import AddIcon from '@mui/icons-material/Add';
 import PersonOutlineTwoToneIcon from '@mui/icons-material/PersonOutlineTwoTone';
+import utilities from 'menu-items/utilities';
 
 // ==============================|| CHECKOUT BILLING ADDRESS - MAIN ||============================== //
 
@@ -37,7 +38,14 @@ interface BillingAddressProps {
 
 const BillingAddress = ({ checkout, onBack, billingAddressHandler, address, addAddress, editAddress }: BillingAddressProps) => {
   const [select, setSelect] = useState<Address | null>(null);
-
+  const [addresses, setAddresses] = useState([]);
+  const [addId, setAddid] = useState(0);
+  useEffect(()=>{
+    (async()=>{
+      const adres:any=await util.readAddress();
+      setAddresses(adres)
+    })();
+  });
   const [open, setOpen] = useState(false);
   const handleClickOpen = (billingAddress: Address | null) => {
     setOpen(true);
@@ -48,17 +56,17 @@ const BillingAddress = ({ checkout, onBack, billingAddressHandler, address, addA
     setOpen(false);
     setSelect(null);
   };
-
+  const [edit,setEdit]=useState(false)
   let shippingAddress: ReactElement | ReactElement[] = <></>;
   let addressResult: ReactElement | ReactElement[] = <></>;
-  if (address) {
-    addressResult = address.map((data: Address, index: number) => {
+  if (addresses) {
+    addressResult = addresses.map((data: Address, index: number) => {
       if (data.isDefault) {
-        shippingAddress = <AddressCard address={data} single />;
+        shippingAddress = <AddressCard setAddid={setAddid} setEdit={setEdit} index={index} address={data} single />;
       }
       return (
         <Grid item xs={12} lg={6} key={index}>
-          <AddressCard address={data} handleClickOpen={handleClickOpen} billingAddressHandler={billingAddressHandler} />
+          <AddressCard setAddid={setAddid} setEdit={setEdit} index={index} address={data} handleClickOpen={handleClickOpen} billingAddressHandler={billingAddressHandler} />
         </Grid>
       );
     });
@@ -127,7 +135,7 @@ const BillingAddress = ({ checkout, onBack, billingAddressHandler, address, addA
         </SubCard>
         {shippingAddress}
       </Grid>
-      <AddAddress open={open} handleClose={handleClose} address={select!} addAddress={addAddress} editAddress={editAddress} />
+      <AddAddress addId={addId} edits={edit} open={open} handleClose={handleClose} address={select!} addAddress={addAddress} editAddress={editAddress} />
     </Grid>
   );
 };

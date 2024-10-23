@@ -48,7 +48,10 @@ import FileCopyIcon from '@mui/icons-material/FileCopyTwoTone';
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/AddTwoTone';
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
-import { Box } from '@mui/material';
+import { Box, Button, Stack } from '@mui/material';
+import CartDiscount from 'components/application/e-commerce/Checkout/CartDiscount';
+import { useRouter } from 'next/navigation';
+import { setNextStep } from 'store/slices/cart';
 
 const prodImage = '/assets/images/e-commerce';
 
@@ -203,7 +206,7 @@ function EnhancedTableHead({
 
 const ProductList = () => {
   const theme = useTheme();
-
+  const router = useRouter();
   const [order, setOrder] = React.useState<ArrangementOrder>('asc');
   const [orderBy, setOrderBy] = React.useState<string>('calories');
   const [selected, setSelected] = React.useState<string[]>([]);
@@ -421,6 +424,13 @@ const ProductList = () => {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
+      <Grid item xs={12} md={5} lg={4}>
+            <Stack spacing={'9'}>
+              <Button variant="contained" fullWidth onClick={()=>{router.push('/pay');}}>
+                Check Out
+              </Button>
+            </Stack>
+          </Grid>
     </MainCard>
   );
 };
