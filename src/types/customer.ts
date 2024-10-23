@@ -28,6 +28,18 @@ export type Order = {
   qty: number;
   date: string;
   status: number;
+  total?:number;
+  payment?:string;
+  cart:[];
+  address:{
+    building:string|number,
+    street:string,
+    city:string,
+    state:string,
+    country:string,
+    post:number
+  };
+
 };
 
 export type Product = {

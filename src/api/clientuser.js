@@ -41,7 +41,8 @@ return user[0]
 }
 
 export async function Getuser() {
-    
+
+
     const { data: { user } } = await supabase.auth.getUser()
     
     if(!user)return null

@@ -27,6 +27,7 @@ import { TabsProps } from 'types';
 import { ThemeMode } from 'types/config';
 import { Address } from 'types/e-commerce';
 import util from 'api/checkout'
+import utils from 'api/clientuser'
 // assets
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import ApartmentIcon from '@mui/icons-material/Apartment';
@@ -73,11 +74,14 @@ const Checkout = () => {
   const cart = useSelector((state) => state.cart);
   const { mode, borderRadius } = useConfig();
   const [product, setProduct] = useState([])
+  const [user, setUser] = useState({})
   useEffect(()=>{
     console.log(cart);
     (async()=>{
       const prod:any=await util.readCart();
+      const userr:any=await utils.Getuser();
       setProduct(prod)
+      setUser(userr)
 
     })()
     
@@ -262,7 +266,7 @@ const Checkout = () => {
             />
           </TabPanel>
           <TabPanel value={value} index={2}>
-            <Payment products={product} checkout={cart.checkout} onBack={onBack} onNext={onNext} handleShippingCharge={handleShippingCharge} />
+            <Payment user={user} address={billing} products={product} checkout={cart.checkout} onBack={onBack} onNext={onNext} handleShippingCharge={handleShippingCharge} />
           </TabPanel>
         </Grid>
       </Grid>

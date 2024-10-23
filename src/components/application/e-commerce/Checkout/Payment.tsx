@@ -57,6 +57,8 @@ function getColor(color: string) {
 // ==============================|| CHECKOUT PAYMENT - MAIN ||============================== //
 
 interface PaymentProps {
+  user?:any;
+  address?:any;
   products?:any;
   checkout: CartCheckoutStateProps;
   onBack: () => void;
@@ -64,7 +66,7 @@ interface PaymentProps {
   handleShippingCharge: (type: string) => void;
 }
 
-const Payment = ({ products, checkout, onBack, onNext, handleShippingCharge }: PaymentProps) => {
+const Payment = ({user, address, products, checkout, onBack, onNext, handleShippingCharge }: PaymentProps) => {
   const [type, setType] = useState(checkout.payment.type);
   const [payment, setPayment] = useState(checkout.payment.method);
   const [rows, setRows] = useState(products?products:[]);
@@ -117,6 +119,7 @@ const Payment = ({ products, checkout, onBack, onNext, handleShippingCharge }: P
       setTimeout(()=>{
         setComplete(false);
         (async()=>{
+          await util.addOrders(products,address.name, user.email, user.phone, address, payment)
         await util.clearCart()
           router.push('/pastorders');
       })()

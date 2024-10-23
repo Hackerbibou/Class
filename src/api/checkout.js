@@ -1,12 +1,12 @@
 import supabase from './index';
 import util from './clientuser'
 
-export async function readPastorders() {
+export async function readPastorder() {
     const user = await util.Getuser()
     let { data: info, error } = await supabase
     .from('user')
     .select('*')
-    .eq(id,user.id)
+    .eq('id',user.id)
 
     
     if(info[0]) {
@@ -14,6 +14,50 @@ export async function readPastorders() {
     }
     return[] 
             
+}
+export async function readPastorders(id) {
+    let { data: info, error } = await supabase
+    .from('user')
+    .select('*')
+    .eq('id',id)
+
+    
+    if(info[0]) {
+        return info[0].pastorders
+    }
+    return[] 
+            
+}
+export async function addOrders(cart, name, email, phone, address, payment) {
+    console.log(cart)
+    console.log(name)
+    console.log(email)
+    console.log(phone)
+    console.log(address)
+    console.log(payment)
+    const total=cart.reduce((acc,el)=>acc+el.offerPrice,0) +5000
+    const order ={
+        'cart':cart,
+        'name':name,
+        'email':email,
+        'phone':address.phone,
+        'address':address,
+        'total':total,
+        'payment':payment,
+        'date':new Date(),
+    }
+    console.log(order)
+    const user = await util.Getuser();
+    
+    const pastorders = await readPastorders(user.id);
+    
+   
+    const { data, error } = await supabase
+    .from('user')
+    .update({ pastorders: [...pastorders, order] })
+    .eq('id', user.id)
+    .select()
+
 }
 export async function readCart() {
  
@@ -42,6 +86,7 @@ export async function readCarts(id) {
     return[] 
             
 }
+
 export async function addCart(object) {
     
     const user = await util.Getuser();
@@ -137,5 +182,8 @@ export default{
     readAddress,
     addAddress,
     editAddress,
-    removeAddress
+    removeAddress,
+    readPastorder,
+    readPastorders,
+    addOrders
 }

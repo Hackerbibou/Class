@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-
+import util from 'api/checkout'
 // material-ui
 import Box from '@mui/material/Box';
 import CardContent from '@mui/material/CardContent';
@@ -79,37 +79,37 @@ const headCells: HeadCell[] = [
   {
     id: 'name',
     numeric: false,
-    label: 'Customer Name',
+    label: 'Nom',
     align: 'left'
   },
   {
     id: 'company',
     numeric: true,
-    label: 'Branch',
+    label: 'total',
     align: 'left'
   },
   {
     id: 'type',
     numeric: true,
-    label: 'Payment Type',
+    label: 'Payment',
     align: 'left'
   },
   {
     id: 'qty',
     numeric: true,
-    label: 'Quantity',
+    label: 'Quantité',
     align: 'right'
   },
   {
     id: 'date',
     numeric: true,
-    label: 'Registered',
+    label: 'Date',
     align: 'center'
   },
   {
     id: 'status',
-    numeric: false,
-    label: 'Status',
+    numeric: true,
+    label: 'address',
     align: 'center'
   }
 ];
@@ -160,7 +160,7 @@ function EnhancedTableHead({
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox" sx={{ pl: 3 }}>
+        {/* <TableCell padding="checkbox" sx={{ pl: 3 }}>
           <Checkbox
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -170,7 +170,7 @@ function EnhancedTableHead({
               'aria-label': 'select all desserts'
             }}
           />
-        </TableCell>
+        </TableCell> */}
         {numSelected > 0 && (
           <TableCell padding="none" colSpan={8}>
             <EnhancedTableToolbar numSelected={selected.length} />
@@ -198,11 +198,11 @@ function EnhancedTableHead({
               </TableSortLabel>
             </TableCell>
           ))}
-        {numSelected <= 0 && (
+        {/* {numSelected <= 0 && (
           <TableCell sortDirection={false} align="center" sx={{ pr: 3 }}>
             <Typography variant="subtitle1">Action</Typography>
           </TableCell>
-        )}
+        )} */}
       </TableRow>
     </TableHead>
   );
@@ -226,7 +226,10 @@ const OrderList = () => {
   }, []);
 
   React.useEffect(() => {
-    setRows(orders);
+    (async()=>{
+      const pastorders:any=await util.readPastorder();
+      setRows(pastorders);
+    })();
   }, [orders]);
   const handleSearch = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
     const newString = event?.target.value;
@@ -323,7 +326,7 @@ const OrderList = () => {
               size="small"
             />
           </Grid>
-          <Grid item xs={12} sm={6} sx={{ textAlign: 'right' }}>
+          {/* <Grid item xs={12} sm={6} sx={{ textAlign: 'right' }}>
             <Tooltip title="Copy">
               <IconButton size="large">
                 <FileCopyIcon />
@@ -339,7 +342,7 @@ const OrderList = () => {
                 <FilterListIcon />
               </IconButton>
             </Tooltip>
-          </Grid>
+          </Grid> */}
         </Grid>
       </CardContent>
 
@@ -367,7 +370,7 @@ const OrderList = () => {
 
                 return (
                   <TableRow hover role="checkbox" aria-checked={isItemSelected} tabIndex={-1} key={index} selected={isItemSelected}>
-                    <TableCell padding="checkbox" sx={{ pl: 3 }} onClick={(event) => handleClick(event, row.name)}>
+                    {/* <TableCell padding="checkbox" sx={{ pl: 3 }} onClick={(event) => handleClick(event, row.name)}>
                       <Checkbox
                         color="primary"
                         checked={isItemSelected}
@@ -375,7 +378,7 @@ const OrderList = () => {
                           'aria-labelledby': labelId
                         }}
                       />
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell
                       component="th"
                       id={labelId}
@@ -388,23 +391,21 @@ const OrderList = () => {
                     <TableCell id={labelId} scope="row" onClick={(event) => handleClick(event, row.name)} sx={{ cursor: 'pointer' }}>
                       <Typography variant="subtitle1"> {row.name} </Typography>
                     </TableCell>
-                    <TableCell>{row.company}</TableCell>
-                    <TableCell>{row.type}</TableCell>
-                    <TableCell align="right">{row.qty}</TableCell>
-                    <TableCell align="center">{row.date}</TableCell>
+                    <TableCell>{row.total}</TableCell>
+                    <TableCell>{row.payment}</TableCell>
+                    <TableCell align="right">{row.cart.length}</TableCell>
+                    <TableCell align="center">{new Date(row.date).toDateString()}</TableCell>
                     <TableCell align="center">
-                      {row.status === 1 && <Chip label="Complete" size="small" chipcolor="success" />}
-                      {row.status === 2 && <Chip label="Pending" size="small" chipcolor="orange" />}
-                      {row.status === 3 && <Chip label="Processing" size="small" chipcolor="primary" />}
+                      {row.address.building+' '+row.address.street+' '+row.address.city+' '+row.address.state+' '+row.address.country+' '+row.address.post }
                     </TableCell>
-                    <TableCell align="center" sx={{ pr: 3 }}>
+                    {/* <TableCell align="center" sx={{ pr: 3 }}>
                       <IconButton color="primary" size="large" aria-label="view">
                         <VisibilityTwoToneIcon sx={{ fontSize: '1.3rem' }} />
                       </IconButton>
                       <IconButton color="secondary" size="large" aria-label="delete">
                         <EditTwoToneIcon sx={{ fontSize: '1.3rem' }} />
                       </IconButton>
-                    </TableCell>
+                    </TableCell> */}
                   </TableRow>
                 );
               })}
