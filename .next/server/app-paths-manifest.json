@@ -1,5 +1,8 @@
 {
-  "/categories/mensJeans/page": "app/categories/mensJeans/page.js",
   "/pay/page": "app/pay/page.js",
-  "/pastorders/page": "app/pastorders/page.js"
+  "/categories/mensJeans/page": "app/categories/mensJeans/page.js",
+  "/pastorders/page": "app/pastorders/page.js",
+  "/profile/page": "app/profile/page.js",
+  "/categories/womenShoes/page": "app/categories/womenShoes/page.js",
+  "/categories/mensShirts/page": "app/categories/mensShirts/page.js"
 }

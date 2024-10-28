@@ -42,6 +42,9 @@ import FileCopyIcon from '@mui/icons-material/FileCopyTwoTone';
 import SearchIcon from '@mui/icons-material/Search';
 import VisibilityTwoToneIcon from '@mui/icons-material/VisibilityTwoTone';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
+import { Button } from '@mui/material';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 // table sort
 function descendingComparator(a: KeyedObject, b: KeyedObject, orderBy: string) {
@@ -306,7 +309,7 @@ const OrderList = () => {
 
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
+  const router = useRouter();
   return (
     <MainCard title="Order List" content={false}>
       <CardContent>
@@ -369,7 +372,7 @@ const OrderList = () => {
                 const labelId = `enhanced-table-checkbox-${index}`;
 
                 return (
-                  <TableRow hover role="checkbox" aria-checked={isItemSelected} tabIndex={-1} key={index} selected={isItemSelected}>
+                  <TableRow hover role="checkbox" aria-checked={isItemSelected} tabIndex={-1} key={index} selected={isItemSelected} onClick={()=>{router.push(`/pastorders/details/${index}`)}}>
                     {/* <TableCell padding="checkbox" sx={{ pl: 3 }} onClick={(event) => handleClick(event, row.name)}>
                       <Checkbox
                         color="primary"
@@ -407,6 +410,7 @@ const OrderList = () => {
                       </IconButton>
                     </TableCell> */}
                   </TableRow>
+              
                 );
               })}
             {emptyRows > 0 && (
