@@ -1,1 +1,7 @@
-{}
+{
+  "/pastorders/page": "app/pastorders/page.js",
+  "/pastorders/details/[index]/page": "app/pastorders/details/[index]/page.js",
+  "/profile/page": "app/profile/page.js",
+  "/categories/mensShirts/page": "app/categories/mensShirts/page.js",
+  "/categories/mensHoodies/page": "app/categories/mensHoodies/page.js"
+}

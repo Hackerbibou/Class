@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+'use client'
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
 // material-ui
@@ -13,7 +14,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
-
+import util from 'api/checkout'
 // third-party
 import ReactToPrint from 'react-to-print';
 
@@ -26,6 +27,9 @@ import { gridSpacing } from 'store/constant';
 
 // types
 import { ThemeMode } from 'types/config';
+import CircularLoader from 'ui-component/CircularLoader';
+import { useParams } from 'next/navigation';
+import Image from 'next/image';
 
 // table data
 function createData(product: string, description: string, quantity: string, amount: string, total: string) {
@@ -37,33 +41,70 @@ const rows = [
   createData('Landing Page', 'lorem ipsum dolor sit amat, connecter adieu siccing eliot', '7', '$100.00', '$700.00'),
   createData('Admin Template', 'lorem ipsum dolor sit amat, connecter adieu siccing eliot', '5', '$150.00', '$750.00')
 ];
+type cart ={
+  image:string,
+  name:string,
+  quantity:number,
+  offerPrice:number
+}
+interface Detail{
+  name:string;
+  cart:cart[];
+  address:{
+    phone:string;
+    destination:string;
+    name:string;
+    building:string;
+    street:string;
+    city:string;
+    state:string;
+    country:string;
+    post:string;
+  };
+  email:string;
+  payment:string;
+  total:string;
+  date:string;
 
+}
 const Invoice = () => {
   const theme = useTheme();
   const componentRef: React.Ref<HTMLDivElement> = useRef(null);
-  return (
+  const params = useParams();
+  const [detail, setDetail]=useState<Detail|null>(null);
+  useEffect(()=>{
+   
+    (async()=>{
+      const details:any=await util.readPastorder();
+      const detail:any=details.find((el:any,ind:any)=>ind==params.index)
+      console.log(detail)
+      setDetail(detail)
+    })()
+    
+  },[]);
+  return detail==null? (<CircularLoader/>)  :(
     <Grid container justifyContent="center" spacing={gridSpacing}>
       <Grid item xs={12} md={10} lg={8} ref={componentRef}>
-        <SubCard darkTitle title="Invoice #125863478945" secondary={<Logo />}>
+        <SubCard darkTitle title={`Invoice #${params.index}`} secondary={<Logo />}>
           <Grid container spacing={gridSpacing}>
             <Grid item xs={12}>
               <Grid container spacing={0}>
                 <Grid item xs={12}>
-                  <Typography variant="subtitle1">Demo Company Inc.</Typography>
+                  <Typography variant="subtitle1">Keur Sokhna Diarra</Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <Typography variant="body2">1065 Mandan Road, Columbia MO,</Typography>
+                  <Typography variant="body2">Marché HLM 5 Super-marché</Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <Typography variant="body2">Missouri. (123)-65202</Typography>
+                  <Typography variant="body2">Mame Diarra en face Police HLM</Typography>
                 </Grid>
-                <Grid item xs={12}>
+                {/* <Grid item xs={12}>
                   <Typography component={Link} href="#" variant="body2" color="primary">
                     demo@company.com
                   </Typography>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12}>
-                  <Typography variant="body2">(+91) 9999 999 999</Typography>
+                  <Typography variant="body2">77 511 02 00</Typography>
                 </Grid>
               </Grid>
             </Grid>
@@ -77,20 +118,20 @@ const Invoice = () => {
                     <Grid item xs={12}>
                       <Grid container spacing={0}>
                         <Grid item xs={12}>
-                          <Typography variant="subtitle1">John Doe</Typography>
+                          <Typography variant="subtitle1">{detail.name}</Typography>
                         </Grid>
                         <Grid item xs={12}>
-                          <Typography variant="body2">1065 Mandan Road, Columbia MO,</Typography>
+                          <Typography variant="body2">{detail.address.building+' '+detail.address.street}, {detail.address.city+' '+detail.address.state},</Typography>
                         </Grid>
                         <Grid item xs={12}>
-                          <Typography variant="body2">Missouri. (123)-65202</Typography>
+                          <Typography variant="body2">{detail.address.country+' '+detail.address.post}</Typography>
                         </Grid>
                         <Grid item xs={12}>
-                          <Typography variant="body2">(+61) 9999 567 891</Typography>
+                          <Typography variant="body2">{detail.address.phone}</Typography>
                         </Grid>
                         <Grid item xs={12}>
                           <Typography component={Link} href="#" variant="body2" color="primary">
-                            demo@company.com
+                           {detail.email}
                           </Typography>
                         </Grid>
                       </Grid>
@@ -104,24 +145,24 @@ const Invoice = () => {
                     </Grid>
                     <Grid item xs={12}>
                       <Grid container spacing={0}>
-                        <Grid item xs={4}>
+                        <Grid item xs={3}>
                           <Typography variant="body2">Date :</Typography>
                         </Grid>
-                        <Grid item xs={8}>
-                          <Typography variant="body2">November 14</Typography>
+                        <Grid item xs={9}>
+                        <Typography variant="body2">{new Date(detail.date).toDateString()+' à '+new Date(detail.date).toLocaleTimeString() }</Typography>
                         </Grid>
-                        <Grid item xs={4} sx={{ my: 0.5 }}>
+                        {/* <Grid item xs={4} sx={{ my: 0.5 }}>
                           <Typography variant="body2">Status :</Typography>
                         </Grid>
                         <Grid item xs={8} sx={{ my: 0.5 }}>
                           <Chip label="Pending" variant="outlined" size="small" chipcolor="warning" />
-                        </Grid>
+                        </Grid> */}
                         <Grid item xs={4}>
                           <Typography variant="body2">Order Id :</Typography>
                         </Grid>
                         <Grid item xs={8}>
-                          <Typography variant="body2" component={Link} href="#">
-                            #146859
+                          <Typography variant="body2">
+                            {params.index}
                           </Typography>
                         </Grid>
                       </Grid>
@@ -159,16 +200,16 @@ const Invoice = () => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {rows.map((row, index) => (
+                    {detail.cart.map((row:any, index:any) => (
                       <TableRow key={index}>
-                        <TableCell sx={{ pl: 3 }}>
-                          <Typography variant="subtitle1">{row.product}</Typography>
-                          <Typography variant="body2">{row.description}</Typography>
+                        <TableCell sx={{ pl: 3, display:'flex', alignItems:'center', gap:2 }}>
+                        <Image src={row.image} alt={row.name} width={52} height={52}/>
+                          <Typography variant="body2">{row.name}</Typography>
                         </TableCell>
                         <TableCell align="right">{row.quantity}</TableCell>
-                        <TableCell align="right">{row.amount}</TableCell>
+                        <TableCell align="right">{row.offerPrice} cfa</TableCell>
                         <TableCell align="right" sx={{ pr: 3 }}>
-                          {row.total}
+                          {row.offerPrice*row.quantity} cfa
                         </TableCell>
                       </TableRow>
                     ))}
@@ -190,27 +231,19 @@ const Invoice = () => {
                           </Grid>
                           <Grid item xs={6}>
                             <Typography align="right" variant="body2">
-                              $4725.00
+                              {detail.total} cfa
                             </Typography>
                           </Grid>
+                         
+                          
                           <Grid item xs={6}>
                             <Typography align="right" variant="subtitle1">
-                              Taxes (10%) :
+                              Shipping (5000 cfa) :
                             </Typography>
                           </Grid>
                           <Grid item xs={6}>
                             <Typography align="right" variant="body2">
-                              $57.00
-                            </Typography>
-                          </Grid>
-                          <Grid item xs={6}>
-                            <Typography align="right" variant="subtitle1">
-                              Discount (5%) :
-                            </Typography>
-                          </Grid>
-                          <Grid item xs={6}>
-                            <Typography align="right" variant="body2">
-                              $45.00
+                              5000 cfa
                             </Typography>
                           </Grid>
                         </Grid>
@@ -227,7 +260,7 @@ const Invoice = () => {
                           </Grid>
                           <Grid item xs={6}>
                             <Typography align="right" color="primary" variant="subtitle1">
-                              $4827.00
+                              {parseInt(detail.total)+5000} cfa
                             </Typography>
                           </Grid>
                         </Grid>
@@ -244,7 +277,7 @@ const Invoice = () => {
                 </Grid>
                 <Grid item xs={12}>
                   <Typography variant="body2">
-                    lorem ipsum dolor sit connecter adieu siccing eliot, sed do elusion tempore incident ut laborer et dolors magna aliquot.
+                    Pour toute information veillez contacter 77 511 02 00
                   </Typography>
                 </Grid>
               </Grid>
@@ -268,11 +301,11 @@ const Invoice = () => {
             }
           }}
         >
-          <Grid item>
+          {/* <Grid item>
             <AnimateButton>
               <ReactToPrint trigger={() => <Button variant="contained">Print</Button>} content={() => componentRef.current} />
             </AnimateButton>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Grid>
     </Grid>

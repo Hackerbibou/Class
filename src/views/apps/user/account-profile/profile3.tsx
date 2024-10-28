@@ -76,7 +76,7 @@ const Profile3 = () => {
           <Tab component={Link} href="#" label="Profile" {...a11yProps(0)} />
           <Tab component={Link} href="#" label="Billing" {...a11yProps(1)} />
           <Tab component={Link} href="#" label="Security" {...a11yProps(2)} />
-          <Tab component={Link} href="#" label="Notifications" {...a11yProps(3)} />
+          {/* <Tab component={Link} href="#" label="Notifications" {...a11yProps(3)} /> */}
         </Tabs>
         <TabPanel value={value} index={0}>
           <Profile />
@@ -87,9 +87,9 @@ const Profile3 = () => {
         <TabPanel value={value} index={2}>
           <Security />
         </TabPanel>
-        <TabPanel value={value} index={3}>
+        {/* <TabPanel value={value} index={3}>
           <Notifications />
-        </TabPanel>
+        </TabPanel> */}
       </div>
     </MainCard>
   );

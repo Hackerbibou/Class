@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-
+import util from 'api/checkout'
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -23,6 +23,7 @@ import { ThemeMode } from 'types/config';
 import DescriptionTwoToneIcon from '@mui/icons-material/DescriptionTwoTone';
 import LocalShippingTwoToneIcon from '@mui/icons-material/LocalShippingTwoTone';
 import ReceiptTwoToneIcon from '@mui/icons-material/ReceiptTwoTone';
+import { useParams } from 'next/navigation';
 
 // tab content
 function TabPanel({ children, value, index, ...other }: TabsProps) {
@@ -44,12 +45,13 @@ function a11yProps(index: number) {
 
 const OrderDetails = () => {
   const theme = useTheme();
-
+ const params=useParams();
   // set selected tab
   const [value, setValue] = useState<number>(0);
   const handleChange = (event: React.SyntheticEvent<Element, Event>, newValue: number) => {
     setValue(newValue);
   };
+
 
   return (
     <MainCard>
@@ -85,7 +87,7 @@ const OrderDetails = () => {
       >
         <Tab icon={<DescriptionTwoToneIcon />} component={Link} href="#" label="Details" {...a11yProps(0)} />
         <Tab icon={<ReceiptTwoToneIcon />} component={Link} href="#" label="Invoice" {...a11yProps(1)} />
-        <Tab icon={<LocalShippingTwoToneIcon />} component={Link} href="#" label="Status" {...a11yProps(2)} />
+        {/* <Tab icon={<LocalShippingTwoToneIcon />} component={Link} href="#" label="Status" {...a11yProps(2)} /> */}
       </Tabs>
 
       {/* tab - details */}
@@ -99,9 +101,9 @@ const OrderDetails = () => {
       </TabPanel>
 
       {/* tab - status */}
-      <TabPanel value={value} index={2}>
+      {/* <TabPanel value={value} index={2}>
         <Status />
-      </TabPanel>
+      </TabPanel> */}
     </MainCard>
   );
 };

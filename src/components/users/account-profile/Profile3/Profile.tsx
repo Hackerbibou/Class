@@ -11,9 +11,10 @@ import useAuth from 'hooks/useAuth';
 import SubCard from 'ui-component/cards/SubCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { gridSpacing } from 'store/constant';
+import Logo from 'ui-component/Logo';
 
 // assets
-const Avatar1 = '/assets/images/users/avatar-1.png';
+const Avatar1 = '/assets/images/logo.svg';
 
 // ==============================|| PROFILE 3 - PROFILE ||============================== //
 
@@ -23,23 +24,24 @@ const Profile = () => {
   return (
     <Grid container spacing={gridSpacing}>
       <Grid item sm={6} md={4}>
-        <SubCard title="Profile Picture" contentSX={{ textAlign: 'center' }}>
+        <SubCard title="Keur Sokhna Diarra" contentSX={{ textAlign: 'center' }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <Avatar alt="User 1" src={Avatar1} sx={{ width: 100, height: 100, margin: '0 auto' }} />
+              <Logo w={140}/>
             </Grid>
+          
             <Grid item xs={12}>
               <Typography variant="subtitle2" align="center">
-                Upload/Change Your Profile Image
+                Merci d'étre membre de notre communauté
               </Typography>
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <AnimateButton>
                 <Button variant="contained" size="small">
                   Upload Avatar
                 </Button>
               </AnimateButton>
-            </Grid>
+            </Grid> */}
           </Grid>
         </SubCard>
       </Grid>

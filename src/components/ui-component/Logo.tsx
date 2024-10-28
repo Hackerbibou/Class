@@ -15,8 +15,10 @@ import Image from 'next/image';
  */
 
 // ==============================|| LOGO SVG ||============================== //
-
-const Logo = () => {
+type pprop={
+  w?:number
+}
+const Logo = (props?:pprop) => {
   const theme = useTheme();
 
   return (
@@ -27,7 +29,7 @@ const Logo = () => {
      *
      */
     
-<Image src={Loo} width={105} alt='logo'/>
+<Image src={Loo} width={props && props.w?props.w:105} alt='logo'/>
   );
 };
 

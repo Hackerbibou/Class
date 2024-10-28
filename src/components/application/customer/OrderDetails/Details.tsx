@@ -1,4 +1,5 @@
 // material-ui
+'use client'
 import { useTheme } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
@@ -11,20 +12,22 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
-
+import {useState,useEffect} from 'react'
 // project imports
 import SubCard from 'ui-component/cards/SubCard';
 import Chip from 'ui-component/extended/Chip';
 import { gridSpacing } from 'store/constant';
-
+import util from 'api/checkout'
 // assets
 import CalendarTodayTwoToneIcon from '@mui/icons-material/CalendarTodayTwoTone';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import EmailTwoToneIcon from '@mui/icons-material/EmailTwoTone';
 import PhoneAndroidTwoToneIcon from '@mui/icons-material/PhoneAndroidTwoTone';
-
+import Loader from 'components/ui-component/CircularLoader'
 // types
 import { ThemeMode } from 'types/config';
+import { useParams } from 'next/navigation';
+import Image from 'next/image';
 
 const detailsIconSX = {
   width: 15,
@@ -44,30 +47,65 @@ const rows = [
   createData('Landing Page', 'lorem ipsum dolor sit amat, connecter adieu siccing eliot', '7', '$100.00', '$700.00'),
   createData('Admin Template', 'lorem ipsum dolor sit amat, connecter adieu siccing eliot', '5', '$150.00', '$750.00')
 ];
+type cart ={
+  image:string,
+  name:string,
+  quantity:number,
+  offerPrice:number
+}
+interface Detail{
+  name:string;
+  cart:cart[];
+  address:{
+    phone:string;
+    destination:string;
+    name:string;
+    building:string;
+    street:string;
+    city:string;
+    state:string;
+    country:string;
+    post:string;
+  };
+  email:string;
+  payment:string;
+  total:string;
+  date:string;
 
+}
 const Details = () => {
   const theme = useTheme();
-
-  return (
-    <Grid container spacing={gridSpacing}>
+  const params= useParams();
+  const [detail, setDetail]=useState<Detail|null>(null);
+  useEffect(()=>{
+   
+    (async()=>{
+      const details:any=await util.readPastorder();
+      const detail:any=details.find((el:any,ind:any)=>ind==params.index)
+      console.log(detail)
+      setDetail(detail)
+    })()
+    
+  },[]);
+  return  detail==null? (<Loader/>)  :(<Grid container spacing={gridSpacing}>
       <Grid item xs={12}>
-        <SubCard title="Customer" secondary={<Typography variant="subtitle1">Placed on 12.07.2018 10:00</Typography>}>
+        <SubCard title="Customer" secondary={<Typography variant="subtitle1">Placed on {new Date(detail.date).toDateString()}</Typography>}>
           <Grid container spacing={gridSpacing}>
             <Grid item xs={12}>
               <Grid container spacing={3}>
                 <Grid item>
                   <Typography variant="body2">
-                    <CalendarTodayTwoToneIcon sx={detailsIconSX} /> Sophia Hale
+                    <CalendarTodayTwoToneIcon sx={detailsIconSX} /> {detail.name}
                   </Typography>
                 </Grid>
                 <Grid item>
                   <Typography variant="body2">
-                    <PhoneAndroidTwoToneIcon sx={detailsIconSX} /> 070 123 4567
+                    <PhoneAndroidTwoToneIcon sx={detailsIconSX} /> {detail.address.phone}
                   </Typography>
                 </Grid>
                 <Grid item>
                   <Typography variant="body2">
-                    <EmailTwoToneIcon sx={detailsIconSX} /> example@mail.com
+                    <EmailTwoToneIcon sx={detailsIconSX} /> {detail.email}
                   </Typography>
                 </Grid>
               </Grid>
@@ -82,7 +120,7 @@ const Details = () => {
                     <Typography variant="h4">Payment method</Typography>
                     <Stack spacing={0}>
                       <Typography variant="h6" sx={{ mb: 1 }}>
-                        Credit Card
+                        {detail.payment}
                       </Typography>
                       <Stack direction="row" spacing={1}>
                         <Typography variant="subtitle1">Transaction ID :</Typography>
@@ -90,7 +128,7 @@ const Details = () => {
                       </Stack>
                       <Stack direction="row" spacing={1}>
                         <Typography variant="subtitle1">Amount :</Typography>
-                        <Typography variant="body2">$2500</Typography>
+                        <Typography variant="body2">{detail.total}</Typography>
                       </Stack>
                     </Stack>
                   </Stack>
@@ -108,12 +146,12 @@ const Details = () => {
                       </Stack>
                       <Stack direction="row" spacing={1}>
                         <Typography variant="subtitle1">Date :</Typography>
-                        <Typography variant="body2">12.15.2018</Typography>
+                        <Typography variant="body2">{new Date(detail.date).toDateString()+' à '+new Date(detail.date).toLocaleTimeString() }</Typography>
                       </Stack>
                     </Stack>
                   </Stack>
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                {/* <Grid item xs={12} sm={6} md={4}>
                   <Stack spacing={0} sx={{ mt: { xs: 0, md: 3 } }}>
                     <Stack direction="row" spacing={1}>
                       <Typography variant="subtitle1">Fulfillment status :</Typography>
@@ -124,7 +162,7 @@ const Details = () => {
                       <Chip label="Paid" variant="outlined" size="small" chipcolor="success" />
                     </Stack>
                   </Stack>
-                </Grid>
+                </Grid> */}
               </Grid>
             </Grid>
             <Grid item xs={12}>
@@ -132,88 +170,43 @@ const Details = () => {
             </Grid>
             <Grid item xs={12}>
               <Grid container spacing={gridSpacing}>
-                <Grid item sm={6} md={4}>
-                  <Stack spacing={2}>
-                    <Typography variant="h4">Billing address</Typography>
-                    <Stack>
-                      <Stack direction="row" spacing={1}>
-                        <Typography variant="subtitle1">First name :</Typography>
-                        <Typography variant="body2">Joseph</Typography>
-                      </Stack>
-                      <Stack direction="row" spacing={1}>
-                        <Typography variant="subtitle1">Last name :</Typography>
-                        <Typography variant="body2">William</Typography>
-                      </Stack>
-                    </Stack>
-                    <Stack>
-                      <Stack direction="row" spacing={1}>
-                        <Typography variant="subtitle1">Address :</Typography>
-                        <Typography variant="body2">4898 Joanne Lane street</Typography>
-                      </Stack>
-                      <Stack direction="row" spacing={1}>
-                        <Typography variant="subtitle1">City :</Typography>
-                        <Typography variant="body2">Boston</Typography>
-                      </Stack>
-                      <Stack direction="row" spacing={1}>
-                        <Typography variant="subtitle1">Country :</Typography>
-                        <Typography variant="body2">United States</Typography>
-                      </Stack>
-                      <Stack direction="row" spacing={1}>
-                        <Typography variant="subtitle1">State :</Typography>
-                        <Typography variant="body2">Massachusetts</Typography>
-                      </Stack>
-                      <Stack direction="row" spacing={1}>
-                        <Typography variant="subtitle1">Zip code :</Typography>
-                        <Typography variant="body2">02110</Typography>
-                      </Stack>
-                    </Stack>
-                    <Stack>
-                      <Stack direction="row" spacing={1}>
-                        <Typography variant="subtitle1">Phone :</Typography>
-                        <Typography variant="body2">+1 (070) 123-4567</Typography>
-                      </Stack>
-                    </Stack>
-                  </Stack>
-                </Grid>
+    
                 <Grid item sm={6} md={4}>
                   <Stack spacing={2}>
                     <Typography variant="h4">Shipping address</Typography>
                     <Stack>
                       <Stack direction="row" spacing={1}>
-                        <Typography variant="subtitle1">First name :</Typography>
-                        <Typography variant="body2">Sara</Typography>
+                        <Typography variant="subtitle1">Name :</Typography>
+                        <Typography variant="body2">{detail.name}</Typography>
                       </Stack>
-                      <Stack direction="row" spacing={1}>
-                        <Typography variant="subtitle1">Last name :</Typography>
-                        <Typography variant="body2">Soudan</Typography>
-                      </Stack>
+                     
                     </Stack>
                     <Stack>
                       <Stack direction="row" spacing={1}>
                         <Typography variant="subtitle1">Address :</Typography>
-                        <Typography variant="body2">4898 Joanne Lane street</Typography>
+                        <Typography variant="body2">{detail.address.building+' '+detail.address.street}</Typography>
                       </Stack>
                       <Stack direction="row" spacing={1}>
                         <Typography variant="subtitle1">City :</Typography>
-                        <Typography variant="body2">Boston</Typography>
+                        <Typography variant="body2">{detail.address.city}</Typography>
                       </Stack>
                       <Stack direction="row" spacing={1}>
                         <Typography variant="subtitle1">Country :</Typography>
-                        <Typography variant="body2">United States</Typography>
+                        <Typography variant="body2">{detail.address.country}</Typography>
                       </Stack>
                       <Stack direction="row" spacing={1}>
                         <Typography variant="subtitle1">State :</Typography>
-                        <Typography variant="body2">Massachusetts</Typography>
+                        <Typography variant="body2">{detail.address.state}</Typography>
                       </Stack>
                       <Stack direction="row" spacing={1}>
                         <Typography variant="subtitle1">Zip code :</Typography>
-                        <Typography variant="body2">02110</Typography>
+                        <Typography variant="body2">{detail.address.post}</Typography>
                       </Stack>
                     </Stack>
                     <Stack>
                       <Stack direction="row" spacing={1}>
                         <Typography variant="subtitle1">Phone :</Typography>
-                        <Typography variant="body2">+1 (070) 123-4567</Typography>
+                        <Typography variant="body2">{detail.address.phone}</Typography>
                       </Stack>
                     </Stack>
                   </Stack>
@@ -239,20 +232,20 @@ const Details = () => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {rows.map((row, index) => (
+                    {detail.cart.map((row:cart, index:number) => (
                       <TableRow key={index}>
-                        <TableCell sx={{ pl: 3 }}>
-                          <Typography variant="subtitle1">{row.product}</Typography>
-                          <Typography variant="body2">{row.description}</Typography>
+                        <TableCell sx={{ pl: 3, display:'flex', alignItems:'center', gap:2 }}>
+                          <Image src={row.image} alt={row.name} width={52} height={52}/>
+                          <Typography variant="body2">{row.name}</Typography>
                         </TableCell>
                         <TableCell align="right">{row.quantity}</TableCell>
-                        <TableCell align="right">{row.amount}</TableCell>
-                        <TableCell align="right">{row.total}</TableCell>
-                        <TableCell sx={{ pr: 3 }} align="right">
+                        <TableCell align="right">{row.offerPrice} cfa</TableCell>
+                        <TableCell align="right">{row.offerPrice*row.quantity} cfa</TableCell>
+                        {/* <TableCell sx={{ pr: 3 }} align="right">
                           <IconButton color="primary" size="large">
                             <DeleteTwoToneIcon />
                           </IconButton>
-                        </TableCell>
+                        </TableCell> */}
                       </TableRow>
                     ))}
                   </TableBody>
@@ -273,20 +266,20 @@ const Details = () => {
                           </Grid>
                           <Grid item xs={6}>
                             <Typography align="right" variant="body2">
-                              $4725.00
+                              {parseInt(detail.total)-5000} cfa
                             </Typography>
                           </Grid>
                           <Grid item xs={6}>
                             <Typography align="right" variant="subtitle1">
-                              Taxes (10%) :
+                              Livraison :
                             </Typography>
                           </Grid>
                           <Grid item xs={6}>
                             <Typography align="right" variant="body2">
-                              $57.00
+                              5000 cfa
                             </Typography>
                           </Grid>
-                          <Grid item xs={6}>
+                          {/* <Grid item xs={6}>
                             <Typography align="right" variant="subtitle1">
                               Discount (5%) :
                             </Typography>
@@ -295,7 +288,7 @@ const Details = () => {
                             <Typography align="right" variant="body2">
                               $45.00
                             </Typography>
-                          </Grid>
+                          </Grid> */}
                         </Grid>
                       </Grid>
                       <Grid item xs={12}>
@@ -310,7 +303,7 @@ const Details = () => {
                           </Grid>
                           <Grid item xs={6}>
                             <Typography align="right" color="primary" variant="subtitle1">
-                              $4827.00
+                              {detail.total} cfa
                             </Typography>
                           </Grid>
                         </Grid>
@@ -324,7 +317,7 @@ const Details = () => {
         </SubCard>
       </Grid>
     </Grid>
-  );
+  )
 };
 
 export default Details;

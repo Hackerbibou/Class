@@ -1,5 +1,6 @@
+'use client'
 import Link from 'next/link';
-
+import util from 'api/checkout'
 // material-ui
 import Button from '@mui/material/Button';
 import CardMedia from '@mui/material/CardMedia';
@@ -21,6 +22,8 @@ import SubCard from 'ui-component/cards/SubCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import Chip from 'ui-component/extended/Chip';
 import { gridSpacing } from 'store/constant';
+import { useEffect, useState } from 'react';
+import { Box } from '@mui/material';
 
 // assets
 const imageDiscover = '/assets/images/pages/card-discover.png';
@@ -41,9 +44,16 @@ const rows = [
 // ==============================|| PROFILE 3 - BILLING ||============================== //
 
 const Billing = () => {
+  const [history,setHistory]=useState([]);
+  useEffect(()=>{
+  (async()=>{
+    const orders:any=await util.readPastorder()
+    setHistory(orders)
+  })()
+},[])
   return (
     <Grid container spacing={gridSpacing}>
-      <Grid item xs={12} sm={6} md={4}>
+      {/* <Grid item xs={12} sm={6} md={4}>
         <BillCard primary="Bill Due" secondary="$150.00" link="Pay Now" color="orange.dark" bg="orange.light" />
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
@@ -51,8 +61,8 @@ const Billing = () => {
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
         <BillCard primary="Plan" secondary="Basic" link="Upgrade?" color="success.dark" bg="success.light" />
-      </Grid>
-      <Grid item xs={12}>
+      </Grid> */}
+      {/* <Grid item xs={12}>
         <SubCard
           title="Payment Methods"
           secondary={
@@ -148,7 +158,7 @@ const Billing = () => {
             </Grid>
           </Grid>
         </SubCard>
-      </Grid>
+      </Grid> */}
       <Grid item xs={12}>
         <SubCard sx={{ overflowX: 'auto' }} title="Billing History" content={false}>
           <TableContainer>
@@ -158,20 +168,20 @@ const Billing = () => {
                   <TableCell sx={{ pl: 3 }}>Order No.</TableCell>
                   <TableCell>Date</TableCell>
                   <TableCell>Price</TableCell>
-                  <TableCell sx={{ pr: 3 }}>Status</TableCell>
+                  {/* <TableCell sx={{ pr: 3 }}>Status</TableCell> */}
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.map((row, index) => (
+                {history.length?history.map((row:any, index:number) => (
                   <TableRow hover key={index}>
-                    <TableCell sx={{ pl: 3 }}>{row.tid}</TableCell>
-                    <TableCell>{row.date}</TableCell>
-                    <TableCell>{row.amount}</TableCell>
-                    <TableCell sx={{ pr: 3 }}>
+                    <TableCell sx={{ pl: 3 }}>{index}</TableCell>
+                    <TableCell>{new Date(row.date).toDateString()+' à '+new Date(row.date).toLocaleTimeString() }</TableCell>
+                    <TableCell>{row.total} cfa</TableCell>
+                    {/* <TableCell sx={{ pr: 3 }}>
                       <Chip chipcolor={row.badgeType} label={row.badgeText} size="small" />
-                    </TableCell>
+                    </TableCell> */}
                   </TableRow>
-                ))}
+                )):<Box sx={{ p: 3, display:'flex',justifyContent:'center', alignItems:'center', width:'100%' }}>No orders yet</Box>}
               </TableBody>
             </Table>
           </TableContainer>
