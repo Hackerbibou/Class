@@ -6,17 +6,17 @@
       "static/css/app/global-error.css",
       "static/chunks/app/global-error.js"
     ],
-    "/pastorders/page": [
+    "/categories/productdetail/[table]/[id]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/pastorders/page.css",
-      "static/chunks/app/pastorders/page.js"
+      "static/css/app/categories/productdetail/[table]/[id]/page.css",
+      "static/chunks/app/categories/productdetail/[table]/[id]/page.js"
     ],
-    "/pastorders/layout": [
+    "/categories/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/pastorders/layout.css",
-      "static/chunks/app/pastorders/layout.js"
+      "static/css/app/categories/layout.css",
+      "static/chunks/app/categories/layout.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
@@ -35,12 +35,6 @@
       "static/css/app/not-found.css",
       "static/chunks/app/not-found.js"
     ],
-    "/pastorders/details/[index]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/pastorders/details/[index]/page.css",
-      "static/chunks/app/pastorders/details/[index]/page.js"
-    ],
     "/profile/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -58,18 +52,6 @@
       "static/chunks/main-app.js",
       "static/css/app/categories/mensShirts/page.css",
       "static/chunks/app/categories/mensShirts/page.js"
-    ],
-    "/categories/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/categories/layout.css",
-      "static/chunks/app/categories/layout.js"
-    ],
-    "/categories/mensHoodies/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/categories/mensHoodies/page.css",
-      "static/chunks/app/categories/mensHoodies/page.js"
     ]
   }
 }
