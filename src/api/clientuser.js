@@ -13,7 +13,7 @@ export async function Login(email, password) {
     return null
   
 }
-export async function Signup(email, password, firstName, lastName) {
+export async function Signup(email, phone, password, firstName, lastName) {
 
     let { data, error } = await supabase.auth.signUp({
         email: email,
@@ -22,6 +22,7 @@ export async function Signup(email, password, firstName, lastName) {
             data: {
               first_name: firstName,
               last_name: lastName,
+              phone:phone
             }
         }
     })
@@ -71,12 +72,33 @@ export async function Recoverpassword(email) {
     let { data, error } = await supabase.auth.resetPasswordForEmail(email)
 }
 
+export async function EditUser(objectt){
 
+const { data, error } = await supabase.auth.updateUser({
+    email: objectt.email,
+   
+    data: { 
+        first_name:objectt.user_metadata.first_name,
+        last_name:objectt.user_metadata.last_name,
+         phone: objectt.phone
+    }
+  })
+  
+}
+export async function EditPassword(password){
+
+    const { data, error } = await supabase.auth.updateUser({
+        password:password
+      })
+      
+    }
     
 export default {
     Login,
     Signup,
     Getuser,
     Logout,
-    Recoverpassword
+    Recoverpassword,
+    EditUser,
+    EditPassword
 }

@@ -18,23 +18,29 @@ import SkeletonProductPlaceholder from 'ui-component/cards/Skeleton/ProductPlace
 import { dispatch, useSelector } from 'store';
 import { addProduct } from 'store/slices/cart';
 import { openSnackbar } from 'store/slices/snackbar';
-
+import util from 'api/clientuser'
 // assets
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 // const prodImage = '/assets/images/e-commerce';
 
 // types
 import { ProductCardProps } from 'types/product';
+import { useRouter } from 'next/navigation';
 
 // ==============================|| PRODUCT CARD ||============================== //
 
 const ProductCard = ({ id, color, name, image, description, offerPrice, salePrice, rating, table }: ProductCardProps) => {
+  const router = useRouter();
   const prodProfile = image;
   const [productRating] = useState<number | undefined>(rating);
   const cart = useSelector((state) => state.cart);
-
+  
   const addCart = () => {
-    dispatch(addProduct({ id, name, image, salePrice, offerPrice, color, size: 8, quantity: 1 }, cart.checkout.products));
+    (async()=>{
+      const a:any=await util.Getuser()
+
+    if(a){
+      dispatch(addProduct({ id, name, image, salePrice, offerPrice, color, size: 8, quantity: 1 }, cart.checkout.products));
     dispatch(
       openSnackbar({
         open: true,
@@ -46,6 +52,24 @@ const ProductCard = ({ id, color, name, image, description, offerPrice, salePric
         close: false
       })
     );
+    }else{
+      dispatch(
+        openSnackbar({
+          open: true,
+          message: 'Login To Add To Cart',
+          variant: 'alert',
+          alert: {
+            color: 'error',
+          },
+          close: false,
+        })
+      );
+      setTimeout(()=>{
+        router.push('/login');
+      },3000)
+    }
+    
+  })()
   };
 
   const [isLoading, setLoading] = useState(true);

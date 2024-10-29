@@ -32,19 +32,8 @@ export default function HomePage() {
     console.log(menuMaster)
   if (menuMasterLoading) return <Loader />;
   return (
-    <MinimalLayout>
-        <AppBar enableColorOnDark position="fixed" color="inherit" elevation={0} sx={{ bgcolor: 'background.default' }}>
-        <Toolbar>
-          <Header />
-        </Toolbar>
-      </AppBar>
-     <Box sx={{height:'100px'}}/>
-      
-        <Container>
-   
+        <Container sx={{pt:4}}>
          <Cart/>
         </Container>
-  
-    </MinimalLayout>
   );
 }

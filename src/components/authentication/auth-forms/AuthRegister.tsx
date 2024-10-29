@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -50,7 +50,7 @@ const JWTRegister = ({ ...others }) => {
   const [checked, setChecked] = React.useState(true);
   const [strength, setStrength] = React.useState(0);
   const [level, setLevel] = React.useState<StringColorProps>();
-
+  const [phone, setPhone]=useState('')
   const { register } = useAuth();
 
   const handleClickShowPassword = () => {
@@ -86,6 +86,7 @@ const JWTRegister = ({ ...others }) => {
           email: '',
           password: '',
           firstName: '',
+          phone:'',
           lastName: '',
           submit: null
         }}
@@ -95,7 +96,7 @@ const JWTRegister = ({ ...others }) => {
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
-            const role:any= await util.Signup(values.email, values.password, values.firstName, values.lastName);
+            const role:any= await util.Signup(values.email, phone, values.password, values.firstName, values.lastName);
             console.log(role)
             if (role=='authenticated') {
               setStatus({ success: true });
@@ -113,7 +114,7 @@ const JWTRegister = ({ ...others }) => {
               );
 
               setTimeout(() => {
-                router.push('/login');
+                router.push('/categories/mensShirts');
               }, 1500);
             }else{
               setStatus({ success: false });
@@ -181,6 +182,26 @@ const JWTRegister = ({ ...others }) => {
                 />
               </Grid>
             </Grid>
+            <FormControl fullWidth error={Boolean(touched.phone && errors.phone)} sx={{ ...theme.typography.customInput }}>
+              <InputLabel htmlFor="outlined-adornment-phone-register">Phone</InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-phone-register"
+                type="phone"
+                value={phone}
+                name="email"
+                onBlur={handleBlur}
+                onChange={(e)=>{
+                  e.preventDefault();
+                  setPhone(e.target.value)}
+                           }
+                inputProps={{}}
+              />
+              {/* {touched.email && errors.email && (
+                <FormHelperText error id="standard-weight-helper-text--register">
+                  {errors.email}
+                </FormHelperText>
+              )} */}
+            </FormControl>
             <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
               <InputLabel htmlFor="outlined-adornment-email-register">Email Address / Username</InputLabel>
               <OutlinedInput

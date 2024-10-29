@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import util from 'api/checkout'
+import userUtil from 'api/clientuser'
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import CardContent from '@mui/material/CardContent';
@@ -25,7 +26,7 @@ import TextField from '@mui/material/TextField';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-
+import empty from '../../../../public/assets/images/e-commerce/empty.svg'
 // third-party
 import { format } from 'date-fns';
 
@@ -52,6 +53,8 @@ import { Box, Button, Stack } from '@mui/material';
 import CartDiscount from 'components/application/e-commerce/Checkout/CartDiscount';
 import { useRouter } from 'next/navigation';
 import { setNextStep } from 'store/slices/cart';
+import { ShoppingCartCheckout } from '@mui/icons-material';
+import Image from 'next/image';
 
 const prodImage = '/assets/images/e-commerce';
 
@@ -215,11 +218,13 @@ const ProductList = () => {
   const [search, setSearch] = React.useState<string>('');
   const [rows, setRows] = React.useState<Products[]>([]);
   const [products, SetProduct] = useState([])
-
+  const [user, setUser] = useState(null)
   useEffect(() => {
     (async ()=> {
-      const prod : any = await util.readCart()
-      SetProduct(prod)
+      const prod : any = await util.readCart();
+      const userInfo : any = await userUtil.Getuser();
+      setUser(userInfo);
+      SetProduct(prod);
     })()
   },[])
 
@@ -405,15 +410,17 @@ const ProductList = () => {
                   </TableRow>
                 );
               })}
-            {emptyRows > 0 && (
-              <TableRow sx={{ height: 53 * emptyRows }}>
-                <TableCell colSpan={6} />
-              </TableRow>
-            )}
+            
           </TableBody>
         </Table>
       </TableContainer>
+{products.length == 0 && (
 
+                <Box sx={{display:'flex', flexDirection:'column',justifyContent:'center', alignItems:'center', pt:4}} >
+                  <Image src={empty} alt='empty cart'  height={200}/>
+                  <Typography>{user?<>Cart is empty</>:<>Login to add to cart</>}</Typography>
+              </Box>
+            )}
       {/* table pagination */}
       <TablePagination
         rowsPerPageOptions={[5, 10, 25]}
@@ -426,9 +433,11 @@ const ProductList = () => {
       />
       <Grid item xs={12} md={5} lg={4}>
             <Stack spacing={'9'}>
-              <Button variant="contained" fullWidth onClick={()=>{router.push('/pay');}}>
+              {user?<Button variant="contained" fullWidth onClick={()=>{router.push('/pay');}}>
                 Check Out
-              </Button>
+              </Button>:<Button color='error' variant="contained" fullWidth onClick={()=>{router.push('/login');}}>
+                Login to shop
+              </Button>}
             </Stack>
           </Grid>
     </MainCard>
