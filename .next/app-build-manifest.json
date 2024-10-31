@@ -6,17 +6,11 @@
       "static/css/app/global-error.css",
       "static/chunks/app/global-error.js"
     ],
-    "/pay/page": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/pay/page.css",
-      "static/chunks/app/pay/page.js"
-    ],
-    "/pay/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/pay/layout.css",
-      "static/chunks/app/pay/layout.js"
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
@@ -35,6 +29,18 @@
       "static/css/app/not-found.css",
       "static/chunks/app/not-found.js"
     ],
+    "/categories/mensJeans/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/categories/mensJeans/page.css",
+      "static/chunks/app/categories/mensJeans/page.js"
+    ],
+    "/categories/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/categories/layout.css",
+      "static/chunks/app/categories/layout.js"
+    ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -46,11 +52,11 @@
       "static/css/app/categories/mensShirts/page.css",
       "static/chunks/app/categories/mensShirts/page.js"
     ],
-    "/categories/layout": [
+    "/categories/productdetail/[table]/[id]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/categories/layout.css",
-      "static/chunks/app/categories/layout.js"
+      "static/css/app/categories/productdetail/[table]/[id]/page.css",
+      "static/chunks/app/categories/productdetail/[table]/[id]/page.js"
     ]
   }
 }
