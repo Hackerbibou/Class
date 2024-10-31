@@ -255,6 +255,7 @@ const SearchSection = () => {
                 const labelId = `enhanced-table-checkbox-${index}`;
 
                 return (
+                  <Link href={`/categories/productdetail/${row.route}/${row.id}`} style={{ textDecoration: 'none' }}>
                   <TableRow sx={{width:'100%', display:'flex', justifyContent:'space-between', alignItems:'center'}} hover role="checkbox" aria-checked={isItemSelected} tabIndex={-1} key={index} selected={isItemSelected}>
                    
                     <TableCell
@@ -269,8 +270,8 @@ const SearchSection = () => {
                     </TableCell>
                     <TableCell component="th" id={labelId} scope="row" sx={{ cursor: 'pointer' }}>
                       <Typography
-                        component={Link}
-                        href={`/categories/${row.table}/${row.id}`}
+                        // component={Link}
+                        // href={`/categories/${row.table}/${row.id}`}
                         variant="subtitle1"
                         sx={{ textDecoration: 'none' }}
                       >
@@ -280,7 +281,7 @@ const SearchSection = () => {
                     {/* <TableCell>{format(new Date(row.created), 'E, MMM d yyyy')}</TableCell> */}
                     <TableCell>${row.offerPrice}</TableCell>
     
-                  </TableRow>
+                  </TableRow></Link>
                 );
               })}
                           </Box>):<></>}
@@ -326,6 +327,7 @@ const SearchSection = () => {
                 const labelId = `enhanced-table-checkbox-${index}`;
 
                 return (
+                  <Link href={`/categories/productdetail/${row.route}/${row.id}`} style={{ textDecoration: 'none' }}>
                   <TableRow sx={{width:'100%', display:'flex', justifyContent:'space-between', alignItems:'center'}} hover role="checkbox" aria-checked={isItemSelected} tabIndex={-1} key={index} selected={isItemSelected}>
                    
                     <TableCell
@@ -340,8 +342,8 @@ const SearchSection = () => {
                     </TableCell>
                     <TableCell component="th" id={labelId} scope="row" sx={{ cursor: 'pointer' }}>
                       <Typography
-                        component={Link}
-                        href={`/categories/${row.table}/${row.id}`}
+                        // component={Link}
+                        // href={`/categories/${row.table}/${row.id}`}
                         variant="subtitle1"
                         sx={{ textDecoration: 'none' }}
                       >
@@ -352,6 +354,7 @@ const SearchSection = () => {
                     <TableCell>${row.offerPrice}</TableCell>
     
                   </TableRow>
+                  </Link>
                 );
               })}
       </Box>):<></>}
