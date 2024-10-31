@@ -5,18 +5,18 @@ import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 
 // project imports
-import Customization from 'layout/Customization';
+// import Customization from 'layout/Customization';
 import AppBar from 'ui-component/extended/AppBar';
 
 import HeaderSection from 'components/landingpage/HeaderSection';
-import CardSection from 'components/landingpage/CardSection';
-import CustomizeSection from 'components/landingpage/CustomizeSection';
-import FeatureSection from 'components/landingpage/FeatureSection';
-import PreBuildDashBoard from 'components/landingpage/PreBuildDashBoard';
-import PeopleSection from 'components/landingpage/PeopleSection';
-import StartupProjectSection from 'components/landingpage/StartupProjectSection';
-import FrameworkSection from 'components/landingpage/FrameworkSection';
-import FooterSection from 'components/landingpage/FooterSection';
+// import CardSection from 'components/landingpage/CardSection';
+// import CustomizeSection from 'components/landingpage/CustomizeSection';
+// import FeatureSection from 'components/landingpage/FeatureSection';
+// import PreBuildDashBoard from 'components/landingpage/PreBuildDashBoard';
+// import PeopleSection from 'components/landingpage/PeopleSection';
+// import StartupProjectSection from 'components/landingpage/StartupProjectSection';
+// import FrameworkSection from 'components/landingpage/FrameworkSection';
+// import FooterSection from 'components/landingpage/FooterSection';
 
 // types
 import { ThemeMode } from 'types/config';

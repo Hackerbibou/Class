@@ -14,7 +14,7 @@ import NavGroup from './NavGroup';
 import useConfig from 'hooks/useConfig';
 
 import menuItem from 'menu-items';
-import { Menu } from 'menu-items/widget';
+// import { Menu } from 'menu-items/widget';
 import { HORIZONTAL_MAX_ITEM } from 'config';
 import { useGetMenuMaster, useGetMenu } from 'api/menu';
 
@@ -37,7 +37,7 @@ const MenuList = () => {
   const [selectedID, setSelectedID] = useState<string | undefined>('');
   const [menuItems, setMenuItems] = useState<{ items: NavItemType[] }>({ items: [] });
 
-  let widgetMenu = Menu();
+  // let widgetMenu = Menu();
 
   useLayoutEffect(() => {
   

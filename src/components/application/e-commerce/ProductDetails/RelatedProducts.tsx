@@ -12,7 +12,7 @@ import Slider, { Settings } from 'react-slick';
 
 // project imports
 import ProductCard from 'ui-component/cards/ProductCard';
-import { dispatch, useSelector } from 'store';
+import { dispatch } from 'store';
 import { getRelatedProducts } from 'store/slices/product';
 
 // types
@@ -27,7 +27,7 @@ const RelatedProducts = ({ table, id }: { table?:string ,id?: string }) => {
   const downMD = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const downLG = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'));
   const downXL = useMediaQuery((theme: Theme) => theme.breakpoints.down('xl'));
-  const { relatedProducts } = useSelector((state) => state.product);
+  // const { relatedProducts } = useSelector((state) => state.product);
 
   useEffect(() => {
     (async()=>{

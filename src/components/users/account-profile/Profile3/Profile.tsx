@@ -1,6 +1,6 @@
 // material-ui
 'use client'
-import Avatar from '@mui/material/Avatar';
+// import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import util from 'api/clientuser';
 // project imports
-import useAuth from 'hooks/useAuth';
+// import useAuth from 'hooks/useAuth';
 import SubCard from 'ui-component/cards/SubCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { gridSpacing } from 'store/constant';
@@ -16,7 +16,7 @@ import Logo from 'ui-component/Logo';
 import { useEffect, useState } from 'react';
 
 // assets
-const Avatar1 = '/assets/images/logo.svg';
+// const Avatar1 = '/assets/images/logo.svg';
 
 // ==============================|| PROFILE 3 - PROFILE ||============================== //
 interface User{
@@ -39,15 +39,15 @@ const Profile = () => {
     phone:'phone'
   }
   })
-  const [user, setUser]= useState<User>({
-    email:'Email',
-    phone:'Phone',
-    user_metadata:{
-    last_name:'Last name',
-    first_name:'First name',
-    phone:'phone'
-  }
-  })
+  // const [user, setUser]= useState<User>({
+  //   email:'Email',
+  //   phone:'Phone',
+  //   user_metadata:{
+  //   last_name:'Last name',
+  //   first_name:'First name',
+  //   phone:'phone'
+  // }
+  // })
   useEffect(()=>{
     (async()=>{
       const use :any=await util.Getuser();
@@ -61,7 +61,7 @@ const Profile = () => {
         phone: use.user_metadata.phone
       }
       })
-      setUser(use);
+      // setUser(use);
     })();
   },[])
   function handleChange(e:any,item:string){

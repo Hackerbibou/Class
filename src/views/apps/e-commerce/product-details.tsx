@@ -1,27 +1,27 @@
 'use client';
 
-import { useEffect, useState, SyntheticEvent } from 'react';
+import { useEffect, useState} from 'react';
 import { useParams } from 'next/navigation';
 import util from '../../../api/menproduct'
 
 
 // material-ui
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
-import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
+// import Stack from '@mui/material/Stack';
+// import Tab from '@mui/material/Tab';
+// import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
 
 // project imports
 import ProductImages from 'components/application/e-commerce/ProductDetails/ProductImages';
 import ProductInfo from 'components/application/e-commerce/ProductDetails/ProductInfo';
-import ProductDescription from 'components/application/e-commerce/ProductDetails/ProductDescription';
-import ProductReview from 'components/application/e-commerce/ProductDetails/ProductReview';
+// import ProductDescription from 'components/application/e-commerce/ProductDetails/ProductDescription';
+// import ProductReview from 'components/application/e-commerce/ProductDetails/ProductReview';
 import RelatedProducts from 'components/application/e-commerce/ProductDetails/RelatedProducts';
 
 import Loader from 'ui-component/Loader';
-import Chip from 'ui-component/extended/Chip';
+// import Chip from 'ui-component/extended/Chip';
 import MainCard from 'ui-component/cards/MainCard';
 import FloatingCart from 'ui-component/cards/FloatingCart';
 
@@ -32,30 +32,30 @@ import { getProduct } from 'store/slices/product';
 import { resetCart } from 'store/slices/cart';
 
 // types
-import { TabsProps } from 'types';
+// import { TabsProps } from 'types';
 import { Products as ProductsTypo } from 'types/e-commerce';
 
 
-function TabPanel({ children, value, index, ...other }: TabsProps) {
-  return (
-    <Box
-      role="tabpanel"
-      hidden={value !== index}
-      id={`product-details-tabpanel-${index}`}
-      aria-labelledby={`product-details-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box>{children}</Box>}
-    </Box>
-  );
-}
+// function TabPanel({ children, value, index, ...other }: TabsProps) {
+//   return (
+//     <Box
+//       role="tabpanel"
+//       hidden={value !== index}
+//       id={`product-details-tabpanel-${index}`}
+//       aria-labelledby={`product-details-tab-${index}`}
+//       {...other}
+//     >
+//       {value === index && <Box>{children}</Box>}
+//     </Box>
+//   );
+// }
 
-function a11yProps(index: number) {
-  return {
-    id: `product-details-tab-${index}`,
-    'aria-controls': `product-details-tabpanel-${index}`
-  };
-}
+// function a11yProps(index: number) {
+//   return {
+//     id: `product-details-tab-${index}`,
+//     'aria-controls': `product-details-tabpanel-${index}`
+//   };
+// }
 
 
 const ProductDetails = () => {
@@ -79,11 +79,11 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   // product description tabs
-  const [value, setValue] = useState(0);
+  // const [value, setValue] = useState(0);
 
-  const handleChange = (event: SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
+  // const handleChange = (event: SyntheticEvent, newValue: number) => {
+  //   setValue(newValue);
+  // };
 
   useEffect(() => {
     dispatch(getProduct(params.id as string)).then(() => setLoading(false));

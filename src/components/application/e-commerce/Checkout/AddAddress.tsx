@@ -33,7 +33,7 @@ import { Address } from 'types/e-commerce';
 
 // assets
 import HighlightOffTwoToneIcon from '@mui/icons-material/HighlightOffTwoTone';
-import SelectedListItem from 'components/ui-elements/basic/UIList/SelectedListItem';
+// import SelectedListItem from 'components/ui-elements/basic/UIList/SelectedListItem';
 
 const validationSchema = yup.object({
   destination: yup.string().required('Color selection is required'),

@@ -7,11 +7,11 @@ import userUtil from 'api/clientuser'
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import CardContent from '@mui/material/CardContent';
-import Checkbox from '@mui/material/Checkbox';
-import Fab from '@mui/material/Fab';
+// import Checkbox from '@mui/material/Checkbox';
+// import Fab from '@mui/material/Fab';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
+// import InputAdornment from '@mui/material/InputAdornment';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Table from '@mui/material/Table';
@@ -22,19 +22,19 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
-import TextField from '@mui/material/TextField';
+// import TextField from '@mui/material/TextField';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import empty from '../../../../public/assets/images/e-commerce/empty.svg'
 // third-party
-import { format } from 'date-fns';
+// import { format } from 'date-fns';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import Avatar from 'ui-component/extended/Avatar';
-import Chip from 'ui-component/extended/Chip';
-import { dispatch, useSelector } from 'store';
+// import Chip from 'ui-component/extended/Chip';
+import { dispatch} from 'store';
 import { getProducts } from 'store/slices/product';
 
 // types
@@ -43,20 +43,20 @@ import { ArrangementOrder, GetComparator, HeadCell, EnhancedTableHeadProps, Enha
 
 // assets
 import DeleteIcon from '@mui/icons-material/Delete';
-import FilterListIcon from '@mui/icons-material/FilterListTwoTone';
-import PrintIcon from '@mui/icons-material/PrintTwoTone';
-import FileCopyIcon from '@mui/icons-material/FileCopyTwoTone';
-import SearchIcon from '@mui/icons-material/Search';
-import AddIcon from '@mui/icons-material/AddTwoTone';
+// import FilterListIcon from '@mui/icons-material/FilterListTwoTone';
+// import PrintIcon from '@mui/icons-material/PrintTwoTone';
+// import FileCopyIcon from '@mui/icons-material/FileCopyTwoTone';
+// import SearchIcon from '@mui/icons-material/Search';
+// import AddIcon from '@mui/icons-material/AddTwoTone';
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import { Box, Button, Stack } from '@mui/material';
-import CartDiscount from 'components/application/e-commerce/Checkout/CartDiscount';
+// import CartDiscount from 'components/application/e-commerce/Checkout/CartDiscount';
 import { useRouter } from 'next/navigation';
-import { setNextStep } from 'store/slices/cart';
-import { ShoppingCartCheckout } from '@mui/icons-material';
+// import { setNextStep } from 'store/slices/cart';
+// import { ShoppingCartCheckout } from '@mui/icons-material';
 import Image from 'next/image';
 
-const prodImage = '/assets/images/e-commerce';
+// const prodImage = '/assets/images/e-commerce';
 
 // table sort
 function descendingComparator(a: KeyedObject, b: KeyedObject, orderBy: string) {
@@ -215,7 +215,7 @@ const ProductList = () => {
   const [selected, setSelected] = React.useState<string[]>([]);
   const [page, setPage] = React.useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(5);
-  const [search, setSearch] = React.useState<string>('');
+  // const [search, setSearch] = React.useState<string>('');
   const [rows, setRows] = React.useState<Products[]>([]);
   const [products, SetProduct] = useState([])
   const [user, setUser] = useState(null)
@@ -246,33 +246,33 @@ const ProductList = () => {
     dispatch(getProducts());
   }, []);
 
-  const handleSearch = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
-    const newString = event?.target.value;
-    setSearch(newString || '');
+  // const handleSearch = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
+  //   const newString = event?.target.value;
+  //   setSearch(newString || '');
 
-    if (newString) {
-      const newRows = rows?.filter((row: KeyedObject) => {
-        let matches = true;
+  //   if (newString) {
+  //     const newRows = rows?.filter((row: KeyedObject) => {
+  //       let matches = true;
 
-        const properties = ['name', 'description', 'rating', 'salePrice', 'offerPrice', 'gender'];
-        let containsQuery = false;
+  //       const properties = ['name', 'description', 'rating', 'salePrice', 'offerPrice', 'gender'];
+  //       let containsQuery = false;
 
-        properties.forEach((property) => {
-          if (row[property].toString().toLowerCase().includes(newString.toString().toLowerCase())) {
-            containsQuery = true;
-          }
-        });
+  //       properties.forEach((property) => {
+  //         if (row[property].toString().toLowerCase().includes(newString.toString().toLowerCase())) {
+  //           containsQuery = true;
+  //         }
+  //       });
 
-        if (!containsQuery) {
-          matches = false;
-        }
-        return matches;
-      });
-      setRows(newRows);
-    } else {
-      getProducts();
-    }
-  };
+  //       if (!containsQuery) {
+  //         matches = false;
+  //       }
+  //       return matches;
+  //     });
+  //     setRows(newRows);
+  //   } else {
+  //     getProducts();
+  //   }
+  // };
 
   const handleRequestSort = (event: React.SyntheticEvent<Element, Event>, property: string) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -316,7 +316,7 @@ const ProductList = () => {
   };
 
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  // const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   return (
     <MainCard content={false}>

@@ -37,7 +37,7 @@ import useConfig from 'hooks/useConfig';
 import { resetCart } from 'store/slices/cart';
 import { dispatch, useSelector } from 'store';
 import { appDrawerWidth, gridSpacing } from 'store/constant';
-import { getProducts, filterProducts } from 'store/slices/product';
+// import { getProducts, filterProducts } from 'store/slices/product';
 
 // assets
 import SearchIcon from '@mui/icons-material/Search';
@@ -47,7 +47,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 // types
 import { Products as ProductsTypo, ProductsFilter } from 'types/e-commerce';
-import UtilitiesShadow from 'views/utils/util-shadow';
+// import UtilitiesShadow from 'views/utils/util-shadow';
 
 // product list container
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{ open?: boolean }>(({ theme, open }) => ({

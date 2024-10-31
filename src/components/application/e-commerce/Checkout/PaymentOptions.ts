@@ -3,7 +3,7 @@ import { PaymentOptionsProps } from 'types/e-commerce';
 
 // assets
 const sendwave = '/assets/images/e-commerce/sendwave.png';
-const card = '/assets/images/e-commerce/card.png';
+// const card = '/assets/images/e-commerce/card.png';
 const cod = '/assets/images/e-commerce/cod.png';
 
 // ==============================|| CHECKOUT - PAYMENT OPTIONS ||============================== //

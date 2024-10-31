@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import { useDropzone } from 'react-dropzone';
 
 // project import
-import RejectionFiles from './RejectionFile';
+// import RejectionFiles from './RejectionFile';
 
 // assets
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
@@ -61,7 +61,7 @@ const PlaceholderWrapper = styled('div')(({ theme }) => ({
 // ==============================|| UPLOAD - AVATAR ||============================== //
 
 const AvatarUpload = ({ error, file, setFieldValue, sx, ...other }: UploadProps) => {
-  const { getRootProps, getInputProps, isDragActive, isDragReject, fileRejections } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive, isDragReject} = useDropzone({
     accept: {
       'image/*': []
     },
@@ -112,7 +112,7 @@ const AvatarUpload = ({ error, file, setFieldValue, sx, ...other }: UploadProps)
           </PlaceholderWrapper>
         </DropzoneWrapper>
       </RootWrapper>
-      {fileRejections.length > 0 && <RejectionFiles fileRejections={fileRejections} />}
+      {/* {fileRejections.length > 0 && <RejectionFiles fileRejections={fileRejections} />} */}
     </>
   );
 };

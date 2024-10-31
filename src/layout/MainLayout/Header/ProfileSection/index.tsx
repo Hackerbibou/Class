@@ -4,24 +4,24 @@ import { useEffect, useRef, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+// import Card from '@mui/material/Card';
+// import CardContent from '@mui/material/CardContent';
 import Chip from '@mui/material/Chip';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
-import InputAdornment from '@mui/material/InputAdornment';
+// import Grid from '@mui/material/Grid';
+// import InputAdornment from '@mui/material/InputAdornment';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import OutlinedInput from '@mui/material/OutlinedInput';
+// import OutlinedInput from '@mui/material/OutlinedInput';
 import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import Stack from '@mui/material/Stack';
-import Switch from '@mui/material/Switch';
+// import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
-import LocalMallIcon from '@mui/icons-material/LocalMall';
+// import LocalMallIcon from '@mui/icons-material/LocalMall';
 // third-party
 import { FormattedMessage } from 'react-intl';
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -29,17 +29,17 @@ import util from 'api/clientuser'
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import Transitions from 'ui-component/extended/Transitions';
-import UpgradePlanCard from './UpgradePlanCard';
-import useAuth from 'hooks/useAuth';
+// import UpgradePlanCard from './UpgradePlanCard';
+// import useAuth from 'hooks/useAuth';
 import { useRouter } from 'next/navigation';
 // types
 import { ThemeMode } from 'types/config';
 
 // assets
-import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons-react';
+import { IconLogout, IconSettings } from '@tabler/icons-react';
 import useConfig from 'hooks/useConfig';
-import { LocalMall, LocalMallOutlined } from '@mui/icons-material';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+// import { LocalMall, LocalMallOutlined } from '@mui/icons-material';
+// import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 const User1 = '/assets/images/users/user-round.svg';
 
 // ==============================|| PROFILE MENU ||============================== //
@@ -49,11 +49,11 @@ const ProfileSection = () => {
   const { borderRadius } = useConfig();
   // const navigate = useNavigate();
 
-  const [sdm, setSdm] = useState(true);
-  const [value, setValue] = useState('');
-  const [notification, setNotification] = useState(false);
+  // const [sdm, setSdm] = useState(true);
+  // const [value, setValue] = useState('');
+  // const [notification, setNotification] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  const { logout, user } = useAuth();
+  // const { logout, user } = useAuth();
   const [open, setOpen] = useState(false);
   const router = useRouter();
   /**
@@ -166,7 +166,7 @@ const ProfileSection = () => {
                         <Stack direction="row" spacing={0.5} alignItems="center">
                           <Typography variant="h4">Good Morning,</Typography>
                           <Typography component="span" variant="h4" sx={{ fontWeight: 400 }}>
-                            {user?.name}
+                            User 777
                           </Typography>
                         </Stack>
                         <Typography variant="subtitle2">Project Admin</Typography>
@@ -249,9 +249,9 @@ const ProfileSection = () => {
                               handleListItemClick(event, 0, '/pastorders')
                             }
                           >
-                            <ListItemIcon>
+                            {/* <ListItemIcon>
                               <LocalMallIcon stroke={1.5} size="20px" />
-                            </ListItemIcon>
+                            </ListItemIcon> */}
                             <ListItemText
                               primary={
                                 <Typography variant="body2">
@@ -267,9 +267,9 @@ const ProfileSection = () => {
                               handleListItemClick(event, 0, '/checkout')
                             }
                           >
-                            <ListItemIcon>
+                            {/* <ListItemIcon>
                               <ShoppingCartOutlinedIcon stroke={1.5} size="20px" />
-                            </ListItemIcon>
+                            </ListItemIcon> */}
                             <ListItemText
                               primary={
                                 <Typography variant="body2">

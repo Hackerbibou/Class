@@ -20,7 +20,7 @@ import { gridSpacing } from 'store/constant';
 import { dispatch, useSelector } from 'store';
 import { openSnackbar } from 'store/slices/snackbar';
 import { getAddresses, editAddress, addAddress } from 'store/slices/product';
-import { addProduct, removeProduct, setBackStep, setBillingAddress, setNextStep, setShippingCharge, setStep, updateProduct } from 'store/slices/cart';
+import { removeProduct, setBackStep, setBillingAddress, setNextStep, setShippingCharge, setStep, updateProduct } from 'store/slices/cart';
 
 // types
 import { TabsProps } from 'types';
@@ -32,7 +32,7 @@ import utils from 'api/clientuser'
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import CreditCardTwoToneIcon from '@mui/icons-material/CreditCardTwoTone';
-import { getFabUtilityClass } from '@mui/material';
+// import { getFabUtilityClass } from '@mui/material';
 
 interface TabOptionProps {
   label: string;

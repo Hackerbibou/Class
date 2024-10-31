@@ -54,7 +54,7 @@ const MainCard = React.forwardRef(
       sx = {},
       title,
       ...others
-    }: MainCardProps,
+    }: any,
     ref: Ref<HTMLDivElement>
   ) => {
     const { mode } = useConfig();

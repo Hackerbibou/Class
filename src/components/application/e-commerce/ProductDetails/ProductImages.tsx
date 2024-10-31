@@ -33,7 +33,7 @@ const prod7 = '/assets/images/e-commerce/prod-7.png';
 const prod8 = '/assets/images/e-commerce/prod-8.png';
 const prod9 = '/assets/images/e-commerce/prod-9.png';
 
-const prodImage = '/assets/images/e-commerce';
+// const prodImage = '/assets/images/e-commerce';
 
 // ==============================|| PRODUCT DETAILS - IMAGES ||============================== //
 

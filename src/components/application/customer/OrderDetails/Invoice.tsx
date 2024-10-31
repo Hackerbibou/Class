@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Table from '@mui/material/Table';
@@ -16,12 +16,12 @@ import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import util from 'api/checkout'
 // third-party
-import ReactToPrint from 'react-to-print';
+// import ReactToPrint from 'react-to-print';
 
 // project imports
-import AnimateButton from 'ui-component/extended/AnimateButton';
+// import AnimateButton from 'ui-component/extended/AnimateButton';
 import SubCard from 'ui-component/cards/SubCard';
-import Chip from 'ui-component/extended/Chip';
+// import Chip from 'ui-component/extended/Chip';
 import Logo from 'ui-component/Logo';
 import { gridSpacing } from 'store/constant';
 
@@ -32,15 +32,15 @@ import { useParams } from 'next/navigation';
 import Image from 'next/image';
 
 // table data
-function createData(product: string, description: string, quantity: string, amount: string, total: string) {
-  return { product, description, quantity, amount, total };
-}
+// function createData(product: string, description: string, quantity: string, amount: string, total: string) {
+//   return { product, description, quantity, amount, total };
+// }
 
-const rows = [
-  createData('Logo Design', 'lorem ipsum dolor sit amat, connecter adieu siccing eliot', '6', '$200.00', '$1200.00'),
-  createData('Landing Page', 'lorem ipsum dolor sit amat, connecter adieu siccing eliot', '7', '$100.00', '$700.00'),
-  createData('Admin Template', 'lorem ipsum dolor sit amat, connecter adieu siccing eliot', '5', '$150.00', '$750.00')
-];
+// const rows = [
+//   createData('Logo Design', 'lorem ipsum dolor sit amat, connecter adieu siccing eliot', '6', '$200.00', '$1200.00'),
+//   createData('Landing Page', 'lorem ipsum dolor sit amat, connecter adieu siccing eliot', '7', '$100.00', '$700.00'),
+//   createData('Admin Template', 'lorem ipsum dolor sit amat, connecter adieu siccing eliot', '5', '$150.00', '$750.00')
+// ];
 type cart ={
   image:string,
   name:string,

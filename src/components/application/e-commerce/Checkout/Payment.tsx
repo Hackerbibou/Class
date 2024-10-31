@@ -27,8 +27,8 @@ import AddressCard from './AddressCard';
 import PaymentSelect from './PaymentSelect';
 import ColorOptions from '../ColorOptions';
 import PaymentOptions from './PaymentOptions';
-import PaymentCard from './PaymentCard';
-import AddPaymentCard from './AddPaymentCard';
+// import PaymentCard from './PaymentCard';
+// import AddPaymentCard from './AddPaymentCard';
 import OrderComplete from './OrderComplete';
 import SubCard from 'ui-component/cards/SubCard';
 import Avatar from 'ui-component/extended/Avatar';
@@ -42,12 +42,12 @@ import { CartCheckoutStateProps } from 'types/cart';
 import { PaymentOptionsProps } from 'types/e-commerce';
 
 // assets
-import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
+// import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import { setPaymentCard, setPaymentMethod } from 'store/slices/cart';
+import { setPaymentMethod } from 'store/slices/cart';
 import util from 'api/checkout'
 import { useRouter } from 'next/navigation';
-const prodImage = '/assets/images/e-commerce';
+// const prodImage = '/assets/images/e-commerce';
 
 // product color select
 function getColor(color: string) {
@@ -70,16 +70,16 @@ const Payment = ({user, address, products, checkout, onBack, onNext, handleShipp
   const [type, setType] = useState(checkout.payment.type);
   const [payment, setPayment] = useState(checkout.payment.method);
   const [rows, setRows] = useState(products?products:[]);
-  const [cards, setCards] = useState(checkout.payment.card);
+  const cards=checkout.payment.card
 
-  const [open, setOpen] = useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const [open, setOpen] = useState(false);
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
 
   const [complete, setComplete] = useState(false);
 
@@ -87,12 +87,12 @@ const Payment = ({user, address, products, checkout, onBack, onNext, handleShipp
     setRows(products);
   }, [products]);
 
-  const cardHandler = (card: string) => {
-    if (payment === 'card') {
-      setCards(card);
-      dispatch(setPaymentCard(card));
-    }
-  };
+  // const cardHandler = (card: string) => {
+  //   if (payment === 'card') {
+  //     setCards(card);
+  //     dispatch(setPaymentCard(card));
+  //   }
+  // };
 
   const handlePaymentMethod = (value: string) => {
     setPayment(value);

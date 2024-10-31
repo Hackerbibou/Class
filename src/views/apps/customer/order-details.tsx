@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import util from 'api/checkout'
+// import util from 'api/checkout'
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -12,7 +12,7 @@ import Tabs from '@mui/material/Tabs';
 // project imports
 import Details from 'components/application/customer/OrderDetails/Details';
 import Invoice from 'components/application/customer/OrderDetails/Invoice';
-import Status from 'components/application/customer/OrderDetails/Status';
+// import Status from 'components/application/customer/OrderDetails/Status';
 import MainCard from 'ui-component/cards/MainCard';
 
 // types
@@ -21,9 +21,9 @@ import { ThemeMode } from 'types/config';
 
 // assets
 import DescriptionTwoToneIcon from '@mui/icons-material/DescriptionTwoTone';
-import LocalShippingTwoToneIcon from '@mui/icons-material/LocalShippingTwoTone';
+// import LocalShippingTwoToneIcon from '@mui/icons-material/LocalShippingTwoTone';
 import ReceiptTwoToneIcon from '@mui/icons-material/ReceiptTwoTone';
-import { useParams } from 'next/navigation';
+// import { useParams } from 'next/navigation';
 
 // tab content
 function TabPanel({ children, value, index, ...other }: TabsProps) {
@@ -45,7 +45,7 @@ function a11yProps(index: number) {
 
 const OrderDetails = () => {
   const theme = useTheme();
- const params=useParams();
+//  const params=useParams();
   // set selected tab
   const [value, setValue] = useState<number>(0);
   const handleChange = (event: React.SyntheticEvent<Element, Event>, newValue: number) => {

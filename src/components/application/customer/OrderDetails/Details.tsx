@@ -3,7 +3,7 @@
 import { useTheme } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
-import IconButton from '@mui/material/IconButton';
+// import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -15,12 +15,12 @@ import Typography from '@mui/material/Typography';
 import {useState,useEffect} from 'react'
 // project imports
 import SubCard from 'ui-component/cards/SubCard';
-import Chip from 'ui-component/extended/Chip';
+// import Chip from 'ui-component/extended/Chip';
 import { gridSpacing } from 'store/constant';
 import util from 'api/checkout'
 // assets
 import CalendarTodayTwoToneIcon from '@mui/icons-material/CalendarTodayTwoTone';
-import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
+// import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import EmailTwoToneIcon from '@mui/icons-material/EmailTwoTone';
 import PhoneAndroidTwoToneIcon from '@mui/icons-material/PhoneAndroidTwoTone';
 import Loader from 'components/ui-component/CircularLoader'
@@ -38,15 +38,15 @@ const detailsIconSX = {
 };
 
 // table data
-function createData(product: string, description: string, quantity: string, amount: string, total: string) {
-  return { product, description, quantity, amount, total };
-}
+// function createData(product: string, description: string, quantity: string, amount: string, total: string) {
+//   return { product, description, quantity, amount, total };
+// }
 
-const rows = [
-  createData('Logo Design', 'lorem ipsum dolor sit amat, connecter adieu siccing eliot', '6', '$200.00', '$1200.00'),
-  createData('Landing Page', 'lorem ipsum dolor sit amat, connecter adieu siccing eliot', '7', '$100.00', '$700.00'),
-  createData('Admin Template', 'lorem ipsum dolor sit amat, connecter adieu siccing eliot', '5', '$150.00', '$750.00')
-];
+// const rows = [
+//   createData('Logo Design', 'lorem ipsum dolor sit amat, connecter adieu siccing eliot', '6', '$200.00', '$1200.00'),
+//   createData('Landing Page', 'lorem ipsum dolor sit amat, connecter adieu siccing eliot', '7', '$100.00', '$700.00'),
+//   createData('Admin Template', 'lorem ipsum dolor sit amat, connecter adieu siccing eliot', '5', '$150.00', '$750.00')
+// ];
 type cart ={
   image:string,
   name:string,

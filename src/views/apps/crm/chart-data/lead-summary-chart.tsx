@@ -48,9 +48,9 @@ const chartData: Props = {
         useSeriesColors: false
       },
       markers: {
-        width: 16,
-        height: 16,
-        radius: 5
+        strokeWidth: 16,
+        size: 16,
+      
       },
       itemMargin: {
         horizontal: 15,

@@ -7,7 +7,7 @@ import Badge from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
 
 // third-party
-import { sum } from 'lodash-es';
+// import { sum } from 'lodash-es';
 
 // project import
 import { useSelector } from 'store';
@@ -18,7 +18,7 @@ import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 // types
 import { ThemeMode } from 'types/config';
 import { DefaultRootStateProps } from 'types';
-import { CartProductStateProps } from 'types/cart';
+// import { CartProductStateProps } from 'types/cart';
 import { useEffect, useState } from 'react';
 import util from 'api/checkout'
 
@@ -26,14 +26,14 @@ import util from 'api/checkout'
 
 const FloatingCart = () => {
   const theme = useTheme();
-  let cart = useSelector((state: DefaultRootStateProps) => state.cart);
+  let cartt = useSelector((state: DefaultRootStateProps) => state.cart);
   const [totalQuantity, setTotal]=useState(0)
   useEffect(()=>{
     (async()=>{
       const cart:any= await util.readCart();
       setTotal(cart.length)
     })()
-  })
+  },[cartt])
 
   return (
     <Fab

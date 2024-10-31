@@ -24,7 +24,7 @@ import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Logo from '../Logo';
 
 // assets
-import { IconBook, IconCreditCard, IconDashboard, IconHome2 } from '@tabler/icons-react';
+import {IconCreditCard} from '@tabler/icons-react';
 import MenuIcon from '@mui/icons-material/Menu';
 
 // types

@@ -10,7 +10,7 @@ import { useDropzone } from 'react-dropzone';
 // project import
 import FilesPreview from './FilePreview';
 import PlaceholderContent from './PlaceHolderContent';
-import RejectionFiles from './RejectionFile';
+// import RejectionFiles from './RejectionFile';
 
 // types
 import { CustomFile, DropzopType, UploadMultiFileProps } from 'types/dropzone';
@@ -27,7 +27,7 @@ const DropzoneWrapper = styled('div')(({ theme }) => ({
 // ==============================|| UPLOAD - MULTIPLE FILE ||============================== //
 
 const MultiFileUpload = ({ error, showList = false, files, type, setFieldValue, sx, onUpload, ...other }: UploadMultiFileProps) => {
-  const { getRootProps, getInputProps, isDragActive, isDragReject, fileRejections } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone({
     multiple: true,
     onDrop: (acceptedFiles: CustomFile[]) => {
       if (files) {
@@ -97,7 +97,7 @@ const MultiFileUpload = ({ error, showList = false, files, type, setFieldValue, 
             </Button>
           )}
         </Stack>
-        {fileRejections.length > 0 && <RejectionFiles fileRejections={fileRejections} />}
+        {/* {fileRejections.length > 0 && <RejectionFiles fileRejections={fileRejections} />} */}
         {files && files.length > 0 && <FilesPreview files={files} showList={showList} onRemove={onRemove} type={type} />}
       </Box>
 

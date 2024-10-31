@@ -13,7 +13,7 @@ import currency from 'currency.js';
 import SubCard from 'ui-component/cards/SubCard';
 
 // types
-import { CartCheckoutStateProps } from 'types/cart';
+// import { CartCheckoutStateProps } from 'types/cart';
 import { useEffect, useState } from 'react';
 import util from 'api/checkout'
 // ==============================|| CHECKOUT CART - ORDER SUMMARY ||============================== //
@@ -21,8 +21,8 @@ import util from 'api/checkout'
 const OrderSummary = ({checkout }: { checkout: any }) => {
   const [total,setTotal]=useState(0)
   const [subtotal,setSubtotal]=useState(0)
-  const [shipping,setShipping]=useState(5000)
-  const [discount,setDiscount]=useState(0.00)
+  const shipping=5000
+  const discount=0.00
   useEffect(()=>{
     (async()=>{
       const products:any=await util.readCart();

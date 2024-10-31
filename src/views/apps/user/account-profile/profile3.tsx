@@ -13,7 +13,7 @@ import Tabs from '@mui/material/Tabs';
 import Profile from 'components/users/account-profile/Profile3/Profile';
 import Billing from 'components/users/account-profile/Profile3/Billing';
 import Security from 'components/users/account-profile/Profile3/Security';
-import Notifications from 'components/users/account-profile/Profile3/Notifications';
+// import Notifications from 'components/users/account-profile/Profile3/Notifications';
 import MainCard from 'ui-component/cards/MainCard';
 
 // types

@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
-import Rating from '@mui/material/Rating';
+// import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
@@ -32,7 +32,7 @@ import { useRouter } from 'next/navigation';
 const ProductCard = ({ id, color, name, image, description, offerPrice, salePrice, rating, table }: ProductCardProps) => {
   const router = useRouter();
   const prodProfile = image;
-  const [productRating] = useState<number | undefined>(rating);
+  // const [productRating] = useState<number | undefined>(rating);
   const cart = useSelector((state) => state.cart);
   
   const addCart = () => {

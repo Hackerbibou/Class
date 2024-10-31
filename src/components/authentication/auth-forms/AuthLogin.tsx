@@ -23,9 +23,9 @@ import { Formik } from 'formik';
 
 // project imports
 import AnimateButton from 'ui-component/extended/AnimateButton';
-import useAuth from 'hooks/useAuth';
-import useScriptRef from 'hooks/useScriptRef';
-import { DASHBOARD_PATH } from 'config';
+// import useAuth from 'hooks/useAuth';
+// import useScriptRef from 'hooks/useScriptRef';
+// import { DASHBOARD_PATH } from 'config';
 
 // assets
 import Visibility from '@mui/icons-material/Visibility';
@@ -39,8 +39,8 @@ import { openSnackbar } from 'store/slices/snackbar';
 const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
   const theme = useTheme();
   const router = useRouter();
-  const { login } = useAuth();
-  const scriptedRef = useScriptRef();
+  // const { login } = useAuth();
+  // const scriptedRef = useScriptRef();
 
   const [checked, setChecked] = React.useState(true);
   const [creds,setCreds] = React.useState(false);

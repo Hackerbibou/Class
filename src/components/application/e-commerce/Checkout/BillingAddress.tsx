@@ -23,7 +23,7 @@ import { CartCheckoutStateProps } from 'types/cart';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import AddIcon from '@mui/icons-material/Add';
 import PersonOutlineTwoToneIcon from '@mui/icons-material/PersonOutlineTwoTone';
-import utilities from 'menu-items/utilities';
+// import utilities from 'menu-items/utilities';
 
 // ==============================|| CHECKOUT BILLING ADDRESS - MAIN ||============================== //
 

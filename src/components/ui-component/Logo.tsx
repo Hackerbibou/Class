@@ -1,8 +1,8 @@
 // material-ui
-import { useTheme } from '@mui/material/styles';
+// import { useTheme } from '@mui/material/styles';
 
 // types
-import { ThemeMode } from 'types/config';
+// import { ThemeMode } from 'types/config';
 
 import Loo from '../../../public/favicon.ico'
 import Image from 'next/image';
@@ -19,7 +19,7 @@ type pprop={
   w?:number
 }
 const Logo = (props?:pprop) => {
-  const theme = useTheme();
+  // const theme = useTheme();
 
   return (
     /**

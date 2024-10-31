@@ -3,7 +3,7 @@
 import { useEffect, useMemo, FC, ReactNode } from 'react';
 
 // material-ui
-import { useTheme, useThemeProps } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -67,7 +67,7 @@ const MainLayout: FC<Props> = ({ children }) => {
       {menu}
    
       {/* main content */}
-      <MainContentStyled {...{ borderRadius, menuOrientation, open: drawerOpen! }}>
+      <MainContentStyled {...{ borderRadius, menuOrientation, open: drawerOpen!, theme }}>
           <Container maxWidth={container ? 'lg' : false} {...(!container && { sx: { px: { xs: 0 } } })}>
               
                 <Breadcrumbs />

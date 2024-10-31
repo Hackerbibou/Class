@@ -1,10 +1,10 @@
-import { useMemo } from 'react';
+// import { useMemo } from 'react';
 
 // material-ui
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+// import { styled } from '@mui/material/styles';
+// import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import CardMedia from '@mui/material/CardMedia';
+// import CardMedia from '@mui/material/CardMedia';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
@@ -17,67 +17,67 @@ import { motion } from 'framer-motion';
 // project imports
 import AnimateButton from 'ui-component/extended/AnimateButton';
 
-import { DASHBOARD_PATH } from 'config';
-import useConfig from 'hooks/useConfig';
+// import { DASHBOARD_PATH } from 'config';
+// import useConfig from 'hooks/useConfig';
 
 // assets
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-const TechLight = '/assets/images/landing/tech-light.svg';
-const TechDark = '/assets/images/landing/tech-dark.svg';
-const dashboard = '/assets/images/landing/hero-dashboard.png';
-const widget1 = '/assets/images/landing/hero-widget-1.png';
-const widget2 = '/assets/images/landing/hero-widget-2.png';
-const BgDark = '/assets/images/landing/bg-hero-block-dark.png';
-const BgLight = '/assets/images/landing/bg-hero-block-light.png';
+// const TechLight = '/assets/images/landing/tech-light.svg';
+// const TechDark = '/assets/images/landing/tech-dark.svg';
+// const dashboard = '/assets/images/landing/hero-dashboard.png';
+// const widget1 = '/assets/images/landing/hero-widget-1.png';
+// const widget2 = '/assets/images/landing/hero-widget-2.png';
+// const BgDark = '/assets/images/landing/bg-hero-block-dark.png';
+// const BgLight = '/assets/images/landing/bg-hero-block-light.png';
 
-// types
-import { ThemeDirection, ThemeMode } from 'types/config';
+// // types
+// import { ThemeDirection, ThemeMode } from 'types/config';
 
 // styles
-const HeaderImage = styled('img')(({ theme }) => ({
-  maxWidth: '100%',
-  borderRadius: 20,
-  transform: 'scale(1.7)',
-  transformOrigin: theme.direction === 'rtl' ? '100% 50%' : '0 50%',
-  [theme.breakpoints.down('xl')]: {
-    transform: 'scale(1.5)'
-  },
-  [theme.breakpoints.down('lg')]: {
-    transform: 'scale(1.2)'
-  }
-}));
+// const HeaderImage = styled('img')(({ theme }) => ({
+//   maxWidth: '100%',
+//   borderRadius: 20,
+//   transform: 'scale(1.7)',
+//   transformOrigin: theme.direction === 'rtl' ? '100% 50%' : '0 50%',
+//   [theme.breakpoints.down('xl')]: {
+//     transform: 'scale(1.5)'
+//   },
+//   [theme.breakpoints.down('lg')]: {
+//     transform: 'scale(1.2)'
+//   }
+// }));
 
-const HeaderAnimationImage = styled('img')({
-  maxWidth: '100%',
-  filter: 'drop-shadow(0px 0px 50px rgb(33 150 243 / 30%))'
-});
+// const HeaderAnimationImage = styled('img')({
+//   maxWidth: '100%',
+//   filter: 'drop-shadow(0px 0px 50px rgb(33 150 243 / 30%))'
+// });
 
 // ==============================|| LANDING - HEADER PAGE ||============================== //
 
 const HeaderSection = () => {
-  const { mode, themeDirection } = useConfig();
+  // const { mode, themeDirection } = useConfig();
 
   const headerSX = { fontSize: { xs: '2rem', sm: '3rem', md: '3.5rem', lg: '3.5rem' } };
 
-  const HeaderAnimationImagememo = useMemo(
-    () => (
-      <HeaderAnimationImage
-        src={mode === ThemeMode.DARK ? BgDark : BgLight}
-        alt="Berry"
-        sx={{
-          display: { xs: 'none', md: 'flex' },
-          position: 'absolute',
-          filter: 'none',
-          bottom: { md: 0 },
-          right: 0,
-          width: '50%',
-          transformOrigin: '50% 50%',
-          transform: themeDirection === ThemeDirection.RTL ? 'rotateY(180deg)' : 'rotateY(0deg)'
-        }}
-      />
-    ),
-    [themeDirection, mode]
-  );
+  // const HeaderAnimationImagememo = useMemo(
+  //   () => (
+  //     <HeaderAnimationImage
+  //       src={mode === ThemeMode.DARK ? BgDark : BgLight}
+  //       alt="Berry"
+  //       sx={{
+  //         display: { xs: 'none', md: 'flex' },
+  //         position: 'absolute',
+  //         filter: 'none',
+  //         bottom: { md: 0 },
+  //         right: 0,
+  //         width: '50%',
+  //         transformOrigin: '50% 50%',
+  //         transform: themeDirection === ThemeDirection.RTL ? 'rotateY(180deg)' : 'rotateY(0deg)'
+  //       }}
+  //     />
+  //   ),
+  //   [themeDirection, mode]
+  // );
 
   return (
     <Container sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

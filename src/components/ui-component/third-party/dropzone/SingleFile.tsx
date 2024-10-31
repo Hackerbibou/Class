@@ -9,7 +9,7 @@ import Stack from '@mui/material/Stack';
 import { useDropzone } from 'react-dropzone';
 
 // project import
-import RejectionFiles from './RejectionFile';
+// import RejectionFiles from './RejectionFile';
 import PlaceholderContent from './PlaceHolderContent';
 
 // types
@@ -30,7 +30,7 @@ const DropzoneWrapper = styled('div')(({ theme }) => ({
 // ==============================|| UPLOAD - SINGLE FILE ||============================== //
 
 const SingleFileUpload = ({ error, file, setFieldValue, sx, ...other }: UploadProps) => {
-  const { getRootProps, getInputProps, isDragActive, isDragReject, fileRejections } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone({
     accept: {
       'image/*': []
     },
@@ -85,7 +85,7 @@ const SingleFileUpload = ({ error, file, setFieldValue, sx, ...other }: UploadPr
         {thumbs}
       </DropzoneWrapper>
 
-      {fileRejections.length > 0 && <RejectionFiles fileRejections={fileRejections} />}
+      {/* {fileRejections.length > 0 && <RejectionFiles fileRejections={fileRejections} />} */}
 
       {file && file.length > 0 && (
         <Stack direction="row" justifyContent="flex-end" sx={{ mt: 1.5 }}>

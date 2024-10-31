@@ -26,7 +26,7 @@ import { Formik } from 'formik';
 
 // project imports
 import AnimateButton from 'ui-component/extended/AnimateButton';
-import useAuth from 'hooks/useAuth';
+// import useAuth from 'hooks/useAuth';
 import useScriptRef from 'hooks/useScriptRef';
 import { dispatch } from 'store';
 import { strengthColor, strengthIndicator } from 'utils/password-strength';
@@ -51,7 +51,7 @@ const JWTRegister = ({ ...others }) => {
   const [strength, setStrength] = React.useState(0);
   const [level, setLevel] = React.useState<StringColorProps>();
   const [phone, setPhone]=useState('')
-  const { register } = useAuth();
+  // const { register } = useAuth();
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);

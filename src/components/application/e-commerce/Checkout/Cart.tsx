@@ -22,7 +22,7 @@ import { sum } from 'lodash-es';
 import currency from 'currency.js';
 
 // project imports
-import CartDiscount from './CartDiscount';
+// import CartDiscount from './CartDiscount';
 import ColorOptions from '../ColorOptions';
 import OrderSummary from './OrderSummary';
 import Avatar from 'ui-component/extended/Avatar';
@@ -37,7 +37,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
-const prodImage = '/assets/images/e-commerce';
+// const prodImage = '/assets/images/e-commerce';
 
 // product color select
 function getColor(color: string) {
@@ -192,7 +192,7 @@ const Cart = ({ products, checkout, onNext, removeProduct, updateQuantity }: Car
         </TableContainer>
       </Grid>
       <Grid item xs={12}>
-        <OrderSummary checkout={checkout} products={products} />
+        <OrderSummary checkout={checkout} />
       </Grid>
       <Grid item xs={12}>
         <Grid container direction={{ xs: 'column-reverse', lg: 'row' }} spacing={3} alignItems={{ xs: 'flex-start', lg: 'center' }}>

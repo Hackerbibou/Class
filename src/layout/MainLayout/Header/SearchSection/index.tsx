@@ -18,15 +18,15 @@ import util from 'api/menproduct'
 import Transitions from 'ui-component/extended/Transitions';
 
 // assets
-import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons-react';
-import { dispatch, useSelector } from 'store';
+import { IconSearch} from '@tabler/icons-react';
+import { dispatch } from 'store';
 import { getProducts } from 'store/slices/product';
 // types
 import { ThemeMode } from 'types/config';
-import { IconButton, Menu, MenuItem, TableCell, TableRow, Typography } from '@mui/material';
-import { useRouter } from 'next/router';
+import { TableCell, TableRow, Typography } from '@mui/material';
+// import { useRouter } from 'next/router';
 import { Products } from 'types/e-commerce';
-import { ArrangementOrder, GetComparator, HeadCell, EnhancedTableHeadProps, EnhancedTableToolbarProps, KeyedObject } from 'types';
+import { GetComparator, KeyedObject } from 'types';
 import Link from 'next/link';
 interface HeaderAvatarProps extends AvatarProps {
   children: ReactNode;
@@ -113,31 +113,30 @@ const SearchSection = () => {
   const theme = useTheme();
   const [value, setValue] = useState('');
   // const router = useRouter();
-  const [order, setOrder] = React.useState<ArrangementOrder>('asc');
-  const [orderBy, setOrderBy] = React.useState<string>('calories');
+  const order='asc';
+  const orderBy='calories';
   const [selected, setSelected] = React.useState<string[]>([]);
-  const [page, setPage] = React.useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState<number>(5);
-  const [search, setSearch] = React.useState<string>('');
+  const page=0;
+  const rowsPerPage=5;
+  // const [search, setSearch] = React.useState<string>('');
   const [rows, setRows] = React.useState<Products[]>([]);
   const [products, SetProduct] = useState([])
-  const [user, setUser] = useState(null)
+  // const [user, setUser] = useState(null)
   useEffect(() => {
     (async ()=> {
       const prod : any = await util.searchAllProducts(value);
       SetProduct(prod);
     })()
   },[value])
+  // const [anchorEl, setAnchorEl] = React.useState<Element | (() => Element) | null | undefined>(null);
 
-  const [anchorEl, setAnchorEl] = React.useState<Element | (() => Element) | null | undefined>(null);
+  // const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement> | undefined) => {
+  //   setAnchorEl(event?.currentTarget);
+  // };
 
-  const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement> | undefined) => {
-    setAnchorEl(event?.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
 
   React.useEffect(() => {
     setRows(products);
@@ -168,20 +167,20 @@ const SearchSection = () => {
     return stabilizedThis.map((el) => el[0]);
   }
 
-  const handleRequestSort = (event: React.SyntheticEvent<Element, Event>, property: string) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property);
-  };
+  // const handleRequestSort = (event: React.SyntheticEvent<Element, Event>, property: string) => {
+  //   const isAsc = orderBy === property && order === 'asc';
+  //   setOrder(isAsc ? 'desc' : 'asc');
+  //   setOrderBy(property);
+  // };
 
-  const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.checked) {
-      const newSelectedId = rows?.map((n) => n.name);
-      setSelected(newSelectedId!);
-      return;
-    }
-    setSelected([]);
-  };
+  // const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (event.target.checked) {
+  //     const newSelectedId = rows?.map((n) => n.name);
+  //     setSelected(newSelectedId!);
+  //     return;
+  //   }
+  //   setSelected([]);
+  // };
 
   const handleClick = (event: React.MouseEvent<HTMLTableCellElement, MouseEvent>, name: string) => {
     const selectedIndex = selected.indexOf(name);
@@ -200,17 +199,17 @@ const SearchSection = () => {
     setSelected(newSelected);
   };
 
-  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null, newPage: number) => {
-    setPage(newPage);
-  };
+  // const handleChangePage = (event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null, newPage: number) => {
+  //   setPage(newPage);
+  // };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
-    if (event?.target.value) setRowsPerPage(parseInt(event?.target.value, 10));
-    setPage(0);
-  };
+  // const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
+  //   if (event?.target.value) setRowsPerPage(parseInt(event?.target.value, 10));
+  //   setPage(0);
+  // };
 
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  // const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   return (
     <>

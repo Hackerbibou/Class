@@ -4,16 +4,16 @@ import { useTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import React,{useState, useEffect} from 'react'
+import React,{ useEffect} from 'react'
 // project imports
 import useConfig from 'hooks/useConfig';
 import LogoSection from '../LogoSection';
 import SearchSection from './SearchSection';
-import MobileSection from './MobileSection';
+// import MobileSection from './MobileSection';
 import ProfileSection from './ProfileSection';
-import FullScreenSection from './FullScreenSection';
-import LocalizationSection from './LocalizationSection';
-import MegaMenuSection from './MegaMenuSection';
+// import FullScreenSection from './FullScreenSection';
+// import LocalizationSection from './LocalizationSection';
+// import MegaMenuSection from './MegaMenuSection';
 import NotificationSection from './NotificationSection';
 import util from 'api/clientuser'
 import { handlerDrawerOpen, useGetMenuMaster } from 'api/menu';
@@ -23,8 +23,8 @@ import { IconMenu2 } from '@tabler/icons-react';
 
 // types
 import { MenuOrientation, ThemeMode } from 'types/config';
-import { Button, Typography } from '@mui/material';
-import { CheckOutlined, SpaceBar } from '@mui/icons-material';
+import { Button} from '@mui/material';
+// import { CheckOutlined, SpaceBar } from '@mui/icons-material';
 import Link from 'next/link';
 
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
