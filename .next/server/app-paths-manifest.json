@@ -1,1 +1,5 @@
-{}
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/pay/page": "app/pay/page.js",
+  "/categories/mensShirts/page": "app/categories/mensShirts/page.js"
+}

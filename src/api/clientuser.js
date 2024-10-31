@@ -88,8 +88,9 @@ const { data, error } = await supabase.auth.updateUser({
 export async function EditPassword(password){
 
     const { data, error } = await supabase.auth.updateUser({
-        password:password
+        password: password
       })
+      
       
     }
     
