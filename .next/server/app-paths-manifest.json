@@ -1,1 +1,5 @@
-{}
+{
+  "/categories/mensShirts/page": "app/categories/mensShirts/page.js",
+  "/(minimal)/login/page": "app/(minimal)/login/page.js",
+  "/pay/page": "app/pay/page.js"
+}

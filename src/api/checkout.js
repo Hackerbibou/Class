@@ -62,7 +62,8 @@ export async function addOrders(cart, name, email, phone, address, payment) {
 export async function readCart() {
  
     const user = await util.Getuser()
-    let { data: info, error } = await supabase
+    if(user){
+        let { data: info, error } = await supabase
     .from('user')
     .select('*')
     .eq('id', user.id)
@@ -70,6 +71,8 @@ export async function readCart() {
         return info[0].cart
     }
     return[] 
+    }
+    
             
 }
 export async function readCarts(id) {

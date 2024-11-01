@@ -31,7 +31,7 @@ const FloatingCart = () => {
   useEffect(()=>{
     (async()=>{
       const cart:any= await util.readCart();
-      setTotal(cart.length)
+      if(cart)setTotal(cart.length)
     })()
   },[cartt])
 
