@@ -72,25 +72,25 @@ const Women: NavItemType = {
       icon: icons.IconBasket,
       children: [
         {
-          id: 'Pants',
+          id: 'pants',
           title: <FormattedMessage id="Pants" />,
           type: 'item',
           url: '/categories/womenPants'
         },
         {
-          id: 'Shorts',
+          id: 'shorts',
           title: <FormattedMessage id="Shorts" />,
           type: 'item',
           url: '/categories/womenShorts'
         },
         {
-          id: 'Sweatpants',
+          id: 'sweatpants',
           title: <FormattedMessage id="Sweatpants" />,
           type: 'item',
           url: '/categories/womenSweatpants'
         },
         {
-          id: 'Jeans',
+          id: 'jeans',
           title: <FormattedMessage id="Jeans" />,
           type: 'item',
           url: '/categories/womenJeans'
@@ -103,19 +103,19 @@ const Women: NavItemType = {
       icon: icons.IconBasket,
       children: [
         {
-          id: 'Shoes',
+          id: 'shoes',
           title: <FormattedMessage id="Shoes" />,
           type: 'item',
           url: '/categories/womenShoes'
         },
         {
-          id: 'Socks',
+          id: 'socks',
           title: <FormattedMessage id="Socks" />,
           type: 'item',
           url: '/categories/womenSocks'
         },
         {
-          id: 'Hats',
+          id: 'hats',
           title: <FormattedMessage id="Hats" />,
           type: 'item',
           url: '/categories/womenHats'

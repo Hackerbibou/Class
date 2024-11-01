@@ -33,7 +33,7 @@ const icons = {
 // ==============================|| MENU ITEMS - APPLICATION ||============================== //
 
 const Men: NavItemType = {
-  id: 'Men',
+  id: 'men',
   title: <FormattedMessage id="Men" />,
   icon: icons.IconApps,
   type: 'group',
@@ -71,7 +71,7 @@ const Men: NavItemType = {
       icon: icons.IconBasket,
       children: [
         {
-          id: 'Pants',
+          id: 'pants',
           title: <FormattedMessage id="Pants" />,
           type: 'item',
           url: '/categories/mensPants'
@@ -83,13 +83,13 @@ const Men: NavItemType = {
           url: '/categories/mensShorts'
         },
         {
-          id: 'Sweatpants',
+          id: 'sweatpants',
           title: <FormattedMessage id="Sweatpants" />,
           type: 'item',
           url: '/categories/mensSweatpants'
         },
         {
-          id: 'Jeans',
+          id: 'jeans',
           title: <FormattedMessage id="Jeans" />,
           type: 'item',
           url: '/categories/mensJeans'
@@ -102,19 +102,19 @@ const Men: NavItemType = {
       icon: icons.IconBasket,
       children: [
         {
-          id: 'Shoes',
+          id: 'shoes',
           title: <FormattedMessage id="Shoes" />,
           type: 'item',
           url: '/categories/mensShoes'
         },
         {
-          id: 'Socks',
+          id: 'socks',
           title: <FormattedMessage id="Socks" />,
           type: 'item',
           url: '/categories/mensSocks'
         },
         {
-          id: 'Hats',
+          id: 'hats',
           title: <FormattedMessage id="Hats" />,
           type: 'item',
           url: '/categories/mensHats'
