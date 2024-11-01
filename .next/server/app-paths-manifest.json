@@ -1,1 +1,7 @@
-{}
+{
+  "/categories/productdetail/[table]/[id]/page": "app/categories/productdetail/[table]/[id]/page.js",
+  "/categories/mensShirts/page": "app/categories/mensShirts/page.js",
+  "/pastorders/page": "app/pastorders/page.js",
+  "/pay/page": "app/pay/page.js",
+  "/pastorders/details/[index]/page": "app/pastorders/details/[index]/page.js"
+}
