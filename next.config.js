@@ -43,7 +43,7 @@ module.exports = {
 
     REACT_APP_AUTH0_CLIENT_ID: process.env.REACT_APP_AUTH0_CLIENT_ID,
     REACT_APP_AUTH0_DOMAIN: process.env.REACT_APP_AUTH0_DOMAIN,
-    SUPABASE_URL: 'https://olrfgwsbgyajiicxsnhz.supabase.co',
-    SUPABASE_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9scmZnd3NiZ3lhamlpY3hzbmh6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQwMjQ4MDYsImV4cCI6MjAzOTYwMDgwNn0.jCT3j1MEJKxrMp0tr7uor58QM8rinQS6nbZ6nzH4C7s'
+    SUPABASE_URL: process.env.supabaseurl,
+    SUPABASE_KEY: process.env,supabasekey
   }
 };
