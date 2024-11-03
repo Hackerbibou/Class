@@ -87,7 +87,7 @@ const Profile = () => {
   function handleSubmit(e:any){
     e.preventDefault();
     (async()=>{
-      await util.EditUser(temp)
+      await util.EditUser(temp);
     })()
   }
 

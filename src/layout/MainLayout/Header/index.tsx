@@ -101,7 +101,7 @@ const Header = () => {
       {user?.role!='authenticated'?(<><Box sx={{width:'10px'}}/>
 <Link href='/login'><Box sx={{ display:'block' }}>
      <Button>Compte</Button>
-      </Box></Link></>):(<><Box sx={{width:'10px'}}/><ProfileSection /></>)}
+      </Box></Link></>):(<><Box sx={{width:'10px'}}/><ProfileSection user={user} /></>)}
       
       {/* profile */}
       {/*  */}
