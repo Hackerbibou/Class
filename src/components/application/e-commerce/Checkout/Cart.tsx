@@ -23,7 +23,7 @@ import currency from 'currency.js';
 
 // project imports
 // import CartDiscount from './CartDiscount';
-import ColorOptions from '../ColorOptions';
+// import ColorOptions from '../ColorOptions';
 import OrderSummary from './OrderSummary';
 import Avatar from 'ui-component/extended/Avatar';
 import { gridSpacing } from 'store/constant';
@@ -36,13 +36,15 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import { dispatch } from 'store';
+import { setStep } from 'store/slices/cart';
 
 // const prodImage = '/assets/images/e-commerce';
 
 // product color select
-function getColor(color: string) {
-  return ColorOptions.filter((item) => item.value === color);
-}
+// function getColor(color: string) {
+//   return ColorOptions.filter((item) => item.value === color);
+// }
 
 // ==============================|| CART - INCREMENT QUANTITY ||============================== //
 
@@ -128,7 +130,7 @@ const Cart = ({ products, checkout, onNext, removeProduct, updateQuantity }: Car
             </TableHead>
             <TableBody>
               {rows.map((row: CartProductStateProps, index: number) => {
-                const colorsData = row.color ? getColor(row.color) : false;
+                const colorsData = row.color;
                 return (
                   <TableRow key={index} sx={{ '&:last-of-type td, &:last-of-type th': { border: 0 } }}>
                     <TableCell component="th" scope="row">
@@ -153,7 +155,7 @@ const Cart = ({ products, checkout, onNext, removeProduct, updateQuantity }: Car
                               <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
                                 Color:{' '}
                                 <Typography variant="caption" component="span">
-                                  {colorsData ? colorsData[0].label : 'Multicolor'}
+                                  {colorsData ? colorsData: 'Multicolor'}
                                 </Typography>
                               </Typography>
                             </Stack>
@@ -204,7 +206,7 @@ const Cart = ({ products, checkout, onNext, removeProduct, updateQuantity }: Car
           <Grid item xs={12} md={5} lg={4}>
             <Stack spacing={gridSpacing}>
               {/* <CartDiscount /> */}
-              <Button variant="contained" fullWidth onClick={onNext}>
+              <Button variant="contained" fullWidth onClick={()=>dispatch(setStep(1))}>
                 Check Out
               </Button>
             </Stack>

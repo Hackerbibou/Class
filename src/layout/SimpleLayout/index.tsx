@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles';
 import AppBar from 'ui-component/extended/AppBar';
 
 // project import
-import Customization from 'layout/Customization';
+// import Customization from 'layout/Customization';
 
 // ==============================|| LAYOUTS - STRUCTURE ||============================== //
 
@@ -31,7 +31,7 @@ export default function Layout({ children }: Props) {
     <HeaderWrapper>
       <AppBar />
       {children}
-      <Customization />
+      {/* <Customization /> */}
     </HeaderWrapper>
   );
 }

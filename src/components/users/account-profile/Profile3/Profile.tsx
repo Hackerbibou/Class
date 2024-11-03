@@ -51,8 +51,8 @@ const Profile = () => {
   useEffect(()=>{
     (async()=>{
       const use :any=await util.Getuser();
-      console.log(use);
-      setTemp({
+      if(use){
+        setTemp({
         email: use.email,
         phone: use.phone,
         user_metadata:{
@@ -61,6 +61,8 @@ const Profile = () => {
         phone: use.user_metadata.phone
       }
       })
+      }
+      
       // setUser(use);
     })();
   },[])

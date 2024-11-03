@@ -25,7 +25,7 @@ import currency from 'currency.js';
 import OrderSummary from './OrderSummary';
 import AddressCard from './AddressCard';
 import PaymentSelect from './PaymentSelect';
-import ColorOptions from '../ColorOptions';
+// import ColorOptions from '../ColorOptions';
 import PaymentOptions from './PaymentOptions';
 // import PaymentCard from './PaymentCard';
 // import AddPaymentCard from './AddPaymentCard';
@@ -36,7 +36,7 @@ import Avatar from 'ui-component/extended/Avatar';
 import { dispatch } from 'store';
 import { gridSpacing } from 'store/constant';
 import { openSnackbar } from 'store/slices/snackbar';
-
+import { setStep } from 'store/slices/cart';
 // types
 import { CartCheckoutStateProps } from 'types/cart';
 import { PaymentOptionsProps } from 'types/e-commerce';
@@ -50,9 +50,9 @@ import { useRouter } from 'next/navigation';
 // const prodImage = '/assets/images/e-commerce';
 
 // product color select
-function getColor(color: string) {
-  return ColorOptions.filter((item) => item.value === color);
-}
+// function getColor(color: string) {
+//   return ColorOptions.filter((item) => item.value === color);
+// }
 
 // ==============================|| CHECKOUT PAYMENT - MAIN ||============================== //
 
@@ -112,16 +112,22 @@ const Payment = ({user, address, products, checkout, onBack, onNext, handleShipp
           close: false
         })
       );
-    } else {
+    }else if(products.length==0){
+      dispatch(setStep(0));
+    } else if(!address){
+    dispatch(setStep(1));
+    }else {
       //Submit order here
-      onNext();
+      // onNext();
+      
       setComplete(true);
       setTimeout(()=>{
         setComplete(false);
         (async()=>{
           await util.addOrders(products,address.name, user.email, user.phone, address, payment)
-        await util.clearCart()
+          await util.clearCart()
           router.push('/pastorders');
+          dispatch(setStep(0));
       })()
       },2000);
       
@@ -257,7 +263,7 @@ const Payment = ({user, address, products, checkout, onBack, onNext, handleShipp
                 <Table sx={{ minWidth: 280 }} aria-label="simple table">
                   <TableBody>
                     {rows.map((row:any, index:number) => {
-                      const colorsData = row.color ? getColor(row.color) : false;
+                      const colorsData = row.color ? row.color : false;
                       return (
                         <TableRow key={index} sx={{ '&:last-of-type td, &:last-of-type th': { border: 0 } }}>
                           <TableCell component="th" scope="row">

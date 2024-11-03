@@ -61,6 +61,7 @@ const tabsOption: TabOptionProps[] = [
 
 // tabs
 function TabPanel({ children, value, index, ...other }: TabsProps) {
+  value= value?value:0;
   return (
     <div role="tabpanel" hidden={value !== index} id={`simple-tabpanel-${index}`} aria-labelledby={`simple-tab-${index}`} {...other}>
       {value === index && <div>{children}</div>}
@@ -72,11 +73,15 @@ function TabPanel({ children, value, index, ...other }: TabsProps) {
 
 const Checkout = () => {
   const cart = useSelector((state) => state.cart);
+ 
   const { mode, borderRadius } = useConfig();
   const [product, setProduct] = useState([])
   const [user, setUser] = useState({})
   useEffect(()=>{
-    console.log(cart);
+    console.log(cart)
+    if(!cart.checkout.step){
+      dispatch(setStep(0))
+    }
     (async()=>{
       const prod:any=await util.readCart();
       const userr:any=await utils.Getuser();
@@ -88,7 +93,7 @@ const Checkout = () => {
   },[cart])
   const isCart = product && product.length > 0;
 
-  const [value, setValue] = useState(cart.checkout.step > 2 ? 2 : cart.checkout.step);
+  const [value, setValue] = useState(0);
   const [billing, setBilling] = useState(cart.checkout.billing);
   const [address, setAddress] = useState<Address[]>([]);
   const { addresses } = useSelector((state) => state.product); 
@@ -115,7 +120,8 @@ const Checkout = () => {
   };
 
   useEffect(() => {
-    setValue(cart.checkout.step > 2 ? 2 : cart.checkout.step);
+    console.log(cart)
+    setValue((cart.checkout.step?cart.checkout.step:0));
   }, [cart.checkout.step]);
 
   const removeCartProduct = (id: string | number | undefined) => {
@@ -251,7 +257,7 @@ const Checkout = () => {
           </Tabs>
         </Grid>
         <Grid item xs={12}>
-          <TabPanel value={value?value:0} index={0}>
+          <TabPanel value={value} index={0}>
             {isCart && <Cart products={product} checkout={cart.checkout} onNext={onNext} removeProduct={removeCartProduct} updateQuantity={updateQuantity} />}
             {!isCart && <CartEmpty />}
           </TabPanel>

@@ -47,7 +47,7 @@ const Profile3 = () => {
 
   return (
     <MainCard title="Account">
-      <div>
+      {/* <div> */}
         <Tabs
           value={value}
           indicatorColor="primary"
@@ -90,7 +90,7 @@ const Profile3 = () => {
         {/* <TabPanel value={value} index={3}>
           <Notifications />
         </TabPanel> */}
-      </div>
+      {/* </div> */}
     </MainCard>
   );
 };

@@ -55,6 +55,7 @@ import { useRouter } from 'next/navigation';
 // import { setNextStep } from 'store/slices/cart';
 // import { ShoppingCartCheckout } from '@mui/icons-material';
 import Image from 'next/image';
+import { setStep } from 'store/slices/cart';
 
 // const prodImage = '/assets/images/e-commerce';
 
@@ -433,7 +434,7 @@ const ProductList = () => {
       />
       <Grid item xs={12} md={5} lg={4}>
             <Stack spacing={'9'}>
-              {user?<Button variant="contained" fullWidth onClick={()=>{router.push('/pay');}}>
+              {user?<Button variant="contained" fullWidth onClick={()=>{dispatch(setStep(1));router.push('/pay');}}>
                 Check Out
               </Button>:<Button color='error' variant="contained" fullWidth onClick={()=>{router.push('/login');}}>
                 Login to shop

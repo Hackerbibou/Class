@@ -31,7 +31,7 @@ import Transitions from 'ui-component/extended/Transitions';
 
 // types
 import { ThemeMode } from 'types/config';
-// import { ShoppingBasketOutlined } from '@mui/icons-material';
+import { ShoppingBasketOutlined } from '@mui/icons-material';
 import Carts from 'views/apps/e-commerce/cart';
 // import Cart from 'components/application/e-commerce/Checkout/Cart';
 // import OrderSummary from 'components/application/e-commerce/Checkout/OrderSummary';
@@ -121,7 +121,7 @@ const NotificationSection = () => {
           onClick={handleToggle}
           color="inherit"
         >
-          {/* <ShoppingBasketOutlined stroke={1.5} size="20px" /> */}
+          <ShoppingBasketOutlined height="20px" />
         </Avatar>
       </Box>
 

@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 
 // project imports
-import Customization from '../Customization';
+// import Customization from '../Customization';
 
 interface Props {
   children: ReactNode;
@@ -12,7 +12,7 @@ interface Props {
 const MinimalLayout: FC<Props> = ({ children }) => (
   <>
     {children}
-    <Customization />
+    {/* <Customization /> */}
   </>
 );
 
