@@ -83,7 +83,7 @@ const Details = () => {
       const details:any=await util.readPastorder();
       const detail:any=details.find((el:any,ind:any)=>ind==params.index)
       console.log(detail)
-      setDetail(detail)
+      if(detail)setDetail(detail)
     })()
     
   },[]);

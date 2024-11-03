@@ -76,9 +76,11 @@ const Invoice = () => {
    
     (async()=>{
       const details:any=await util.readPastorder();
-      const detail:any=details.find((el:any,ind:any)=>ind==params.index)
-      console.log(detail)
+      if(details){
+        const detail:any=details.find((el:any,ind:any)=>ind==params.index)
       setDetail(detail)
+      }
+      
     })()
     
   },[]);
