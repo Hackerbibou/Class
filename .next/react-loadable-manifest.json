@@ -24,13 +24,13 @@
   "components/ui-component/Locales.tsx -> ../../utils/locales/en.json": {
     "id": 44888,
     "files": [
-      "static/chunks/4888.cfa8708f74a1f225.js"
+      "static/chunks/4888.c722a302c5a90b53.js"
     ]
   },
   "components/ui-component/Locales.tsx -> ../../utils/locales/fr.json": {
     "id": 21166,
     "files": [
-      "static/chunks/1166.d15c9aeef041ebcf.js"
+      "static/chunks/1166.866c7eeeff66c7a7.js"
     ]
   },
   "components/ui-component/Locales.tsx -> ../../utils/locales/ro.json": {

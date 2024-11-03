@@ -115,7 +115,7 @@ const SearchSection = () => {
   // const router = useRouter();
   const order='asc';
   const orderBy='calories';
-  const [selected, setSelected] = React.useState<string[]>([]);
+  // const [selected, setSelected] = React.useState<string[]>([]);
   const page=0;
   const rowsPerPage=5;
   // const [search, setSearch] = React.useState<string>('');
@@ -182,22 +182,22 @@ const SearchSection = () => {
   //   setSelected([]);
   // };
 
-  const handleClick = (event: React.MouseEvent<HTMLTableCellElement, MouseEvent>, name: string) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected: string[] = [];
+  // const handleClick = (event: React.MouseEvent<HTMLTableCellElement, MouseEvent>, name: string) => {
+  //   const selectedIndex = selected.indexOf(name);
+  //   let newSelected: string[] = [];
 
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(selected.slice(0, selectedIndex), selected.slice(selectedIndex + 1));
-    }
+  //   if (selectedIndex === -1) {
+  //     newSelected = newSelected.concat(selected, name);
+  //   } else if (selectedIndex === 0) {
+  //     newSelected = newSelected.concat(selected.slice(1));
+  //   } else if (selectedIndex === selected.length - 1) {
+  //     newSelected = newSelected.concat(selected.slice(0, -1));
+  //   } else if (selectedIndex > 0) {
+  //     newSelected = newSelected.concat(selected.slice(0, selectedIndex), selected.slice(selectedIndex + 1));
+  //   }
 
-    setSelected(newSelected);
-  };
+  //   setSelected(newSelected);
+  // };
 
   // const handleChangePage = (event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null, newPage: number) => {
   //   setPage(newPage);
@@ -208,7 +208,7 @@ const SearchSection = () => {
   //   setPage(0);
   // };
 
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
+  // const isSelected = (name: string) => selected.indexOf(name) !== -1;
   // const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   return (
@@ -250,19 +250,19 @@ const SearchSection = () => {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, index) => {
                 if (typeof row === 'number') return null;
-                const isItemSelected = isSelected(row.name);
+                // const isItemSelected = isSelected(row.name);
                 const labelId = `enhanced-table-checkbox-${index}`;
 
                 return (
-                  <Link href={`/categories/productdetail/${row.route}/${row.id}`} style={{ textDecoration: 'none' }}>
-                  <TableRow sx={{width:'100%', display:'flex', justifyContent:'space-between', alignItems:'center'}} hover role="checkbox" aria-checked={isItemSelected} tabIndex={-1} key={index} selected={isItemSelected}>
+                  <Link href={`/categories/productdetail/${row.route}/${row.id}`} onClick={()=>setValue('')}  style={{ textDecoration: 'none' }}>
+                  <TableRow sx={{width:'100%', display:'flex', justifyContent:'space-between', alignItems:'center'}} hover role="checkbox"  tabIndex={-1} key={index} >
                    
                     <TableCell
                       align="center"
                       component="th"
                       id={labelId}
                       scope="row"
-                      onClick={(event) => handleClick(event, row.name)}
+                      // onClick={(event) => handleClick(event, row.name)}
                       sx={{ cursor: 'pointer' }}
                     >
                       <Avatar src={row.image} size="md" variant="rounded" alt="product images" />
@@ -322,19 +322,19 @@ const SearchSection = () => {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, index) => {
                 if (typeof row === 'number') return null;
-                const isItemSelected = isSelected(row.name);
+                // const isItemSelected = isSelected(row.name);
                 const labelId = `enhanced-table-checkbox-${index}`;
 
                 return (
-                  <Link href={`/categories/productdetail/${row.route}/${row.id}`} style={{ textDecoration: 'none' }}>
-                  <TableRow sx={{width:'100%', display:'flex', justifyContent:'space-between', alignItems:'center'}} hover role="checkbox" aria-checked={isItemSelected} tabIndex={-1} key={index} selected={isItemSelected}>
+                  <Link href={`/categories/productdetail/${row.route}/${row.id}`} onClick={()=>setValue('')}  style={{ textDecoration: 'none' }}>
+                  <TableRow sx={{width:'100%', display:'flex', justifyContent:'space-between', alignItems:'center'}} hover role="checkbox" tabIndex={-1} key={index} >
                    
                     <TableCell
                       align="center"
                       component="th"
                       id={labelId}
                       scope="row"
-                      onClick={(event) => handleClick(event, row.name)}
+                      // onClick={(event) => handleClick(event, row.name)}
                       sx={{ cursor: 'pointer' }}
                     >
                       <Avatar src={row.image} size="md" variant="rounded" alt="product images" />

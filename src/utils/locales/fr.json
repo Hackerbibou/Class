@@ -26,11 +26,13 @@
   "Socks":"Chaussettes",
   "accessories": "Accessoires",
   "Hats":"Chapeau",
+  "Checkout":"Finaliser Achat",
+  "PastOrders":"Commandes",
   "widget": "Widget",
   "statistics": "Statistiques",
   "data": "Donnés",
   "chart": "Graphique",
-
+  
   "application": "Application",
   "users": "Utilisatrices",
   "social-profile": "Profil social",

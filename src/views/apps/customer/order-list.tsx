@@ -216,7 +216,7 @@ function EnhancedTableHead({
 const OrderList = () => {
   const [order, setOrder] = React.useState<ArrangementOrder>('asc');
   const [orderBy, setOrderBy] = React.useState<string>('calories');
-  const [selected, setSelected] = React.useState<string[]>([]);
+  // const [selected, setSelected] = React.useState<string[]>([]);
   const [page, setPage] = React.useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(5);
   const [search, setSearch] = React.useState<string>('');
@@ -268,35 +268,35 @@ const OrderList = () => {
     setOrderBy(property);
   };
 
-  const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.checked) {
-      if (selected.length > 0) {
-        setSelected([]);
-      } else {
-        const newSelectedId = rows.map((n) => n.name);
-        setSelected(newSelectedId);
-      }
-      return;
-    }
-    setSelected([]);
-  };
+  // const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (event.target.checked) {
+  //     if (selected.length > 0) {
+  //       setSelected([]);
+  //     } else {
+  //       const newSelectedId = rows.map((n) => n.name);
+  //       setSelected(newSelectedId);
+  //     }
+  //     return;
+  //   }
+  //   setSelected([]);
+  // };
 
-  const handleClick = (event: React.MouseEvent<HTMLTableHeaderCellElement, MouseEvent>, name: string) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected: string[] = [];
+  // const handleClick = (event: React.MouseEvent<HTMLTableHeaderCellElement, MouseEvent>, name: string) => {
+  //   const selectedIndex = selected.indexOf(name);
+  //   let newSelected: string[] = [];
 
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(selected.slice(0, selectedIndex), selected.slice(selectedIndex + 1));
-    }
+  //   if (selectedIndex === -1) {
+  //     newSelected = newSelected.concat(selected, name);
+  //   } else if (selectedIndex === 0) {
+  //     newSelected = newSelected.concat(selected.slice(1));
+  //   } else if (selectedIndex === selected.length - 1) {
+  //     newSelected = newSelected.concat(selected.slice(0, -1));
+  //   } else if (selectedIndex > 0) {
+  //     newSelected = newSelected.concat(selected.slice(0, selectedIndex), selected.slice(selectedIndex + 1));
+  //   }
 
-    setSelected(newSelected);
-  };
+  //   setSelected(newSelected);
+  // };
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null, newPage: number) => {
     setPage(newPage);
@@ -307,7 +307,7 @@ const OrderList = () => {
     setPage(0);
   };
 
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
+  // const isSelected = (name: string) => selected.indexOf(name) !== -1;
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
   const router = useRouter();
   return (
@@ -353,13 +353,13 @@ const OrderList = () => {
       <TableContainer>
         <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
           <EnhancedTableHead
-            numSelected={selected.length}
+            numSelected={0}
             order={order}
             orderBy={orderBy}
-            onSelectAllClick={handleSelectAllClick}
+            onSelectAllClick={()=>{}}
             onRequestSort={handleRequestSort}
             rowCount={rows.length}
-            selected={selected}
+            selected={['']}
           />
           <TableBody>
             {stableSort(rows, getComparator(order, orderBy))
@@ -368,11 +368,16 @@ const OrderList = () => {
                 /** Make sure no display bugs if row isn't an OrderData object */
                 if (typeof row === 'number') return null;
 
-                const isItemSelected = isSelected(row.name);
+                // const isItemSelected = isSelected(row.name);
                 const labelId = `enhanced-table-checkbox-${index}`;
 
                 return (
-                  <TableRow hover role="checkbox" aria-checked={isItemSelected} tabIndex={-1} key={index} selected={isItemSelected} onClick={()=>{router.push(`/pastorders/details/${index}`)}}>
+                  <TableRow hover role="checkbox" 
+                  // aria-checked={isItemSelected} 
+                  tabIndex={-1} key={index}
+                  sx={{ cursor: 'pointer' }}
+                  // selected={isItemSelected}
+                   onClick={()=>{router.push(`/pastorders/details/${index}`)}}>
                     {/* <TableCell padding="checkbox" sx={{ pl: 3 }} onClick={(event) => handleClick(event, row.name)}>
                       <Checkbox
                         color="primary"
@@ -386,12 +391,14 @@ const OrderList = () => {
                       component="th"
                       id={labelId}
                       scope="row"
-                      onClick={(event) => handleClick(event, row.name)}
+                      // onClick={(event) => handleClick(event, row.name)}
                       sx={{ cursor: 'pointer' }}
                     >
                       <Typography variant="subtitle1">#{row.id} </Typography>
                     </TableCell>
-                    <TableCell id={labelId} scope="row" onClick={(event) => handleClick(event, row.name)} sx={{ cursor: 'pointer' }}>
+                    <TableCell id={labelId} scope="row" 
+                    // onClick={(event) =>  handleClick(event, row.name)} 
+                    sx={{ cursor: 'pointer' }}>
                       <Typography variant="subtitle1"> {row.name} </Typography>
                     </TableCell>
                     <TableCell>{row.total}</TableCell>

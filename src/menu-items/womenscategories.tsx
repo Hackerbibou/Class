@@ -3,46 +3,50 @@ import { FormattedMessage } from 'react-intl';
 
 // types
 import { NavItemType } from 'types';
-
+import Dress from '../../public/assets/images/e-commerce/006-woman-clothes.png'
+import Pant from '../../public/assets/images/e-commerce/007-flare-pants.png'
+import Woman from '../../public/assets/images/e-commerce/008-summer-clothing.png'
+import Shoes from '../../public/assets/images/e-commerce/002-shoes.png'
 // assets
-import {
-  IconApps,
-  IconUserCheck,
-  IconBasket,
-  IconMessages,
-  IconFileInvoice,
-  IconLayoutKanban,
-  IconMail,
-  IconCalendar,
-  IconNfc
-} from '@tabler/icons-react';
+// import {
+//   IconApps,
+//   IconUserCheck,
+//   IconBasket,
+//   IconMessages,
+//   IconFileInvoice,
+//   IconLayoutKanban,
+//   IconMail,
+//   IconCalendar,
+//   IconNfc
+// } from '@tabler/icons-react';
+import Image from 'next/image';
 
 // constant
-const icons = {
-  IconApps,
-  IconUserCheck,
-  IconBasket,
-  IconMessages,
-  IconFileInvoice,
-  IconLayoutKanban,
-  IconMail,
-  IconCalendar,
-  IconNfc
-};
+// const icons = {
+//   IconApps,
+//   IconUserCheck,
+//   IconBasket,
+//   IconMessages,
+//   IconFileInvoice,
+//   IconLayoutKanban,
+//   IconMail,
+//   IconCalendar,
+//   IconNfc
+// };
 
 // ==============================|| womenU ITEMS - APPLICATION ||============================== //
 
 const Women: NavItemType = {
   id: 'women',
   title: <FormattedMessage id="women" />,
-  icon: icons.IconApps,
+  icon: (()=><Image src={Woman} height={24} alt=''/>),
   type: 'group',
   children: [
     {
       id: 'tops',
       title: <FormattedMessage id="Tops" />,
       type: 'collapse',
-      icon: icons.IconBasket,
+      icon:  (()=><Image src={Dress} height={24} alt=''/>),
       children: [
         {
           id: 'shirt',
@@ -69,7 +73,7 @@ const Women: NavItemType = {
       id: 'bottom',
       title: <FormattedMessage id="Bottom" />,
       type: 'collapse',
-      icon: icons.IconBasket,
+      icon:  (()=><Image src={Pant} height={24} alt=''/>),
       children: [
         {
           id: 'pants',
@@ -100,7 +104,7 @@ const Women: NavItemType = {
       id: 'accessories',
       title: <FormattedMessage id="Accessories" />,
       type: 'collapse',
-      icon: icons.IconBasket,
+      icon:  (()=><Image src={Shoes} height={24} alt=''/>),
       children: [
         {
           id: 'shoes',

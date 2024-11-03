@@ -289,7 +289,7 @@ const ProfileSection = ({ user }:any) => {
                             <ListItemText
                               primary={
                                 <Typography variant="body2">
-                                  <FormattedMessage id="Commandes" />
+                                  <FormattedMessage id="PastOrders" />
                                 </Typography>
                               }
                             />
