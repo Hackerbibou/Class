@@ -1,9 +1,7 @@
 {
-  "/categories/mensShirts/page": "app/categories/mensShirts/page.js",
-  "/checkout/page": "app/checkout/page.js",
-  "/categories/mensHoodies/page": "app/categories/mensHoodies/page.js",
-  "/pastorders/page": "app/pastorders/page.js",
-  "/pastorders/details/[index]/page": "app/pastorders/details/[index]/page.js",
-  "/profile/page": "app/profile/page.js",
-  "/categories/mensLongsleeves/page": "app/categories/mensLongsleeves/page.js"
+  "/page": "app/page.js",
+  "/categories/mensPants/page": "app/categories/mensPants/page.js",
+  "/categories/mensHats/page": "app/categories/mensHats/page.js",
+  "/categories/mensJeans/page": "app/categories/mensJeans/page.js",
+  "/(minimal)/login/page": "app/(minimal)/login/page.js"
 }

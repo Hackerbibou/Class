@@ -6,9 +6,9 @@ import './globals.css';
 import ProviderWrapper from 'store/ProviderWrapper';
 
 export const metadata: Metadata = {
-  title: 'Berry - React Material Admin Dashboard Template by CodedThemes',
+  title: 'Keur Sokhna Diarra',
   description:
-    'Start your next React project with Berry admin template. It build with Reactjs, Material-UI, Redux, and Hook for faster web development.'
+    "Vente d'habillement bébé de 0 à 16 ans"
 };
 
 // ==============================|| ROOT LAYOUT ||============================== //

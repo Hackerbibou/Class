@@ -142,7 +142,7 @@ const HeaderSection = () => {
                     <AnimateButton>
                       <Button
                         component={Link}
-                        href='/categories/womensShirts'
+                        href='/categories/womenShirts'
                         target="_blank"
                         size="large"
                         variant="contained"
@@ -172,7 +172,7 @@ const HeaderSection = () => {
                     <AnimateButton>
                       <Button
                         component={Link}
-                        href='/categories/womensPants'
+                        href='/categories/womenPants'
                         target="_blank"
                         size="large"
                         variant="contained"
@@ -202,14 +202,14 @@ const HeaderSection = () => {
                     <AnimateButton>
                       <Button
                         component={Link}
-                        href='/categories/womensHats'
+                        href='/categories/womenHats'
                         target="_blank"
                         size="large"
                         variant="contained"
                         color="secondary"
                         startIcon={<PlayArrowIcon />}
                       >
-                        Accessoir F
+                        Accessoire F
                       </Button>
                     </AnimateButton>
                   </Grid>
