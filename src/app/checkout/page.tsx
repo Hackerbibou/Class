@@ -1,6 +1,6 @@
 // project import
 "use client"
-import {  Container } from '@mui/material';
+import {  Box } from '@mui/material';
 // import Header from 'layout/MainLayout/Header/index';
 import Loader from 'ui-component/Loader';
 // import { ReactNode } from 'react';
@@ -32,8 +32,8 @@ export default function HomePage() {
     console.log(menuMaster)
   if (menuMasterLoading) return <Loader />;
   return (
-        <Container sx={{pt:4}}>
+        <Box>
          <Cart/>
-        </Container>
+        </Box>
   );
 }
