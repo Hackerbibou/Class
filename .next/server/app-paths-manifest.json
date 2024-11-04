@@ -1,7 +1,7 @@
 {
-  "/categories/mensShirts/page": "app/categories/mensShirts/page.js",
-  "/categories/womenShoes/page": "app/categories/womenShoes/page.js",
   "/pastorders/details/[index]/page": "app/pastorders/details/[index]/page.js",
   "/pay/page": "app/pay/page.js",
-  "/pastorders/page": "app/pastorders/page.js"
+  "/categories/mensShirts/page": "app/categories/mensShirts/page.js",
+  "/profile/page": "app/profile/page.js",
+  "/categories/womenShoes/page": "app/categories/womenShoes/page.js"
 }

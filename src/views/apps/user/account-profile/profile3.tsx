@@ -1,13 +1,13 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+// import Link from 'next/link';
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
+// import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
+// import Tab from '@mui/material/Tab';
+// import Tabs from '@mui/material/Tabs';
 
 // project imports
 import Profile from 'components/users/account-profile/Profile3/Profile';
@@ -18,7 +18,7 @@ import MainCard from 'ui-component/cards/MainCard';
 
 // types
 import { TabsProps } from 'types';
-import { ThemeMode } from 'types/config';
+// import { ThemeMode } from 'types/config';
 
 // tabs
 function TabPanel({ children, value, index, ...other }: TabsProps) {
@@ -29,26 +29,27 @@ function TabPanel({ children, value, index, ...other }: TabsProps) {
   );
 }
 
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`
-  };
-}
+// function a11yProps(index: number) {
+//   return {
+//     id: `simple-tab-${index}`,
+//     'aria-controls': `simple-tabpanel-${index}`
+//   };
+// }
 
 // ==============================|| PROFILE 3 ||============================== //
 
 const Profile3 = () => {
-  const theme = useTheme();
-  const [value, setValue] = React.useState(0);
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
+  // const theme = useTheme();
+  const value=0;
+  // const handleChange = (event: any, newValue: number) => {
+  //   event.preventDeafault();
+  //   setValue(newValue);
+  // };
 
   return (
     <MainCard title="Account">
       {/* <div> */}
-        <Tabs
+        {/* <Tabs
           value={value}
           indicatorColor="primary"
           onChange={handleChange}
@@ -75,9 +76,9 @@ const Profile3 = () => {
         >
           <Tab component={Link} href="#" label="Profile" {...a11yProps(0)} />
           <Tab component={Link} href="#" label="Billing" {...a11yProps(1)} />
-          <Tab component={Link} href="#" label="Security" {...a11yProps(2)} />
+          <Tab component={Link} href="#" label="Security" {...a11yProps(2)} /> */}
           {/* <Tab component={Link} href="#" label="Notifications" {...a11yProps(3)} /> */}
-        </Tabs>
+        {/* </Tabs> */}
         <TabPanel value={value} index={0}>
           <Profile />
         </TabPanel>
