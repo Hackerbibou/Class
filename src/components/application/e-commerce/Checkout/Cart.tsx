@@ -36,8 +36,8 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import { dispatch } from 'store';
-import { setStep } from 'store/slices/cart';
+// import { dispatch } from 'store';
+// import { setStep } from 'store/slices/cart';
 
 // const prodImage = '/assets/images/e-commerce';
 
@@ -199,14 +199,14 @@ const Cart = ({ products, checkout, onNext, removeProduct, updateQuantity }: Car
       <Grid item xs={12}>
         <Grid container direction={{ xs: 'column-reverse', lg: 'row' }} spacing={3} alignItems={{ xs: 'flex-start', lg: 'center' }}>
           <Grid item xs={12} md={7} lg={8}>
-            <Button component={Link} href="/apps/e-commerce/products" variant="text" startIcon={<KeyboardBackspaceIcon />}>
+            <Button component={Link} href="/categories/mensShirts" variant="text" startIcon={<KeyboardBackspaceIcon />}>
               Continue Shopping
             </Button>
           </Grid>
           <Grid item xs={12} md={5} lg={4}>
             <Stack spacing={gridSpacing}>
               {/* <CartDiscount /> */}
-              <Button variant="contained" fullWidth onClick={()=>dispatch(setStep(1))}>
+              <Button variant="contained" fullWidth onClick={()=>onNext()}>
                 Check Out
               </Button>
             </Stack>

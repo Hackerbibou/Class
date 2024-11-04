@@ -110,7 +110,7 @@ const BillingAddress = ({ checkout, onBack, billingAddressHandler, address, addA
             <Grid item xs={12}>
               <Stack direction="row" spacing={1.5} alignItems="center">
                 <PersonOutlineTwoToneIcon color="primary" />
-                <Typography variant="h3">Delia Pope</Typography>
+                <Typography variant="h3">Mame Faty</Typography>
               </Stack>
             </Grid>
             <Grid item xs={12}>
@@ -122,7 +122,7 @@ const BillingAddress = ({ checkout, onBack, billingAddressHandler, address, addA
             <Grid item xs={12}>
               <Stack spacing={0.25}>
                 <Typography variant="caption">Contact</Typography>
-                <Typography variant="subtitle1">(980) 473-2942</Typography>
+                <Typography variant="subtitle1">(77) 511-0200</Typography>
               </Stack>
             </Grid>
             <Grid item xs={12}>

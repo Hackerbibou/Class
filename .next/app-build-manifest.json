@@ -86,6 +86,77 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(minimal)/layout.js"
+    ],
+    "/pay/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/pay/page.css",
+      "static/chunks/app/pay/page.js"
+    ],
+    "/pay/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/pay/layout.css",
+      "static/chunks/app/pay/layout.js"
+    ],
+    "/profile/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/profile/page.css",
+      "static/chunks/app/profile/page.js"
+    ],
+    "/profile/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/profile/layout.css",
+      "static/chunks/app/profile/layout.js"
+    ],
+    "/checkout/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/checkout/page.css",
+      "static/chunks/app/checkout/page.js"
+    ],
+    "/checkout/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/checkout/layout.css",
+      "static/chunks/app/checkout/layout.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/_not-found/page.js"
+    ],
+    "/pastorders/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/pastorders/page.css",
+      "static/chunks/app/pastorders/page.js"
+    ],
+    "/pastorders/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/pastorders/layout.css",
+      "static/chunks/app/pastorders/layout.js"
+    ],
+    "/pastorders/details/[index]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/pastorders/details/[index]/page.css",
+      "static/chunks/app/pastorders/details/[index]/page.js"
+    ],
+    "/categories/womenSocks/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/categories/womenSocks/page.css",
+      "static/chunks/app/categories/womenSocks/page.js"
+    ],
+    "/categories/womenShoes/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/categories/womenShoes/page.css",
+      "static/chunks/app/categories/womenShoes/page.js"
     ]
   }
 }
