@@ -6,16 +6,16 @@ import { useEffect, useState } from 'react';
 import { Theme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import CardContent from '@mui/material/CardContent';
-import Checkbox from '@mui/material/Checkbox';
+// import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 import Grid from '@mui/material/Grid';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-import Rating from '@mui/material/Rating';
+// import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import Skeleton from '@mui/material/Skeleton';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 // project imports
@@ -31,100 +31,100 @@ import { ProductsFilter } from 'types/e-commerce';
 
 // ==============================|| PRODUCT GRID GENDER FILTER ||============================== //
 
-const Gender = ({ gender, handelFilter }: { gender: string[]; handelFilter: (type: string, params: string) => void }) => {
-  const [isGenderLoading, setGenderLoading] = useState(true);
-  useEffect(() => {
-    setGenderLoading(false);
-  }, []);
+// const Gender = ({ gender, handelFilter }: { gender: string[]; handelFilter: (type: string, params: string) => void }) => {
+//   const [isGenderLoading, setGenderLoading] = useState(true);
+//   useEffect(() => {
+//     setGenderLoading(false);
+//   }, []);
 
-  return (
-    <Stack direction="row" alignItems="center">
-      {isGenderLoading ? (
-        <Skeleton variant="rectangular" width="100%" height={42} />
-      ) : (
-        <>
-          <FormControlLabel
-            control={<Checkbox checked={gender.some((item) => item === 'male')} />}
-            onChange={() => handelFilter('gender', 'male')}
-            label="Male"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={gender.some((item) => item === 'female')}
-                onChange={() => handelFilter('gender', 'female')}
-                color="secondary"
-              />
-            }
-            label="Female"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox checked={gender.some((item) => item === 'kids')} onChange={() => handelFilter('gender', 'kids')} color="error" />
-            }
-            label="Kids"
-          />
-        </>
-      )}
-    </Stack>
-  );
-};
+//   return (
+//     <Stack direction="row" alignItems="center">
+//       {isGenderLoading ? (
+//         <Skeleton variant="rectangular" width="100%" height={42} />
+//       ) : (
+//         <>
+//           <FormControlLabel
+//             control={<Checkbox checked={gender.some((item) => item === 'male')} />}
+//             onChange={() => handelFilter('gender', 'male')}
+//             label="Male"
+//           />
+//           <FormControlLabel
+//             control={
+//               <Checkbox
+//                 checked={gender.some((item) => item === 'female')}
+//                 onChange={() => handelFilter('gender', 'female')}
+//                 color="secondary"
+//               />
+//             }
+//             label="Female"
+//           />
+//           <FormControlLabel
+//             control={
+//               <Checkbox checked={gender.some((item) => item === 'kids')} onChange={() => handelFilter('gender', 'kids')} color="error" />
+//             }
+//             label="Kids"
+//           />
+//         </>
+//       )}
+//     </Stack>
+//   );
+// };
 
 // ==============================|| PRODUCT GRID - CATEGORIES FILTER ||============================== //
 
-const Categories = ({ categories, handelFilter }: { categories: string[]; handelFilter: (type: string, params: string) => void }) => {
-  const [isCategoriesLoading, setCategoriesLoading] = useState(true);
-  useEffect(() => {
-    setCategoriesLoading(false);
-  }, []);
+// const Categories = ({ categories, handelFilter }: { categories: string[]; handelFilter: (type: string, params: string) => void }) => {
+//   const [isCategoriesLoading, setCategoriesLoading] = useState(true);
+//   useEffect(() => {
+//     setCategoriesLoading(false);
+//   }, []);
 
-  return (
-    <Grid container spacing={1}>
-      {isCategoriesLoading ? (
-        <Grid item xs={12}>
-          <Skeleton variant="rectangular" width="100%" height={96} />
-        </Grid>
-      ) : (
-        <>
-          <Grid item xs={6}>
-            <FormControlLabel
-              control={<Checkbox checked={categories.some((item) => item === 'all')} />}
-              onChange={() => handelFilter('categories', 'all')}
-              label="All"
-            />
-            <FormControlLabel
-              control={<Checkbox checked={categories.some((item) => item === 'electronics')} />}
-              onChange={() => handelFilter('categories', 'electronics')}
-              label="Electronics"
-            />
-            <FormControlLabel
-              control={<Checkbox checked={categories.some((item) => item === 'fashion')} />}
-              onChange={() => handelFilter('categories', 'fashion')}
-              label="Fashion"
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <FormControlLabel
-              control={<Checkbox checked={categories.some((item) => item === 'kitchen')} />}
-              onChange={() => handelFilter('categories', 'kitchen')}
-              label="Kitchen"
-            />
-            <FormControlLabel
-              control={<Checkbox checked={categories.some((item) => item === 'books')} />}
-              onChange={() => handelFilter('categories', 'books')}
-              label="Books"
-            />
-            <FormControlLabel
-              control={<Checkbox checked={categories.some((item) => item === 'toys')} />}
-              onChange={() => handelFilter('categories', 'toys')}
-              label="Toys"
-            />
-          </Grid>
-        </>
-      )}
-    </Grid>
-  );
-};
+//   return (
+//     <Grid container spacing={1}>
+//       {isCategoriesLoading ? (
+//         <Grid item xs={12}>
+//           <Skeleton variant="rectangular" width="100%" height={96} />
+//         </Grid>
+//       ) : (
+//         <>
+//           <Grid item xs={6}>
+//             <FormControlLabel
+//               control={<Checkbox checked={categories.some((item) => item === 'all')} />}
+//               onChange={() => handelFilter('categories', 'all')}
+//               label="All"
+//             />
+//             <FormControlLabel
+//               control={<Checkbox checked={categories.some((item) => item === 'electronics')} />}
+//               onChange={() => handelFilter('categories', 'electronics')}
+//               label="Electronics"
+//             />
+//             <FormControlLabel
+//               control={<Checkbox checked={categories.some((item) => item === 'fashion')} />}
+//               onChange={() => handelFilter('categories', 'fashion')}
+//               label="Fashion"
+//             />
+//           </Grid>
+//           <Grid item xs={6}>
+//             <FormControlLabel
+//               control={<Checkbox checked={categories.some((item) => item === 'kitchen')} />}
+//               onChange={() => handelFilter('categories', 'kitchen')}
+//               label="Kitchen"
+//             />
+//             <FormControlLabel
+//               control={<Checkbox checked={categories.some((item) => item === 'books')} />}
+//               onChange={() => handelFilter('categories', 'books')}
+//               label="Books"
+//             />
+//             <FormControlLabel
+//               control={<Checkbox checked={categories.some((item) => item === 'toys')} />}
+//               onChange={() => handelFilter('categories', 'toys')}
+//               label="Toys"
+//             />
+//           </Grid>
+//         </>
+//       )}
+//     </Grid>
+//   );
+// };
 
 // ==============================|| PRODUCT GRID - PRICE FILTER ||============================== //
 
@@ -224,36 +224,36 @@ const Price = ({ price, handelFilter }: { price: string; handelFilter: (type: st
 
 // ==============================|| PRODUCT GRID - RATING FILTER ||============================== //
 
-const RatingSection = ({
-  rating,
-  handelFilter
-}: {
-  rating: number;
-  handelFilter: (type: string, params: string, rating: number) => void;
-}) => {
-  const [isRatingLoading, setRatingLoading] = useState(true);
-  useEffect(() => {
-    setRatingLoading(false);
-  }, []);
+// const RatingSection = ({
+//   rating,
+//   handelFilter
+// }: {
+//   rating: number;
+//   handelFilter: (type: string, params: string, rating: number) => void;
+// }) => {
+//   const [isRatingLoading, setRatingLoading] = useState(true);
+//   useEffect(() => {
+//     setRatingLoading(false);
+//   }, []);
 
-  return (
-    <>
-      {isRatingLoading ? (
-        <Skeleton variant="rectangular" width="100%" height={172} />
-      ) : (
-        <Stack direction="row" spacing={1} alignItems="center">
-          <Rating
-            precision={0.5}
-            name="simple-controlled"
-            value={rating}
-            onChange={(event, newValue) => handelFilter('rating', '', newValue!)}
-          />
-          <Typography component="legend">({rating})</Typography>
-        </Stack>
-      )}
-    </>
-  );
-};
+//   return (
+//     <>
+//       {isRatingLoading ? (
+//         <Skeleton variant="rectangular" width="100%" height={172} />
+//       ) : (
+//         <Stack direction="row" spacing={1} alignItems="center">
+//           <Rating
+//             precision={0.5}
+//             name="simple-controlled"
+//             value={rating}
+//             onChange={(event, newValue) => handelFilter('rating', '', newValue!)}
+//           />
+//           <Typography component="legend">({rating})</Typography>
+//         </Stack>
+//       )}
+//     </>
+//   );
+// };
 
 // ==============================|| PRODUCT GRID - FILTER ||============================== //
 
@@ -268,18 +268,18 @@ const ProductFilter = ({
   const { mode } = useConfig();
 
   const filterData = [
-    {
-      id: 'gender',
-      defaultExpand: true,
-      title: 'Gender',
-      content: <Gender gender={filter.gender} handelFilter={handelFilter} />
-    },
-    {
-      id: 'categories',
-      defaultExpand: true,
-      title: 'Categories',
-      content: <Categories categories={filter.categories} handelFilter={handelFilter} />
-    },
+    // {
+    //   id: 'gender',
+    //   defaultExpand: true,
+    //   title: 'Gender',
+    //   content: <Gender gender={filter.gender} handelFilter={handelFilter} />
+    // },
+    // {
+    //   id: 'categories',
+    //   defaultExpand: true,
+    //   title: 'Categories',
+    //   content: <Categories categories={filter.categories} handelFilter={handelFilter} />
+    // },
     {
       id: 'colors',
       defaultExpand: true,
@@ -292,12 +292,12 @@ const ProductFilter = ({
       title: 'Price',
       content: <Price price={filter.price} handelFilter={handelFilter} />
     },
-    {
-      id: 'rating',
-      defaultExpand: true,
-      title: 'Rating',
-      content: <RatingSection rating={filter.rating} handelFilter={handelFilter} />
-    }
+    // {
+    //   id: 'rating',
+    //   defaultExpand: true,
+    //   title: 'Rating',
+    //   content: <RatingSection rating={filter.rating} handelFilter={handelFilter} />
+    // }
   ];
 
   return (

@@ -41,7 +41,7 @@ import useConfig from "hooks/useConfig";
 // import User from "types/customer";
 // import { LocalMall, LocalMallOutlined } from "@mui/icons-material";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-const User1 = "/assets/images/users/user-round.svg";
+const User1 = "/assets/images/users/profilepic.png";
 
 // ==============================|| PROFILE MENU ||============================== //
 

@@ -1,48 +1,48 @@
 {
   "../node_modules/@supabase/auth-js/dist/module/lib/helpers.js -> @supabase/node-fetch": {
-    "id": 80485,
+    "id": 59895,
     "files": []
   },
   "../node_modules/@supabase/functions-js/dist/module/helper.js -> @supabase/node-fetch": {
-    "id": 80485,
+    "id": 59895,
     "files": []
   },
   "../node_modules/@supabase/realtime-js/dist/module/RealtimeClient.js -> @supabase/node-fetch": {
-    "id": 80485,
+    "id": 59895,
     "files": []
   },
   "../node_modules/@supabase/realtime-js/dist/module/RealtimeClient.js -> ws": {
-    "id": 55223,
+    "id": 66735,
     "files": [
-      "static/chunks/5223.dd6428e02df6946a.js"
+      "static/chunks/6735.dce668de27a428b7.js"
     ]
   },
   "../node_modules/@supabase/storage-js/dist/module/lib/helpers.js -> @supabase/node-fetch": {
-    "id": 80485,
+    "id": 59895,
     "files": []
   },
   "components/ui-component/Locales.tsx -> ../../utils/locales/en.json": {
-    "id": 44888,
+    "id": 28337,
     "files": [
-      "static/chunks/4888.c722a302c5a90b53.js"
+      "static/chunks/8337.52ec2e6a8d120b6e.js"
     ]
   },
   "components/ui-component/Locales.tsx -> ../../utils/locales/fr.json": {
-    "id": 21166,
+    "id": 90154,
     "files": [
-      "static/chunks/1166.866c7eeeff66c7a7.js"
+      "static/chunks/154.9293edb0d5ff20b3.js"
     ]
   },
   "components/ui-component/Locales.tsx -> ../../utils/locales/ro.json": {
-    "id": 28149,
+    "id": 7033,
     "files": [
-      "static/chunks/8149.1975c8a143ac025b.js"
+      "static/chunks/7033.ed880242cb169afb.js"
     ]
   },
   "components/ui-component/Locales.tsx -> ../../utils/locales/zh.json": {
-    "id": 10544,
+    "id": 48960,
     "files": [
-      "static/chunks/544.502452a9c56f498e.js"
+      "static/chunks/8960.10f412e988f66e27.js"
     ]
   }
 }

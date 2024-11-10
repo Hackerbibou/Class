@@ -36,6 +36,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import { dispatch } from 'store';
 // import { dispatch } from 'store';
 // import { setStep } from 'store/slices/cart';
 
@@ -206,7 +207,7 @@ const Cart = ({ products, checkout, onNext, removeProduct, updateQuantity }: Car
           <Grid item xs={12} md={5} lg={4}>
             <Stack spacing={gridSpacing}>
               {/* <CartDiscount /> */}
-              <Button variant="contained" fullWidth onClick={()=>onNext()}>
+              <Button variant="contained" fullWidth onClick={()=>dispatch(onNext)}>
                 Check Out
               </Button>
             </Stack>

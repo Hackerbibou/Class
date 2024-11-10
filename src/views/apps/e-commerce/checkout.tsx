@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
-// import { scrollLeft } from '@mui/material/utils';
+
 // project imports
 import useConfig from 'hooks/useConfig';
 import MainCard from 'ui-component/cards/MainCard';
@@ -78,10 +78,7 @@ const Checkout = () => {
   const [product, setProduct] = useState([])
   const [user, setUser] = useState({})
   useEffect(()=>{
-    console.log(cart)
-    if(!cart.checkout.step){
-      dispatch(setStep(0))
-    }
+  
     (async()=>{
       const prod:any=await util.readCart();
       const userr:any=await utils.Getuser();
