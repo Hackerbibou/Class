@@ -255,7 +255,7 @@ const Checkout = () => {
         </Grid>
         <Grid item xs={12}>
           <TabPanel value={value} index={0}>
-            {isCart && <Cart products={product} checkout={cart.checkout} onNext={onNext} removeProduct={removeCartProduct} updateQuantity={updateQuantity} />}
+            {isCart && <Cart setProducts={setProduct} products={product} checkout={cart.checkout} onNext={onNext} removeProduct={removeCartProduct} updateQuantity={updateQuantity} />}
             {!isCart && <CartEmpty />}
           </TabPanel>
           <TabPanel value={value} index={1}>

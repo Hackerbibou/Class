@@ -104,17 +104,32 @@ export async function addCart(object) {
     .select()
 
 }
-export async function removeFromCart(object) {
-    const user = await util.Getuser()
-    const cart = await readCart()
-    let newcart= cart.filter(elem=>elem.id!=object.id)
+export async function editCart(updatedProducts){
     const { data, error } = await supabase
     .from('user')
-    .update({ cart: newcart })
+    .update({ cart: updatedProducts })
     .eq('id', user.id)
     .select()
-        
 }
+export async function deleteFromCart(updatedProducts){
+    const user = await util.Getuser()
+    const { data, error } = await supabase
+    .from('user')
+    .update({ cart: updatedProducts })
+    .eq('id', user.id)
+    .select()
+}
+// export async function removeFromCart(object) {
+//     const user = await util.Getuser()
+//     const cart = await readCart()
+//     let newcart= cart.filter(elem=>elem.id!=object.id)
+//     const { data, error } = await supabase
+//     .from('user')
+//     .update({ cart: newcart })
+//     .eq('id', user.id)
+//     .select()
+        
+// }
 export async function clearCart() {
     const user = await util.Getuser()
     const { data, error } = await supabase
@@ -180,7 +195,7 @@ export async function removeAddress(index) {
 export default{
     readCart,
     addCart,
-    removeFromCart,
+    // removeFromCart,
     clearCart,
     readAddress,
     addAddress,
@@ -188,5 +203,7 @@ export default{
     removeAddress,
     readPastorder,
     readPastorders,
-    addOrders
+    addOrders,
+    editCart,
+    deleteFromCart
 }

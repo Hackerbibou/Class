@@ -24,6 +24,7 @@ export type Products = {
   offer?: number;
   table?: string;
   route?: string;
+  index?: number;
 };
 
 // checkout-cart billing address

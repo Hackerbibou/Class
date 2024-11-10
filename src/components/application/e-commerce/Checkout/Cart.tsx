@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-
+import util from 'api/checkout'
 // material-ui
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
@@ -54,7 +54,6 @@ interface IncrementProps {
   quantity: number;
   updateQuantity: (id: string | number | undefined, quantity: number) => void;
 }
-
 const Increment = ({ itemId, quantity, updateQuantity }: IncrementProps) => {
   const [value, setValue] = useState(quantity);
 
@@ -93,20 +92,38 @@ const Increment = ({ itemId, quantity, updateQuantity }: IncrementProps) => {
 
 interface CartProps {
   products:any;
+  setProducts:any;
   checkout: CartCheckoutStateProps;
   onNext: () => void;
   removeProduct: (id: string | number | undefined) => void;
   updateQuantity: (id: string | number | undefined, quantity: number) => void;
 }
 
-const Cart = ({ products, checkout, onNext, removeProduct, updateQuantity }: CartProps) => {
+const Cart = ({setProducts, products, checkout, onNext, removeProduct, updateQuantity }: CartProps) => {
   const totalQuantity = sum(products.map((item:any) => item.quantity));
   const [rows, setRows] = useState(products);
-
+  const updateQuant =(id:string | number | undefined, numb:number)=>{
+  
+  } 
   useEffect(() => {
     setRows(products);
   }, [products]);
 
+  const handleClose = (e:any,type:string,id:number) => {
+    e.preventDefault();
+
+    if(type=='delete'){
+      
+      let fil = products.filter((elem:any, ind:any)=>ind!=id);
+     
+      setProducts(fil);
+      setRows(fil);
+      (async()=>{
+        await util.deleteFromCart(fil);
+      })();
+    }
+
+  };
   return (
     <Grid container spacing={gridSpacing}>
       <Grid item xs={12}>
@@ -175,7 +192,7 @@ const Cart = ({ products, checkout, onNext, removeProduct, updateQuantity }: Car
                       </Stack>
                     </TableCell>
                     <TableCell align="center">
-                      <Increment quantity={row.quantity} itemId={row.itemId} updateQuantity={updateQuantity} />
+                      <Increment quantity={row.quantity} itemId={row.itemId} updateQuantity={updateQuant} />
                     </TableCell>
                     <TableCell align="right">
                       {row.offerPrice && row.quantity && (
@@ -183,7 +200,7 @@ const Cart = ({ products, checkout, onNext, removeProduct, updateQuantity }: Car
                       )}
                     </TableCell>
                     <TableCell align="right">
-                      <IconButton onClick={() => removeProduct(row.itemId)} size="large" aria-label="product delete">
+                      <IconButton onClick={(e) => handleClose(e,'delete',index)} size="large" aria-label="product delete">
                         <DeleteTwoToneIcon sx={{ color: 'grey.500' }} />
                       </IconButton>
                     </TableCell>

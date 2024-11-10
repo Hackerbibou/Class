@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import util from 'api/checkout'
 import userUtil from 'api/clientuser'
+// import AddIcon from '@mui/icons-material/Add';
+// import RemoveIcon from '@mui/icons-material/Remove';
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import CardContent from '@mui/material/CardContent';
@@ -39,7 +41,7 @@ import { getProducts } from 'store/slices/product';
 
 // types
 import { Products } from 'types/e-commerce';
-import { ArrangementOrder, GetComparator, HeadCell, EnhancedTableHeadProps, EnhancedTableToolbarProps, KeyedObject } from 'types';
+import { ArrangementOrder, HeadCell, EnhancedTableHeadProps, EnhancedTableToolbarProps } from 'types';
 
 // assets
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -60,28 +62,28 @@ import { setStep } from 'store/slices/cart';
 // const prodImage = '/assets/images/e-commerce';
 
 // table sort
-function descendingComparator(a: KeyedObject, b: KeyedObject, orderBy: string) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
+// function descendingComparator(a: KeyedObject, b: KeyedObject, orderBy: string) {
+//   if (b[orderBy] < a[orderBy]) {
+//     return -1;
+//   }
+//   if (b[orderBy] > a[orderBy]) {
+//     return 1;
+//   }
+//   return 0;
+// }
 
-const getComparator: GetComparator = (order, orderBy) =>
-  order === 'desc' ? (a, b) => descendingComparator(a, b, orderBy) : (a, b) => -descendingComparator(a, b, orderBy);
+// const getComparator: GetComparator = (order, orderBy) =>
+//   order === 'desc' ? (a, b) => descendingComparator(a, b, orderBy) : (a, b) => -descendingComparator(a, b, orderBy);
 
-function stableSort(array: Products[], comparator: (a: Products, b: Products) => number) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0] as Products, b[0] as Products);
-    if (order !== 0) return order;
-    return (a[1] as number) - (b[1] as number);
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
+// function stableSort(array: Products[], comparator: (a: Products, b: Products) => number) {
+//   const stabilizedThis = array.map((el, index) => [el, index]);
+//   stabilizedThis.sort((a, b) => {
+//     const order = comparator(a[0] as Products, b[0] as Products);
+//     if (order !== 0) return order;
+//     return (a[1] as number) - (b[1] as number);
+//   });
+//   return stabilizedThis.map((el) => el[0]);
+// }
 
 // table header options
 const headCells: HeadCell[] = [
@@ -206,7 +208,8 @@ function EnhancedTableHead({
   );
 }
 
-// ==============================|| PRODUCT LIST ||============================== //
+
+
 
 const ProductList = () => {
   const theme = useTheme();
@@ -218,8 +221,10 @@ const ProductList = () => {
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(5);
   // const [search, setSearch] = React.useState<string>('');
   const [rows, setRows] = React.useState<Products[]>([]);
+  
   const [products, SetProduct] = useState([])
   const [user, setUser] = useState(null)
+  // const [editCheck,setCheck] = useState(false)
   useEffect(() => {
     (async ()=> {
       const prod : any = await util.readCart();
@@ -228,21 +233,41 @@ const ProductList = () => {
       if(prod)SetProduct(prod);
     })()
   },[])
-
+// const [editQuantity,setQuantity]=useState(1)
   const [anchorEl, setAnchorEl] = React.useState<Element | (() => Element) | null | undefined>(null);
 
   const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement> | undefined) => {
     setAnchorEl(event?.currentTarget);
   };
 
-  const handleClose = () => {
+
+  const handleClose = (e:any,type:string,idd:any) => {
+    e.preventDefault();
+    console.log(idd);
+    console.log(idd.index);
+    if(type=='delete'){
+      let fil = products.filter((elem, ind)=>ind!=idd.index);
+      let newprod:any=fil.map((elem:{}, ind)=>{
+        return {index:ind,...elem}
+      });
+      SetProduct(fil);
+      setRows(newprod);
+      (async()=>{
+        await util.deleteFromCart(fil);
+      })();
+    }
     setAnchorEl(null);
   };
 
   React.useEffect(() => {
-    setRows(products);
+    
+    let newprod:any=products.map((elem:{}, ind)=>{
+      return {index:ind,...elem}
+    });
+    
+    setRows(newprod);
   }, [products]);
-
+console.log(rows)
   React.useEffect(() => {
     dispatch(getProducts());
   }, []);
@@ -339,8 +364,7 @@ const ProductList = () => {
             selected={selected}
           />
           <TableBody>
-            {stableSort(rows, getComparator(order, orderBy))
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, index) => {
                 if (typeof row === 'number') return null;
                 const isItemSelected = isSelected(row.name);
@@ -372,8 +396,9 @@ const ProductList = () => {
                     {/* <TableCell>{format(new Date(row.created), 'E, MMM d yyyy')}</TableCell> */}
                     <TableCell align="left">${row.offerPrice}</TableCell>
                     <TableCell align="left" >
+                        
                         <Box sx={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                        <>1</> 
+                      <>{row.quantity}</> 
                       <IconButton onClick={handleMenuClick} size="large" aria-label="more option">
                         <MoreHorizOutlinedIcon
                           fontSize="small"
@@ -387,7 +412,7 @@ const ProductList = () => {
                         anchorEl={anchorEl}
                         keepMounted
                         open={Boolean(anchorEl)}
-                        onClose={handleClose}
+                        // onClose={(e)=>handleClose(e,'delete',row.index)}
                         variant="selectedMenu"
                         anchorOrigin={{
                           vertical: 'bottom',
@@ -403,10 +428,14 @@ const ProductList = () => {
                           }
                         }}
                       >
-                        <MenuItem onClick={handleClose}> Edit</MenuItem>
-                        <MenuItem onClick={handleClose}> Delete</MenuItem>
+                        {/* <MenuItem onClick={(e)=>handleClose(e,'edit',index)}> Edit</MenuItem> */}
+                        <MenuItem onClick={(e)=>handleClose(e,'delete',row.index)}> Delete</MenuItem>
                       </Menu>
+                     
+                     
                       </Box>
+                      
+            
                     </TableCell>
                   </TableRow>
                 );
