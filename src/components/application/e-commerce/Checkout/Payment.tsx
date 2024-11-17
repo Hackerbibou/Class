@@ -124,6 +124,7 @@ const Payment = ({user, address, products, checkout, onBack, onNext, handleShipp
       setTimeout(()=>{
         setComplete(false);
         (async()=>{
+          console.log(products)
           await util.addOrders(products,address.name, user.email, user.phone, address, payment)
           await util.clearCart()
           router.push('/pastorders');
@@ -314,7 +315,7 @@ const Payment = ({user, address, products, checkout, onBack, onNext, handleShipp
             </Stack>
           </Grid>
           <Grid item xs={12}>
-            <OrderSummary checkout={checkout} />
+            <OrderSummary product={products} checkout={checkout} />
           </Grid>
           <Grid item xs={12}>
             <AddressCard single change address={checkout.billing} onBack={onBack} />

@@ -8,7 +8,7 @@ export async function readPastorder() {
     .select('*')
     .eq('id',user.id)
 
-    
+    // console.log(info)
     if(info[0]) {
         return info[0].pastorders
     }
@@ -35,7 +35,7 @@ export async function addOrders(cart, name, email, phone, address, payment) {
     console.log(phone)
     console.log(address)
     console.log(payment)
-    const total=cart.reduce((acc,el)=>acc+el.offerPrice,0) +5000
+    const total=cart.reduce((acc,el)=>acc+(el.offerPrice*el.quantity),0) +5000
     const order ={
         'cart':cart,
         'name':name,
@@ -105,6 +105,7 @@ export async function addCart(object) {
 
 }
 export async function editCart(updatedProducts){
+    const user = await util.Getuser();
     const { data, error } = await supabase
     .from('user')
     .update({ cart: updatedProducts })

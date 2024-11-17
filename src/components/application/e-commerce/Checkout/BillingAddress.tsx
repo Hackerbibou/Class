@@ -28,6 +28,7 @@ import PersonOutlineTwoToneIcon from '@mui/icons-material/PersonOutlineTwoTone';
 // ==============================|| CHECKOUT BILLING ADDRESS - MAIN ||============================== //
 
 interface BillingAddressProps {
+  products:any;
   address: Address[];
   checkout: CartCheckoutStateProps;
   onBack: () => void;
@@ -36,7 +37,7 @@ interface BillingAddressProps {
   billingAddressHandler: (billingAddress: Address | null) => void;
 }
 
-const BillingAddress = ({ checkout, onBack, billingAddressHandler, address, addAddress, editAddress }: BillingAddressProps) => {
+const BillingAddress = ({products, checkout, onBack, billingAddressHandler, address, addAddress, editAddress }: BillingAddressProps) => {
   const [select, setSelect] = useState<Address | null>(null);
   const [addresses, setAddresses] = useState([]);
   const [addId, setAddid] = useState(0);
@@ -86,7 +87,7 @@ const BillingAddress = ({ checkout, onBack, billingAddressHandler, address, addA
           </Grid>
           {addressResult}
           <Grid item xs={12}>
-            <OrderSummary checkout={checkout} />
+            <OrderSummary product={products} checkout={checkout} />
           </Grid>
           <Grid item xs={12}>
             <Grid container spacing={3} alignItems="center" justifyContent="space-between">

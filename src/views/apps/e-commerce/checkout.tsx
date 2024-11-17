@@ -73,7 +73,6 @@ function TabPanel({ children, value, index, ...other }: TabsProps) {
 
 const Checkout = () => {
   const cart = useSelector((state) => state.cart);
- 
   const { mode, borderRadius } = useConfig();
   const [product, setProduct] = useState([])
   const [user, setUser] = useState({})
@@ -84,7 +83,6 @@ const Checkout = () => {
       const userr:any=await utils.Getuser();
       setProduct(prod)
       setUser(userr)
-
     })()
     
   },[cart])
@@ -137,14 +135,36 @@ const Checkout = () => {
   };
 
   const updateQuantity = (id: string | number | undefined, quantity: number) => {
-    dispatch(updateProduct(id, quantity, product));
-  };
+    let v:any=product.map((elem:{}, index)=>{
+      if(index==id){
+        return {...elem,quantity:quantity}
+      }else{
+        return elem
+      }
+    })
+    setProduct(v);
+    (async()=>await util.editCart(v))();
+  dispatch(updateProduct(id, quantity, product));
+};
+console.log(product);
 
   const onNext = () => {
+    if(value<2){
+      setValue(value+1)
+    }else{
+      setValue(0)
+    }
+    
     dispatch(setNextStep());
   };
 
   const onBack = () => {
+    setValue(value-1)
+    if(value-1<0){
+      setValue(0)
+    }else{
+      setValue(value-1)
+    }
     dispatch(setBackStep());
   };
 
@@ -255,11 +275,12 @@ const Checkout = () => {
         </Grid>
         <Grid item xs={12}>
           <TabPanel value={value} index={0}>
-            {isCart && <Cart setProducts={setProduct} products={product} checkout={cart.checkout} onNext={onNext} removeProduct={removeCartProduct} updateQuantity={updateQuantity} />}
+            {isCart && <Cart quantity={product.length} setProducts={setProduct} products={product} checkout={cart.checkout} onNext={onNext} removeProduct={removeCartProduct} updateQuantity={updateQuantity} />}
             {!isCart && <CartEmpty />}
           </TabPanel>
           <TabPanel value={value} index={1}>
             <BillingAddress
+            products={product}
               checkout={cart.checkout}
               onBack={onBack}
               billingAddressHandler={billingAddressHandler}

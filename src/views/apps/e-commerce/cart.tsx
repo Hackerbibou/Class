@@ -7,15 +7,15 @@ import userUtil from 'api/clientuser'
 // import AddIcon from '@mui/icons-material/Add';
 // import RemoveIcon from '@mui/icons-material/Remove';
 // material-ui
-import { useTheme } from '@mui/material/styles';
+// import { useTheme } from '@mui/material/styles';
 import CardContent from '@mui/material/CardContent';
 // import Checkbox from '@mui/material/Checkbox';
 // import Fab from '@mui/material/Fab';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 // import InputAdornment from '@mui/material/InputAdornment';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+// import Menu from '@mui/material/Menu';
+// import MenuItem from '@mui/material/MenuItem';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -50,7 +50,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 // import FileCopyIcon from '@mui/icons-material/FileCopyTwoTone';
 // import SearchIcon from '@mui/icons-material/Search';
 // import AddIcon from '@mui/icons-material/AddTwoTone';
-import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
+// import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import { Box, Button, Stack } from '@mui/material';
 // import CartDiscount from 'components/application/e-commerce/Checkout/CartDiscount';
 import { useRouter } from 'next/navigation';
@@ -212,7 +212,7 @@ function EnhancedTableHead({
 
 
 const ProductList = () => {
-  const theme = useTheme();
+  // const theme = useTheme();
   const router = useRouter();
   const [order, setOrder] = React.useState<ArrangementOrder>('asc');
   const [orderBy, setOrderBy] = React.useState<string>('calories');
@@ -234,30 +234,7 @@ const ProductList = () => {
     })()
   },[])
 // const [editQuantity,setQuantity]=useState(1)
-  const [anchorEl, setAnchorEl] = React.useState<Element | (() => Element) | null | undefined>(null);
 
-  const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement> | undefined) => {
-    setAnchorEl(event?.currentTarget);
-  };
-
-
-  const handleClose = (e:any,type:string,idd:any) => {
-    e.preventDefault();
-    console.log(idd);
-    console.log(idd.index);
-    if(type=='delete'){
-      let fil = products.filter((elem, ind)=>ind!=idd.index);
-      let newprod:any=fil.map((elem:{}, ind)=>{
-        return {index:ind,...elem}
-      });
-      SetProduct(fil);
-      setRows(newprod);
-      (async()=>{
-        await util.deleteFromCart(fil);
-      })();
-    }
-    setAnchorEl(null);
-  };
 
   React.useEffect(() => {
     
@@ -386,7 +363,7 @@ console.log(rows)
                     <TableCell component="th" id={labelId} scope="row" sx={{ cursor: 'pointer' }}>
                       <Typography
                         component={Link}
-                        href={`/apps/e-commerce/product-details/${row.id}`}
+                        href={`/categories/productdetail/${row.table}/${row.id}`}
                         variant="subtitle1"
                         sx={{ textDecoration: 'none' }}
                       >
@@ -399,39 +376,7 @@ console.log(rows)
                         
                         <Box sx={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
                       <>{row.quantity}</> 
-                      <IconButton onClick={handleMenuClick} size="large" aria-label="more option">
-                        <MoreHorizOutlinedIcon
-                          fontSize="small"
-                          aria-controls="menu-popular-card-1"
-                          aria-haspopup="true"
-                          sx={{ color: 'grey.500' }}
-                        />
-                      </IconButton>
-                      <Menu
-                        id="menu-popular-card-1"
-                        anchorEl={anchorEl}
-                        keepMounted
-                        open={Boolean(anchorEl)}
-                        // onClose={(e)=>handleClose(e,'delete',row.index)}
-                        variant="selectedMenu"
-                        anchorOrigin={{
-                          vertical: 'bottom',
-                          horizontal: 'right'
-                        }}
-                        transformOrigin={{
-                          vertical: 'top',
-                          horizontal: 'right'
-                        }}
-                        sx={{
-                          '& .MuiMenu-paper': {
-                            boxShadow: theme.customShadows.z1
-                          }
-                        }}
-                      >
-                        {/* <MenuItem onClick={(e)=>handleClose(e,'edit',index)}> Edit</MenuItem> */}
-                        <MenuItem onClick={(e)=>handleClose(e,'delete',row.index)}> Delete</MenuItem>
-                      </Menu>
-                     
+                      
                      
                       </Box>
                       

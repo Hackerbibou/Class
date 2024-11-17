@@ -126,9 +126,15 @@ const Checkout = () => {
   };
 
   const updateQuantity = (id: string | number | undefined, quantity: number) => {
+      let v:any=Products.map((elem:{}, index)=>{
+        if(index==id){
+          return {...elem,quantity:quantity}
+        }
+      })
+      setProducts(v);
     dispatch(updateProduct(id, quantity, Products));
   };
-
+console.log(Products);
   const onNext = () => {
     dispatch(setNextStep());
   };
@@ -244,11 +250,12 @@ const Checkout = () => {
         </Grid>
         <Grid item xs={12}>
           <TabPanel value={value} index={0}>
-            {isCart && <Cart setProducts={setProducts} products={Products} checkout={cart.checkout} onNext={onNext} removeProduct={removeCartProduct} updateQuantity={updateQuantity} />}
+            {isCart && <Cart quantity={1} setProducts={setProducts} products={Products} checkout={cart.checkout} onNext={onNext} removeProduct={removeCartProduct} updateQuantity={updateQuantity} />}
             {!isCart && <CartEmpty />}
           </TabPanel>
           <TabPanel value={value} index={1}>
             <BillingAddress
+              products={Products}
               checkout={cart.checkout}
               onBack={onBack}
               billingAddressHandler={billingAddressHandler}

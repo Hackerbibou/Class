@@ -3,35 +3,35 @@
 import { useState } from 'react';
 
 // material-ui
-import { Theme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+// import { Theme } from '@mui/material/styles';
+// import Box from '@mui/material/Box';
 import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
-import useMediaQuery from '@mui/material/useMediaQuery';
+// import useMediaQuery from '@mui/material/useMediaQuery';
 
 // project import
 import MainCard from 'ui-component/cards/MainCard';
-import Avatar from 'ui-component/extended/Avatar';
+// import Avatar from 'ui-component/extended/Avatar';
 import { gridSpacing } from 'store/constant';
 import useConfig from 'hooks/useConfig';
 
 // third-party
-import Slider, { Settings } from 'react-slick';
+// import Slider, { Settings } from 'react-slick';
 import Lightbox from 'react-18-image-lightbox';
 
 // types
 import { Products } from 'types/e-commerce';
 
 // assets
-const prod1 = '/assets/images/e-commerce/prod-1.png';
-const prod2 = '/assets/images/e-commerce/prod-2.png';
-const prod3 = '/assets/images/e-commerce/prod-3.png';
-const prod4 = '/assets/images/e-commerce/prod-4.png';
-const prod5 = '/assets/images/e-commerce/prod-5.png';
-const prod6 = '/assets/images/e-commerce/prod-6.png';
-const prod7 = '/assets/images/e-commerce/prod-7.png';
-const prod8 = '/assets/images/e-commerce/prod-8.png';
-const prod9 = '/assets/images/e-commerce/prod-9.png';
+// const prod1 = '/assets/images/e-commerce/prod-1.png';
+// const prod2 = '/assets/images/e-commerce/prod-2.png';
+// const prod3 = '/assets/images/e-commerce/prod-3.png';
+// const prod4 = '/assets/images/e-commerce/prod-4.png';
+// const prod5 = '/assets/images/e-commerce/prod-5.png';
+// const prod6 = '/assets/images/e-commerce/prod-6.png';
+// const prod7 = '/assets/images/e-commerce/prod-7.png';
+// const prod8 = '/assets/images/e-commerce/prod-8.png';
+// const prod9 = '/assets/images/e-commerce/prod-9.png';
 
 // const prodImage = '/assets/images/e-commerce';
 
@@ -39,30 +39,30 @@ const prod9 = '/assets/images/e-commerce/prod-9.png';
 
 const ProductImages = ({ product }: { product: Products }) => {
   const { borderRadius } = useConfig();
-  const products = [prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9];
+  // const products = [prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9];
 
-  const downLG = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
-  const initialImage = product.image ? product.image : prod1;
+  // const downLG = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
+  // const initialImage = product.image ? product.image : prod1;
 
-  const [selected, setSelected] = useState<string>(initialImage);
+  // const [selected, setSelected] = useState<string>(product.image);
   const [modal, setModal] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
 
-  const images = [prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9];
+  const images = [product.image];
 
-  const lgNo = downLG ? 4 : 3;
+  // const lgNo = downLG ? 4 : 3;
 
-  const settings: Settings = {
-    rows: 1,
-    dots: false,
-    centerMode: true,
-    swipeToSlide: true,
-    focusOnSelect: true,
-    initialSlide: Number(product.id) + 1,
-    centerPadding: '0px',
-    slidesToShow: products.length > 3 ? lgNo : products.length
-  };
+  // const settings: Settings = {
+  //   rows: 1,
+  //   dots: false,
+  //   centerMode: true,
+  //   swipeToSlide: true,
+  //   focusOnSelect: true,
+  //   initialSlide: Number(product.id) + 1,
+  //   centerPadding: '0px',
+  //   slidesToShow: products.length > 3 ? lgNo : products.length
+  // };
 
   return (
     <>
@@ -75,13 +75,13 @@ const ProductImages = ({ product }: { product: Products }) => {
                 setIsOpen(true);
               }}
               component="img"
-              image={selected}
+              image={product.image}
               sx={{ borderRadius: `${borderRadius}px`, overflow: 'hidden', cursor: 'zoom-in' }}
               alt="product images"
             />
           </MainCard>
         </Grid>
-        <Grid item xs={11} sm={7} md={9} lg={10} xl={8}>
+        {/* <Grid item xs={11} sm={7} md={9} lg={10} xl={8}>
           <Slider {...settings}>
             {products.map((item, index) => (
               <Box
@@ -104,7 +104,7 @@ const ProductImages = ({ product }: { product: Products }) => {
               </Box>
             ))}
           </Slider>
-        </Grid>
+        </Grid> */}
       </Grid>
       {isOpen && (
         <Lightbox

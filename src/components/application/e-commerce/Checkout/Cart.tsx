@@ -19,7 +19,7 @@ import Typography from '@mui/material/Typography';
 
 // third-party
 import { sum } from 'lodash-es';
-import currency from 'currency.js';
+// import currency from 'currency.js';
 
 // project imports
 // import CartDiscount from './CartDiscount';
@@ -92,6 +92,7 @@ const Increment = ({ itemId, quantity, updateQuantity }: IncrementProps) => {
 
 interface CartProps {
   products:any;
+  quantity:number;
   setProducts:any;
   checkout: CartCheckoutStateProps;
   onNext: () => void;
@@ -99,12 +100,9 @@ interface CartProps {
   updateQuantity: (id: string | number | undefined, quantity: number) => void;
 }
 
-const Cart = ({setProducts, products, checkout, onNext, removeProduct, updateQuantity }: CartProps) => {
-  const totalQuantity = sum(products.map((item:any) => item.quantity));
+const Cart = ({quantity, setProducts, products, checkout, onNext, removeProduct, updateQuantity }: CartProps) => {
+  const totalQuantity = sum(products.map((item:any) => quantity));
   const [rows, setRows] = useState(products);
-  const updateQuant =(id:string | number | undefined, numb:number)=>{
-  
-  } 
   useEffect(() => {
     setRows(products);
   }, [products]);
@@ -183,20 +181,20 @@ const Cart = ({setProducts, products, checkout, onNext, removeProduct, updateQua
                     </TableCell>
                     <TableCell align="right">
                       <Stack>
-                        {row.offerPrice && <Typography variant="subtitle1">{currency(row.offerPrice).format()}</Typography>}
+                        {row.offerPrice && <Typography variant="subtitle1">{row.offerPrice} CFA</Typography>}
                         {row.salePrice && (
                           <Typography variant="caption" sx={{ textDecoration: 'line-through' }}>
-                            {currency(row.salePrice).format()}
+                            {row.salePrice}
                           </Typography>
                         )}
                       </Stack>
                     </TableCell>
                     <TableCell align="center">
-                      <Increment quantity={row.quantity} itemId={row.itemId} updateQuantity={updateQuant} />
+                      <Increment quantity={row.quantity} itemId={index} updateQuantity={updateQuantity} />
                     </TableCell>
                     <TableCell align="right">
                       {row.offerPrice && row.quantity && (
-                        <Typography variant="subtitle1">{currency(row.offerPrice * row.quantity).format()}</Typography>
+                        <Typography variant="subtitle1">{row.offerPrice * row.quantity} CFA</Typography>
                       )}
                     </TableCell>
                     <TableCell align="right">
@@ -212,7 +210,7 @@ const Cart = ({setProducts, products, checkout, onNext, removeProduct, updateQua
         </TableContainer>
       </Grid>
       <Grid item xs={12}>
-        <OrderSummary checkout={checkout} />
+        <OrderSummary product={rows} checkout={checkout} />
       </Grid>
       <Grid item xs={12}>
         <Grid container direction={{ xs: 'column-reverse', lg: 'row' }} spacing={3} alignItems={{ xs: 'flex-start', lg: 'center' }}>

@@ -231,6 +231,7 @@ const OrderList = () => {
   React.useEffect(() => {
     (async()=>{
       const pastorders:any=await util.readPastorder();
+      console.log(pastorders)
       setRows(pastorders);
     })();
   }, [orders]);
@@ -377,7 +378,7 @@ const OrderList = () => {
                   tabIndex={-1} key={index}
                   sx={{ cursor: 'pointer' }}
                   // selected={isItemSelected}
-                   onClick={()=>{router.push(`/pastorders/details/${index}`)}}>
+                   onClick={()=>{router.push(`/pastorders/details/${index+(page * rowsPerPage)}`)}}>
                     {/* <TableCell padding="checkbox" sx={{ pl: 3 }} onClick={(event) => handleClick(event, row.name)}>
                       <Checkbox
                         color="primary"

@@ -14,7 +14,7 @@ import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-import Rating from '@mui/material/Rating';
+// import Rating from '@mui/material/Rating';
 import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import Table from '@mui/material/Table';
@@ -29,7 +29,7 @@ import { useFormik, Form, FormikProvider, useField, FieldHookConfig } from 'form
 import * as yup from 'yup';
 
 // project imports
-import Chip from 'ui-component/extended/Chip';
+// import Chip from 'ui-component/extended/Chip';
 import Avatar from 'ui-component/extended/Avatar';
 import ColorOptions from '../ColorOptions';
 
@@ -43,9 +43,9 @@ import { ColorsOptionsProps, Products } from 'types/e-commerce';
 
 // assets
 import CircleIcon from '@mui/icons-material/Circle';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import StarTwoToneIcon from '@mui/icons-material/StarTwoTone';
-import StarBorderTwoToneIcon from '@mui/icons-material/StarBorderTwoTone';
+// import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+// import StarTwoToneIcon from '@mui/icons-material/StarTwoTone';
+// import StarBorderTwoToneIcon from '@mui/icons-material/StarBorderTwoTone';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
@@ -147,8 +147,8 @@ const ProductInfo = ({ product }: { product: Products }) => {
           close: false
         })
       );
-
-      router.push('/apps/e-commerce/checkout');
+      addCart();
+      router.push('/pay');
     }
   });
 
@@ -176,30 +176,30 @@ const ProductInfo = ({ product }: { product: Products }) => {
       <Grid item xs={12}>
         <Stack direction="row" alignItems="flex-start" justifyContent="space-between">
           <Grid container spacing={1}>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <Chip
                 size="small"
                 label={product.isStock ? 'In Stock' : 'Out of Stock'}
                 chipcolor={product.isStock ? 'success' : 'error'}
                 sx={{ borderRadius: '4px', textTransform: 'capitalize' }}
               />
-            </Grid>
+            </Grid> */}
             <Grid item xs={12}>
               <Stack direction="row" alignItems="center" spacing={1}>
                 <Typography variant="h3">{product.name}</Typography>
-                <Chip size="small" label="New" chipcolor="primary" variant="outlined" />
+                {/* <Chip size="small" label="New" chipcolor="primary" variant="outlined" /> */}
               </Stack>
             </Grid>
           </Grid>
-          <Avatar variant="rounded" sx={{ bgcolor: 'grey.200', color: 'grey.800' }}>
+          {/* <Avatar variant="rounded" sx={{ bgcolor: 'grey.200', color: 'grey.800' }}>
             <FavoriteBorderIcon />
-          </Avatar>
+          </Avatar> */}
         </Stack>
       </Grid>
       <Grid item xs={12}>
         <Typography variant="body2">{product.description}</Typography>
       </Grid>
-      <Grid item xs={12}>
+      {/* <Grid item xs={12}>
         <Stack direction="row" alignItems="center" spacing={1}>
           <Rating
             name="simple-controlled"
@@ -211,15 +211,15 @@ const ProductInfo = ({ product }: { product: Products }) => {
           />
           <Typography variant="caption">({product.salePrice}+)</Typography>
         </Stack>
-      </Grid>
+      </Grid> */}
       <Grid item xs={12}>
         <Stack direction="row" alignItems="center" spacing={1}>
           <Typography variant="h2" color="primary">
-            ${product.offerPrice}
+          {product.offerPrice} CFA
           </Typography>
-          <Typography variant="body1" sx={{ textDecoration: 'line-through' }}>
+          {/* <Typography variant="body1" sx={{ textDecoration: 'line-through' }}>
             ${product.salePrice}
-          </Typography>
+          </Typography> */}
           <Typography variant="caption">(Inclusive of all taxes)</Typography>
         </Stack>
       </Grid>
@@ -349,7 +349,7 @@ const ProductInfo = ({ product }: { product: Products }) => {
                     </Button>
                   </Grid>
                   <Grid item xs={6}>
-                    <Button type="submit" fullWidth color="secondary" variant="contained" size="large">
+                    <Button type="submit" fullWidth color="secondary" variant="contained" size="large" >
                       Buy Now
                     </Button>
                   </Grid>

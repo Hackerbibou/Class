@@ -83,6 +83,7 @@ const RelatedProducts = ({ table, id }: { table?:string ,id?: string }) => {
           offerPrice={product.offerPrice}
           salePrice={product.salePrice}
           rating={product.rating}
+          table={product.route}
         />
       </Box>
     ));

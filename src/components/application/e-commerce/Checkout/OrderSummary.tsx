@@ -14,25 +14,18 @@ import SubCard from 'ui-component/cards/SubCard';
 
 // types
 // import { CartCheckoutStateProps } from 'types/cart';
-import { useEffect, useState } from 'react';
-import util from 'api/checkout'
+// import { useEffect, useState } from 'react';
+// import util from 'api/checkout'
 // ==============================|| CHECKOUT CART - ORDER SUMMARY ||============================== //
 
-const OrderSummary = ({checkout }: { checkout: any }) => {
-  const [total,setTotal]=useState(0)
-  const [subtotal,setSubtotal]=useState(0)
-  const shipping=5000
+const OrderSummary = ({product, checkout }: { checkout: any, product:any }) => {
+  let t=product.reduce((acc:any,el:any)=>acc+(el.offerPrice*el.quantity),0)
+   const shipping=5000
   const discount=0.00
-  useEffect(()=>{
-    (async()=>{
-      const products:any=await util.readCart();
-          let t=products.reduce((acc:any,el:any)=>acc+el.offerPrice,0)
-          setSubtotal(t)
-          setTotal(t+discount+shipping)
-    })()
-    
+  const total=(t+discount+shipping);
+  const subtotal=t
+ 
 
-  },[])
   
   return (
   <SubCard>
