@@ -230,7 +230,7 @@ const ProductList = () => {
       const prod : any = await util.readCart();
       const userInfo : any = await userUtil.Getuser();
       setUser(userInfo);
-      if(prod)SetProduct(prod);
+      if(prod)SetProduct(prod.reverse());
     })()
   },[])
 // const [editQuantity,setQuantity]=useState(1)

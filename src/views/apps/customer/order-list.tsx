@@ -232,7 +232,7 @@ const OrderList = () => {
     (async()=>{
       const pastorders:any=await util.readPastorder();
       console.log(pastorders)
-      setRows(pastorders);
+      setRows(pastorders.reverse());
     })();
   }, [orders]);
   const handleSearch = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
