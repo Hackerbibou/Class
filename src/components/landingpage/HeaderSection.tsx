@@ -3,25 +3,29 @@
 // material-ui
 // import { styled } from '@mui/material/styles';
 // import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 // import CardMedia from '@mui/material/CardMedia';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import BoyIcon from "../../../public/assets/images/e-commerce/001-man.png";
+import Babyboy from "../../../public/assets/images/e-commerce/babyboy.png";
+import Woman from "../../../public/assets/images/e-commerce/008-summer-clothing.png";
+import Babygirl from "../../../public/assets/images/e-commerce/babygirl.png";
 
 // third party
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 // project imports
-import AnimateButton from 'ui-component/extended/AnimateButton';
+import AnimateButton from "ui-component/extended/AnimateButton";
 
 // import { DASHBOARD_PATH } from 'config';
 // import useConfig from 'hooks/useConfig';
 
 // assets
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import Image from "next/image";
 // const TechLight = '/assets/images/landing/tech-light.svg';
 // const TechDark = '/assets/images/landing/tech-dark.svg';
 // const dashboard = '/assets/images/landing/hero-dashboard.png';
@@ -57,7 +61,9 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 const HeaderSection = () => {
   // const { mode, themeDirection } = useConfig();
 
-  const headerSX = { fontSize: { xs: '2rem', sm: '3rem', md: '3.5rem', lg: '3.5rem' } };
+  const headerSX = {
+    fontSize: { xs: "2rem", sm: "3rem", md: "3.5rem", lg: "3.5rem" },
+  };
 
   // const HeaderAnimationImagememo = useMemo(
   //   () => (
@@ -80,147 +86,188 @@ const HeaderSection = () => {
   // );
 
   return (
-    <Container sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <Grid container justifyContent="space-between" alignItems="center" sx={{ mt: { xs: 10, sm: 6, md: 18.75 }, mb: { xs: 2.5, md: 10 } }}>
-        <Grid item >
+    <Container
+      sx={{
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Grid
+        container
+        justifyContent="space-between"
+        alignItems="center"
+        sx={{ mt: { xs: 10, sm: 6, md: 18.75 }, mb: { xs: 2.5, md: 10 } }}
+      >
+        <Grid item>
           <Grid container spacing={6}>
             <Grid item xs={12}>
               <motion.div
                 initial={{ opacity: 0, translateY: 550 }}
                 animate={{ opacity: 1, translateY: 0 }}
-                transition={{ type: 'spring', stiffness: 150, damping: 30 }}
+                transition={{ type: "spring", stiffness: 150, damping: 30 }}
               >
                 <Stack spacing={1}>
-                  <Typography textAlign={{ xs: 'center', md: 'center' }} variant="h1" sx={headerSX}>
+                  <Typography
+                    textAlign={{ xs: "center", md: "center" }}
+                    variant="h1"
+                    sx={headerSX}
+                  >
                     Keur Sokhna Diarra
                   </Typography>
-                  <Typography textAlign={{ xs: 'center', md: 'center' }} variant="h1" color="primary" sx={headerSX}>
+                  <Typography
+                    textAlign={{ xs: "center", md: "center" }}
+                    variant="h1"
+                    color="primary"
+                    sx={headerSX}
+                  >
                     Bambinery
                   </Typography>
                 </Stack>
               </motion.div>
             </Grid>
-            <Grid item xs={12} sx={{ mt: -2.5, textAlign: { xs: 'center', md: 'left' } }}>
+            <Grid
+              item
+              xs={12}
+              sx={{ mt: -2.5, textAlign: { xs: "center", md: "left" } }}
+            >
               <motion.div
                 initial={{ opacity: 0, translateY: 550 }}
                 animate={{ opacity: 1, translateY: 0 }}
-                transition={{ type: 'spring', stiffness: 150, damping: 30, delay: 0.2 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 150,
+                  damping: 30,
+                  delay: 0.2,
+                }}
               >
                 <Typography
-                  textAlign={{ xs: 'center', md: 'center' }}
+                  textAlign={{ xs: "center", md: "center" }}
                   color="text.primary"
                   variant="body1"
-                  sx={{ fontSize: { xs: '1rem', md: '1.125rem' } }}
+                  sx={{ fontSize: { xs: "1rem", md: "1.125rem" } }}
                 >
                   Vente d'habillement bébé de 0 à 16 ans
                 </Typography>
               </motion.div>
             </Grid>
-            <Grid item xs={12}>
-              <motion.div
-                initial={{ opacity: 0, translateY: 550 }}
-                animate={{ opacity: 1, translateY: 0 }}
-                transition={{ type: 'spring', stiffness: 150, damping: 30, delay: 0.4 }}
+         
+            <Grid
+                item
+                sx={{
+                  display:'flex',
+                  justifyContent: 'center',
+                  width: '100%',
+                  gap:1
+                }}
               >
-                <Grid container spacing={2} sx={{ justifyContent: { xs: 'center', md: 'center' }, width:{xs:'100%', md:'80%'},margin:'0 auto' }}>
+                <motion.div
+                  initial={{ opacity: 0, translateY: 550 }}
+                  animate={{ opacity: 1, translateY: 0 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 150,
+                    damping: 30,
+                    delay: 0.4,
+                  }}
+                >
                   <Grid item>
                     <AnimateButton>
                       <Button
                         component={Link}
-                        href='/categories/mensShirts'
-                        target="_blank"
+                        href="/categories/EnsembleGarcon02"
+                        // target="_blank"
                         size="large"
                         variant="contained"
                         color="primary"
-                        startIcon={<PlayArrowIcon />}
+                        startIcon={<Image src={Babyboy} height={30} alt="" />}
                       >
-                        Haut M
+                        Garçon 0-2 ans
                       </Button>
                     </AnimateButton>
                   </Grid>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, translateY: 550 }}
+                  animate={{ opacity: 1, translateY: 0 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 150,
+                    damping: 30,
+                    delay: 0.6,
+                  }}
+                >
                   <Grid item>
                     <AnimateButton>
                       <Button
                         component={Link}
-                        href='/categories/womenShirts'
-                        target="_blank"
+                        href="/categories/EnsembleFille02"
+                        // target="_blank"
                         size="large"
                         variant="contained"
                         color="secondary"
-                        startIcon={<PlayArrowIcon />}
+                        startIcon={<Image src={Babygirl} height={20} alt="" />}
                       >
-                        Haut F
+                        Fille 0-2 ans
                       </Button>
                     </AnimateButton>
                   </Grid>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, translateY: 550 }}
+                  animate={{ opacity: 1, translateY: 0 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 150,
+                    damping: 30,
+                    delay: 0.8,
+                  }}
+                >
                   <Grid item>
                     <AnimateButton>
                       <Button
                         component={Link}
-                        href='/categories/mensPants'
-                        target="_blank"
+                        href="/categories/EnsembleGarcon24"
+                        // target="_blank"
                         size="large"
                         variant="contained"
                         color="primary"
-                        startIcon={<PlayArrowIcon />}
+                        startIcon={<Image src={BoyIcon} height={20} alt="" />}
                       >
-                        Bas M
+                        Garçon 2-4 ans
                       </Button>
                     </AnimateButton>
                   </Grid>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, translateY: 550 }}
+                  animate={{ opacity: 1, translateY: 0 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 150,
+                    damping: 30,
+                    delay: 1,
+                  }}
+                >
                   <Grid item>
                     <AnimateButton>
                       <Button
                         component={Link}
-                        href='/categories/womenPants'
-                        target="_blank"
+                        href="/categories/EnsembleFille24"
+                        // target="_blank"
                         size="large"
                         variant="contained"
                         color="secondary"
-                        startIcon={<PlayArrowIcon />}
+                        startIcon={<Image src={Woman} height={20} alt="" />}
                       >
-                        Bas F
+                        Fille 2-4 ans
                       </Button>
                     </AnimateButton>
                   </Grid>
-                  <Grid item>
-                    <AnimateButton>
-                      <Button
-                        component={Link}
-                        href='/categories/mensHats'
-                        target="_blank"
-                        size="large"
-                        variant="contained"
-                        color="primary"
-                        startIcon={<PlayArrowIcon />}
-                      >
-                        Accessoire M
-                      </Button>
-                    </AnimateButton>
-                  </Grid>
-                  <Grid item>
-                    <AnimateButton>
-                      <Button
-                        component={Link}
-                        href='/categories/womenHats'
-                        target="_blank"
-                        size="large"
-                        variant="contained"
-                        color="secondary"
-                        startIcon={<PlayArrowIcon />}
-                      >
-                        Accessoire F
-                      </Button>
-                    </AnimateButton>
-                  </Grid>
-                  
-                  
-                  
-                
-                </Grid>
-              </motion.div>
-            </Grid>
+                </motion.div>
             
+            </Grid>
           </Grid>
         </Grid>
         {/* <Grid item xs={12} md={7} sx={{ display: { xs: 'none', md: 'flex' } }}>
