@@ -158,7 +158,7 @@ const HeaderSection = () => {
                 sx={{
                   display:'flex',
                   justifyContent: 'center',
-                  width: '100%',
+                  width: '100%',flexWrap:'wrap',
                   gap:1
                 }}
               >
@@ -172,10 +172,11 @@ const HeaderSection = () => {
                     delay: 0.4,
                   }}
                 >
-                  <Grid item>
+                  
                     <AnimateButton>
                       <Button
                         component={Link}
+                        sx={{width:{xs:'183px', md:'200px'}}}
                         href="/categories/EnsembleGarcon02"
                         // target="_blank"
                         size="large"
@@ -186,7 +187,7 @@ const HeaderSection = () => {
                         Garçon 0-2 ans
                       </Button>
                     </AnimateButton>
-                  </Grid>
+               
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, translateY: 550 }}
@@ -198,10 +199,11 @@ const HeaderSection = () => {
                     delay: 0.6,
                   }}
                 >
-                  <Grid item>
+                  
                     <AnimateButton>
                       <Button
                         component={Link}
+                        sx={{width:{xs:'183px', md:'200px'}}}
                         href="/categories/EnsembleFille02"
                         // target="_blank"
                         size="large"
@@ -212,7 +214,7 @@ const HeaderSection = () => {
                         Fille 0-2 ans
                       </Button>
                     </AnimateButton>
-                  </Grid>
+               
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, translateY: 550 }}
@@ -224,10 +226,11 @@ const HeaderSection = () => {
                     delay: 0.8,
                   }}
                 >
-                  <Grid item>
+                  
                     <AnimateButton>
                       <Button
                         component={Link}
+                        sx={{width:{xs:'183px', md:'200px'}}}
                         href="/categories/EnsembleGarcon24"
                         // target="_blank"
                         size="large"
@@ -238,7 +241,7 @@ const HeaderSection = () => {
                         Garçon 2-4 ans
                       </Button>
                     </AnimateButton>
-                  </Grid>
+                 
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, translateY: 550 }}
@@ -250,10 +253,11 @@ const HeaderSection = () => {
                     delay: 1,
                   }}
                 >
-                  <Grid item>
+                  
                     <AnimateButton>
                       <Button
                         component={Link}
+                        sx={{width:{xs:'183px', md:'200px'}}}
                         href="/categories/EnsembleFille24"
                         // target="_blank"
                         size="large"
@@ -264,7 +268,7 @@ const HeaderSection = () => {
                         Fille 2-4 ans
                       </Button>
                     </AnimateButton>
-                  </Grid>
+                  
                 </motion.div>
             
             </Grid>
