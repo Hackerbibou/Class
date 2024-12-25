@@ -6,12 +6,26 @@ import { Products, ProductsFilter } from 'types/e-commerce';
 /////Tops
 
 
-export async function getMensShirts() {
+// export async function getMensShirts() {
 
-    let { data: Menshirts, error } = await supabase
-        .from('Menshirts')
+//     let { data: Menshirts, error } = await supabase
+//         .from('Menshirts')
+//         .select('*')
+//         return Menshirts
+// }
+export async function ensembleGarcon02() {
+
+    let { data: EnsembleGarcon, error } = await supabase
+        .from('EnsembleGarcon02')
         .select('*')
-        return Menshirts
+        return EnsembleGarcon
+}
+export async function ensembleGarcon24() {
+
+    let { data: EnsembleGarcon, error } = await supabase
+        .from('EnsembleGarcon24')
+        .select('*')
+        return EnsembleGarcon
 }
 export async function getMensHoodies() {
 
@@ -227,8 +241,9 @@ export async function searchAllProducts(product) {
 }    
 export default {
     searchAllProducts,
-
-    getMensShirts,
+    ensembleGarcon02,
+    ensembleGarcon24,
+    // getMensShirts,
     getMensHoodies,
     getMensLongsleeves,
 

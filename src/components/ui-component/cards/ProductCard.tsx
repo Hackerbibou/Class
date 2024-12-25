@@ -31,7 +31,7 @@ import { useRouter } from 'next/navigation';
 
 const ProductCard = ({ id, color, name, image, description, offerPrice, salePrice, rating, table }: ProductCardProps) => {
   const router = useRouter();
-  const prodProfile = image;
+  const prodProfile =`https://olrfgwsbgyajiicxsnhz.supabase.co/storage/v1/object/public/productimages/${image}`;
   // const [productRating] = useState<number | undefined>(rating);
   const cart = useSelector((state) => state.cart);
   

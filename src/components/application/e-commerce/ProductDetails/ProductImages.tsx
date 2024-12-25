@@ -75,7 +75,7 @@ const ProductImages = ({ product }: { product: Products }) => {
                 setIsOpen(true);
               }}
               component="img"
-              image={product.image}
+              image={`https://olrfgwsbgyajiicxsnhz.supabase.co/storage/v1/object/public/productimages/${product.image}`}
               sx={{ borderRadius: `${borderRadius}px`, overflow: 'hidden', cursor: 'zoom-in' }}
               alt="product images"
             />

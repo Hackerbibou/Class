@@ -83,7 +83,7 @@ const AppBar = ({ ...others }) => {
               <Button color="inherit" component={Link} href="https://codedthemes.gitbook.io/berry" target="_blank">
                 Documentation
               </Button> */}
-              <Button component={Link} href="/categories/mensJeans" disableElevation variant="contained" color="secondary">
+              <Button component={Link} href="/categories/EnsembleGarcon02" disableElevation variant="contained" color="secondary">
                 Shop
               </Button>
             </Stack>

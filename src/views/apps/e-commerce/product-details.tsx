@@ -3,6 +3,7 @@
 import { useEffect, useState} from 'react';
 import { useParams } from 'next/navigation';
 import util from '../../../api/menproduct'
+import utils from '../../../api/womenproduct'
 
 
 // material-ui
@@ -68,8 +69,18 @@ const ProductDetails = () => {
   const [product, SetProduct] = useState<ProductsTypo[]>([])
 
   useEffect(() => {
+    let prod : any
     (async ()=> {
-      const prod : any = await util.getMensTable(params.table)
+      if(params.table=='EnsembleGarcon02'){
+        prod = await util.ensembleGarcon02();
+      }else if(params.table=='EnsembleGarcon24'){
+        prod = await util.ensembleGarcon24();
+      }else if(params.table=='EnsembleFille02'){
+        prod = await utils.ensembleFille02();
+      }else if(params.table=='EnsembleFille24'){
+        prod = await utils.ensembleFille24();
+      }
+       
       console.log(prod)
       SetProduct(prod)
     })()

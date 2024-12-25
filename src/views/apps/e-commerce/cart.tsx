@@ -358,7 +358,7 @@ console.log(rows)
                       onClick={(event) => handleClick(event, row.name)}
                       sx={{ cursor: 'pointer' }}
                     >
-                      <Avatar src={row.image} size="md" variant="rounded" alt="product images" />
+                      <Avatar src={`https://olrfgwsbgyajiicxsnhz.supabase.co/storage/v1/object/public/productimages/${row.image}`} size="md" variant="rounded" alt="product images" />
                     </TableCell>
                     <TableCell component="th" id={labelId} scope="row" sx={{ cursor: 'pointer' }}>
                       <Typography

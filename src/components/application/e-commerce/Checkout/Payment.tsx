@@ -274,7 +274,7 @@ const Payment = ({user, address, products, checkout, onBack, onNext, handleShipp
                                   size="md"
                                   variant="rounded"
                                   alt="product images"
-                                  src={row.image ? `${row.image}` : ''}
+                                  src={row.image ? `https://olrfgwsbgyajiicxsnhz.supabase.co/storage/v1/object/public/productimages/${row.image}` : ''}
                                 />
                               </Grid>
                               <Grid item>
@@ -318,7 +318,7 @@ const Payment = ({user, address, products, checkout, onBack, onNext, handleShipp
             <OrderSummary product={products} checkout={checkout} />
           </Grid>
           <Grid item xs={12}>
-            <AddressCard single change address={checkout.billing} onBack={onBack} />
+            <AddressCard single change address={address} onBack={onBack} />
           </Grid>
         </Grid>
       </Grid>

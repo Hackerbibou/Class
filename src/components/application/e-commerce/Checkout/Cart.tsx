@@ -152,7 +152,7 @@ const Cart = ({quantity, setProducts, products, checkout, onNext, removeProduct,
                     <TableCell component="th" scope="row">
                       <Grid container alignItems="center" spacing={2}>
                         <Grid item>
-                          <Avatar size="md" alt="product images" variant="rounded" src={row.image ? `${row.image}` : ''} />
+                          <Avatar size="md" alt="product images" variant="rounded" src={row.image ? `https://olrfgwsbgyajiicxsnhz.supabase.co/storage/v1/object/public/productimages/${row.image}` : ''} />
                         </Grid>
                         <Grid item>
                           <Stack spacing={0}>

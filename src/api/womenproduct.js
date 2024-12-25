@@ -4,7 +4,20 @@ import { Products, ProductsFilter } from 'types/e-commerce';
 
 
 /////Tops
+export async function ensembleFille02() {
 
+    let { data: EnsembleFille, error } = await supabase
+        .from('EnsembleFille02')
+        .select('*')
+        return EnsembleFille
+}
+export async function ensembleFille24() {
+
+    let { data: EnsembleFille, error } = await supabase
+        .from('EnsembleFille24')
+        .select('*')
+        return EnsembleFille
+}
 export async function getWomensShirts() {
 
     let { data: Womenshirts, error } = await supabase
@@ -86,6 +99,8 @@ export async function getWomensSocks() {
 }
     
 export default {
+    ensembleFille02,
+    ensembleFille24,
     getWomensShirts,
     getWomensHoodies,
     getWomensLongsleeves,

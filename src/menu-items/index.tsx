@@ -18,7 +18,10 @@ import Women from './womenscategories';
 // import { useEffect } from 'react';
 
 // ==============================|| MENU ITEMS ||============================== //
-let menuItems: { items: NavItemType[] } ={items: [Men, Women]};
+let menuItems: { items: NavItemType[] } ={
+    items: [Men, Women]
+
+};
 
 
 

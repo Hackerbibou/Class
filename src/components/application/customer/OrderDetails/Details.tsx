@@ -235,7 +235,7 @@ const Details = () => {
                     {detail.cart.map((row:cart, index:number) => (
                       <TableRow key={index}>
                         <TableCell sx={{ pl: 3, display:'flex', alignItems:'center', gap:2 }}>
-                          <Image src={row.image} alt={row.name} width={52} height={52}/>
+                          <Image src={`https://olrfgwsbgyajiicxsnhz.supabase.co/storage/v1/object/public/productimages/${row.image}`} alt={row.name} width={52} height={52}/>
                           <Typography variant="body2">{row.name}</Typography>
                         </TableCell>
                         <TableCell align="right">{row.quantity}</TableCell>

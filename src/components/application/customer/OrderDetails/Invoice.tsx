@@ -77,7 +77,7 @@ const Invoice = () => {
     (async()=>{
       const details:any=await util.readPastorder();
       if(details){
-        const detail:any=details.find((el:any,ind:any)=>ind==params.index)
+        const detail:any=details.reverse().find((el:any,ind:any)=>ind==params.index)
       setDetail(detail)
       }
       
@@ -205,7 +205,7 @@ const Invoice = () => {
                     {detail.cart.map((row:any, index:any) => (
                       <TableRow key={index}>
                         <TableCell sx={{ pl: 3, display:'flex', alignItems:'center', gap:2 }}>
-                        <Image src={row.image} alt={row.name} width={52} height={52}/>
+                        <Image src={`https://olrfgwsbgyajiicxsnhz.supabase.co/storage/v1/object/public/productimages/${row.image}`} alt={row.name} width={52} height={52}/>
                           <Typography variant="body2">{row.name}</Typography>
                         </TableCell>
                         <TableCell align="right">{row.quantity}</TableCell>

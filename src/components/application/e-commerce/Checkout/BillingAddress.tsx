@@ -117,7 +117,7 @@ const BillingAddress = ({products, checkout, onBack, billingAddressHandler, addr
             <Grid item xs={12}>
               <Stack spacing={0.25}>
                 <Typography variant="caption">Email</Typography>
-                <Typography variant="subtitle1">deliaturewpo@company.com</Typography>
+                <Typography variant="subtitle1">Keursokhnadiarrafall@gmail.com</Typography>
               </Stack>
             </Grid>
             <Grid item xs={12}>
